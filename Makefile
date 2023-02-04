@@ -1,4 +1,5 @@
-SRCS = ./source/main.c ./source/utils/utils.c ./source/utils/env_add.c ./source/loop/loop.c
+SRCS = ./source/main.c ./source/utils/utils.c ./source/utils/env_add.c ./source/loop/loop.c ./source/divide/string_divide.c \
+		./source/utils/add_list_utils.c
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I./lib/readline/include

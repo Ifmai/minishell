@@ -17,8 +17,6 @@ t_data *data;
 void	define_struct(void)
 {
 	data->dvd_str = malloc(sizeof(t_divide_str));
-	data->dvd_str->db_len = 0;
-	data->dvd_str->divide = 0;
 	data->dvd_str->db_quote = 0;
 	data->dvd_str->quote = 0;
 	data->dvd_str->pipe_count = 0;

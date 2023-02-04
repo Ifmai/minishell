@@ -25,4 +25,9 @@ int main(int ac, char **av, char **env)
 	data->env = ft_env(env);
 	define_struct();
 	minishell_loop();
+	while(data->dvd_str->lexer != NULL)
+	{
+		printf("%s.\n",data->dvd_str->lexer->str);
+		data->dvd_str->lexer = data->dvd_str->lexer->next;
+	}
 }
