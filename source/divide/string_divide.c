@@ -40,7 +40,6 @@ void	divide_string(char *str, t_divide_str *dvd)
 		check_in_str(str[i], data->dvd_str);
 		if(QTorF(dvd->db_quote, dvd->quote))
 		{
-			i++;
 			add(&dvd->lexer, new_node(add_que(dvd, str, &i)));
 			reset_quoete(dvd);
 			i++;

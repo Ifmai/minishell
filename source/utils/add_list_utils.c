@@ -17,6 +17,8 @@ char	*add_que(t_divide_str *dvd, char *str, int *i)
 	char	*divide;
 	int		index;
 
+	if(QTorF(dvd->db_quote, dvd->quote))
+		(*i)++;
 	index = (*i);
 	while(str[*i] != 0)
 	{
