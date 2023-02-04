@@ -17,17 +17,15 @@ char	*add_que(t_divide_str *dvd, char *str, int *i)
 	char	*divide;
 	int		index;
 
-	index = (*i) + 1;
-	while(dvd->quote != 2 && dvd->db_quote != 2)
+	index = (*i);
+	while(str[*i] != 0)
 	{
-		index++;
-		check_in_str(str[index], dvd); 
+		check_in_str(str[*i], dvd);
+		if(dvd->quote == 2 || dvd->db_quote == 2)
+			break ;
+		(*i)++;
 	}
-	if(QCheck(str[*i]))
-		divide = ft_substr(str, *i + 1, index - (*i) - 1);
-	else
-		divide = ft_substr(str, *i, index - (*i));
-	*i = index;
+	divide = ft_substr(str, index, (*i) - index);
 	return (divide);
 }
 
@@ -37,13 +35,14 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 	int		index;
 
 	index = (*i);
-	while(str[index] != 32 && NoQ(dvd->db_quote, dvd->quote) && str[*i])
+	while(str[*i] != 0)
 	{
-		index++;
-		check_in_str(str[index], dvd);
+		check_in_str(str[*i], dvd);
+		if(str[*i] == 32 || !NoQ(dvd->db_quote, dvd->quote))
+			break ;
+		(*i)++;
 	}
-	divide = ft_substr(str, *i, index - (*i));
-	*i = index;
+	divide = ft_substr(str, index, (*i) - index);
 	return (divide);
 }
 

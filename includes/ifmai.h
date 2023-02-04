@@ -21,7 +21,7 @@
 # define QTorF(x, z) ((x == 1 || z == 1) ? 1 : 0)
 # define QCheck(x) ((x == '\"' || x == '\'') ? 1 : 0)
 # define NoQ(x, z) ((x == 0 && z == 0) ? 1 : 0)
-# define STR(c, x) ((c == 0 || x != 32) ? 1 : 0)
+# define STR(c) ((c != '\'' && c != '\"' && c != 32) ? 1 : 0)
 
 // Structs
 typedef struct s_lexer
@@ -36,8 +36,6 @@ typedef struct s_divide_string
 	int		db_quote;
 	int		quote;
 	int		pipe_count;
-	int		cut_line_start;
-	int		cut_line_end;
 	t_lexer	*lexer;
 }			t_divide_str;
 

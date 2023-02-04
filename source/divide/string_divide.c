@@ -26,8 +26,7 @@ void	check_in_str(char str, t_divide_str *dvd)
 		dvd->db_quote++;
 	else if(str == '\'' && dvd->db_quote == 0)
 		dvd->quote++;
-	if(str == '|' && dvd->db_quote == 0
-		&& dvd->quote == 0)
+	if(str == '|' && NoQ(dvd->db_quote, dvd->quote))
 		dvd->pipe_count++;
 }
 
@@ -39,19 +38,19 @@ void	divide_string(char *str, t_divide_str *dvd)
 	while(str[i])
 	{
 		check_in_str(str[i], data->dvd_str);
-		if(str[i + 1] == 0 && str[i] != 32)
-			i++;
 		if(QTorF(dvd->db_quote, dvd->quote))
 		{
+			i++;
 			add(&dvd->lexer, new_node(add_que(dvd, str, &i)));
-			dvd->cut_line_start = i + 1;
 			reset_quoete(dvd);
+			i++;
 		}
-		else if(STR(str[i + 1], str[i]) && !QTorF(dvd->db_quote, dvd->quote))
+		else if(STR(str[i]))
 		{
 			add(&dvd->lexer, new_node(add_str(dvd, str, &i)));
-			dvd->cut_line_start = i + 1;
+			i++;
 		}
-		i++;
+		else
+			i++;
 	}
 }
