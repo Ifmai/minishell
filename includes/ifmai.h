@@ -19,7 +19,9 @@
 //Macro Define
 //# define CheckStr(c) ((((c >= 97 && c <= 122) || (c <= 90 && c >= 65)) || (c <= 57 && c >= 48)) ? 1 : 0)
 # define QTorF(x, z) ((x == 1 || z == 1) ? 1 : 0)
-# define STR(c, x) (((c != 32 && (c == 0 || x == 32))) ? 1 : 0)
+# define QCheck(x) ((x == '\"' || x == '\'') ? 1 : 0)
+# define NoQ(x, z) ((x == 0 && z == 0) ? 1 : 0)
+# define STR(c, x) ((c == 0 || x != 32) ? 1 : 0)
 
 // Structs
 typedef struct s_lexer
@@ -57,12 +59,14 @@ void	define_struct(void);
 char	**ft_env(char **env);
 int		chardb_len(char **db);
 void	get_signal(int incoming);
+void	check_in_str(char str, t_divide_str *dvd);
+
 
 // Add list function
 void	add(t_lexer **lst, t_lexer *new);
 t_lexer	*last_item(t_lexer *lst);
 t_lexer	*new_node(void *content);
+char	*add_que(t_divide_str *dvd, char *str, int *i);
 char	*add_str(t_divide_str *dvd, char *str, int *i);
-void	check_in_str(char str, t_divide_str *dvd);
 
 #endif

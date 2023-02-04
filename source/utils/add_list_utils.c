@@ -12,7 +12,7 @@
 
 #include "../../includes/ifmai.h"
 
-char	*add_str(t_divide_str *dvd, char *str, int *i)
+char	*add_que(t_divide_str *dvd, char *str, int *i)
 {
 	char	*divide;
 	int		index;
@@ -23,7 +23,26 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 		index++;
 		check_in_str(str[index], dvd); 
 	}
-	divide = ft_substr(str, *i + 1, index - (*i) - 1);
+	if(QCheck(str[*i]))
+		divide = ft_substr(str, *i + 1, index - (*i) - 1);
+	else
+		divide = ft_substr(str, *i, index - (*i));
+	*i = index;
+	return (divide);
+}
+
+char	*add_str(t_divide_str *dvd, char *str, int *i)
+{
+	char	*divide;
+	int		index;
+
+	index = (*i);
+	while(str[index] != 32 && NoQ(dvd->db_quote, dvd->quote) && str[*i])
+	{
+		index++;
+		check_in_str(str[index], dvd);
+	}
+	divide = ft_substr(str, *i, index - (*i));
 	*i = index;
 	return (divide);
 }

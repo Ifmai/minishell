@@ -38,19 +38,18 @@ void	divide_string(char *str, t_divide_str *dvd)
 	i = 0;
 	while(str[i])
 	{
-		check_in_str(str[i], data->dvd_str); 
+		check_in_str(str[i], data->dvd_str);
 		if(str[i + 1] == 0 && str[i] != 32)
 			i++;
 		if(QTorF(dvd->db_quote, dvd->quote))
 		{
-			add(&dvd->lexer, new_node(add_str(dvd, str, &i)));
+			add(&dvd->lexer, new_node(add_que(dvd, str, &i)));
 			dvd->cut_line_start = i + 1;
 			reset_quoete(dvd);
 		}
-		else if(STR(str[i + 1],str[i]) && !QTorF(dvd->db_quote, dvd->quote))
+		else if(STR(str[i + 1], str[i]) && !QTorF(dvd->db_quote, dvd->quote))
 		{
-			add(&dvd->lexer, new_node(ft_substr(str, dvd->cut_line_start,\
-				i - dvd->cut_line_start)));
+			add(&dvd->lexer, new_node(add_str(dvd, str, &i)));
 			dvd->cut_line_start = i + 1;
 		}
 		i++;
