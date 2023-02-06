@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdbool.h": "c",
-        "ifmai.h": "c"
+        "ifmai.h": "c",
+        "stdio.h": "c"
     }
 }

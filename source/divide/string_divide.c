@@ -14,7 +14,7 @@
 
 t_data *data;
 
-static void	reset_quoete(t_divide_str *dvd)
+void	reset_quoete(t_divide_str *dvd)
 {
 	dvd->quote = 0;
 	dvd->db_quote = 0;
@@ -28,6 +28,10 @@ void	check_in_str(char str, t_divide_str *dvd)
 		dvd->quote++;
 	if(str == '|' && NoQ(dvd->db_quote, dvd->quote))
 		dvd->pipe_count++;
+	if(str == '<' && NoQ(dvd->db_quote, dvd->quote))
+		dvd->rec_l++;
+	if(str == '>' && NoQ(dvd->db_quote, dvd->quote))
+		dvd->rec_r++;
 }
 
 void	divide_string(char *str, t_divide_str *dvd)
@@ -38,17 +42,15 @@ void	divide_string(char *str, t_divide_str *dvd)
 	while(str[i])
 	{
 		check_in_str(str[i], data->dvd_str);
-		if(QTorF(dvd->db_quote, dvd->quote))
+/* 		if(QTorF(dvd->db_quote, dvd->quote))
 		{
 			add(&dvd->lexer, new_node(add_que(dvd, str, &i)));
 			reset_quoete(dvd);
 			i++;
 		}
-		else if(STR(str[i]))
-		{
+		else  */
+		if(STR(str[i]))
 			add(&dvd->lexer, new_node(add_str(dvd, str, &i)));
-			i++;
-		}
 		else
 			i++;
 	}

@@ -20,6 +20,10 @@ void	define_struct(void)
 	data->dvd_str->db_quote = 0;
 	data->dvd_str->quote = 0;
 	data->dvd_str->pipe_count = 0;
+	data->dvd_str->rec_db_l = 0;
+	data->dvd_str->rec_db_r = 0;
+	data->dvd_str->rec_l = 0;
+	data->dvd_str->rec_r = 0;
 	data->check_signal = 0;
 }
 
