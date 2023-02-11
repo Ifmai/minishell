@@ -18,7 +18,7 @@
 
 //Macro Define
 //# define CheckStr(c) ((((c >= 97 && c <= 122) || (c <= 90 && c >= 65)) || (c <= 57 && c >= 48)) ? 1 : 0)
-# define QTorF(x, z) ((x > 0 || z > 0) ? 1 : 0)
+# define QTorF(x, z) ((x == 2 || z == 2) ? 1 : 0)
 # define RTorF(x, z) ((x == 1 || z == 1) ? 1 : 0)
 # define QCheck(x) ((x == '\"' || x == '\'') ? 1 : 0)
 # define NoQ(x, z) ((x == 0 && z == 0) ? 1 : 0)

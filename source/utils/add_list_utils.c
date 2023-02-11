@@ -12,6 +12,8 @@
 
 #include "../../includes/ifmai.h"
 
+t_data *data;
+
 /* char	*add_que(t_divide_str *dvd, char *str, int *i)
 {
 	char	*divide;
@@ -35,18 +37,15 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 {
 	char	*divide;
 	int		index;
-	static int 	x = 0;
+
 	index = (*i);
-	x++;
+	if(str[*i] == '\'' || str[*i] == '\"')
+		(*i)++;
 	while(str[*i] != 0)
 	{
 		check_in_str(str[*i], dvd);
-		if((str[*i] == 32 && !QTorF(dvd->quote,dvd->db_quote)) ||
-			RTorF(dvd->rec_l,dvd->rec_r))
-		{
-			reset_quoete(dvd);
+		if((str[*i] == 32 && NoQ(dvd->db_quote, dvd->quote)) ||  (RTorF(dvd->rec_l,dvd->rec_r) && NoQ(dvd->db_quote, dvd->quote)))
 			break ;
-		}
 		(*i)++;
 	}
 	divide = ft_substr(str, index, (*i) - index);

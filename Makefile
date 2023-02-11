@@ -27,7 +27,7 @@ fclean:
 	@${RM} $(NAME)
 
 
-fffclean: ffclean
+fffclean: fclean
 	@make fclean -C ./lib
 
 re: fclean all

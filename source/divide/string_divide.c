@@ -32,6 +32,8 @@ void	check_in_str(char str, t_divide_str *dvd)
 		dvd->rec_l++;
 	if(str == '>' && NoQ(dvd->db_quote, dvd->quote))
 		dvd->rec_r++;
+	if(dvd->db_quote == 2 || dvd->quote == 2)
+		reset_quoete(dvd);
 }
 
 void	divide_string(char *str, t_divide_str *dvd)
