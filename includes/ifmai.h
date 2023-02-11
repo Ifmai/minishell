@@ -23,6 +23,7 @@
 # define QCheck(x) ((x == '\"' || x == '\'') ? 1 : 0)
 # define NoQ(x, z) ((x == 0 && z == 0) ? 1 : 0)
 # define STR(c) (( c != 32) ? 1 : 0)
+# define DOUBLEREC(c, x) (((c == '<' || c == '>') && x == c) ? 1 : 0)
 
 // Structs
 typedef struct s_lexer

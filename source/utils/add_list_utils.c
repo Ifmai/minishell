@@ -44,7 +44,8 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 	while(str[*i] != 0)
 	{
 		check_in_str(str[*i], dvd);
-		if((str[*i] == 32 && NoQ(dvd->db_quote, dvd->quote)) ||  (RTorF(dvd->rec_l,dvd->rec_r) && NoQ(dvd->db_quote, dvd->quote)))
+		if((str[*i] == 32 && NoQ(dvd->db_quote, dvd->quote)) || \
+			(RTorF(dvd->rec_l,dvd->rec_r) && NoQ(dvd->db_quote, dvd->quote)))
 			break ;
 		(*i)++;
 	}
