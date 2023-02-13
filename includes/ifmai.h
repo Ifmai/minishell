@@ -19,7 +19,8 @@
 //Macro Define
 //# define CheckStr(c) ((((c >= 97 && c <= 122) || (c <= 90 && c >= 65)) || (c <= 57 && c >= 48)) ? 1 : 0)
 # define QTorF(x, z) ((x == 2 || z == 2) ? 1 : 0)
-# define RTorF(x, z) ((x == 1 || z == 1) ? 1 : 0)
+# define RTorF(x, z, c) (((x == 1 || z == 1 )|| c == 1) ? 1 : 0)
+# define NOR(x, z) ((x == 0 && z == 0) ? 1 : 0)
 # define QCheck(x) ((x == '\"' || x == '\'') ? 1 : 0)
 # define NoQ(x, z) ((x == 0 && z == 0) ? 1 : 0)
 # define STR(c) (( c != 32) ? 1 : 0)
@@ -62,7 +63,6 @@ void	divide_string(char *str, t_divide_str *dvd_str);
 void	define_struct(void);
 char	**ft_env(char **env);
 int		chardb_len(char **db);
-void	get_signal(int incoming);
 void	check_in_str(char str, t_divide_str *dvd);
 
 
@@ -73,4 +73,6 @@ t_lexer	*new_node(void *content);
 //char	*add_que(t_divide_str *dvd, char *str, int *i);
 char	*add_str(t_divide_str *dvd, char *str, int *i);
 void	reset_quoete(t_divide_str *dvd);
+void	reset_redirection(t_divide_str *dvd);
+void	i_plus(char *str, int *i, t_divide_str *dvd);
 #endif

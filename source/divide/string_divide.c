@@ -14,11 +14,7 @@
 
 t_data *data;
 
-void	reset_quoete(t_divide_str *dvd)
-{
-	dvd->quote = 0;
-	dvd->db_quote = 0;
-}
+
 
 void	check_in_str(char str, t_divide_str *dvd)
 {
@@ -28,9 +24,11 @@ void	check_in_str(char str, t_divide_str *dvd)
 		dvd->quote++;
 	if(str == '|' && NoQ(dvd->db_quote, dvd->quote))
 		dvd->pipe_count++;
-	if(str == '<' && NoQ(dvd->db_quote, dvd->quote))
+	if(str == '<' && NoQ(dvd->db_quote, dvd->quote) \
+	&& NOR(dvd->rec_l,dvd->rec_r))
 		dvd->rec_l++;
-	if(str == '>' && NoQ(dvd->db_quote, dvd->quote))
+	if(str == '>' && NoQ(dvd->db_quote, dvd->quote) \
+	&& NOR(dvd->rec_l,dvd->rec_r))
 		dvd->rec_r++;
 	if(dvd->db_quote == 2 || dvd->quote == 2)
 		reset_quoete(dvd);

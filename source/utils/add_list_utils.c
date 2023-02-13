@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   add_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/01/31 09:37:44 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/14 02:34:21 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,17 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 	int		index;
 
 	index = (*i);
-	if(str[*i] == '\'' || str[*i] == '\"')
-		(*i)++;
+	i_plus(str,i,dvd);
 	while(str[*i] != 0)
 	{
 		check_in_str(str[*i], dvd);
 		if((str[*i] == 32 && NoQ(dvd->db_quote, dvd->quote)) || \
-			(RTorF(dvd->rec_l,dvd->rec_r) && NoQ(dvd->db_quote, dvd->quote)))
+			(RTorF(dvd->rec_l,dvd->rec_r, dvd->pipe_count) && NoQ(dvd->db_quote, dvd->quote)))
 			break ;
 		(*i)++;
 	}
+	if(RTorF(dvd->rec_l,dvd->rec_r, dvd->pipe_count))
+		reset_redirection(dvd);
 	divide = ft_substr(str, index, (*i) - index);
 	return (divide);
 }

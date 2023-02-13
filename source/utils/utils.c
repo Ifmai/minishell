@@ -6,13 +6,20 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/01/31 09:37:44 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/14 00:02:32 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
 t_data *data;
+
+void	reset_quoete(t_divide_str *dvd)
+{
+	dvd->quote = 0;
+	dvd->db_quote = 0;
+}
+
 
 void	define_struct(void)
 {
@@ -37,8 +44,3 @@ int	chardb_len(char **db)
 	return (i);	
 }
 
-void get_signal(int incoming)
-{
-	if(incoming == 2)
-		data->check_signal = 2;
-}

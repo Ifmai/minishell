@@ -2,6 +2,8 @@
     "files.associations": {
         "stdbool.h": "c",
         "ifmai.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "history.h": "c",
+        "fcntl.h": "c"
     }
 }
