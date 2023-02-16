@@ -6,11 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/14 02:35:07 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/16 03:36:20 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
+
+t_data *data;
 
 void	reset_redirection(t_divide_str *dvd)
 {
@@ -31,9 +33,17 @@ static int	check_rec(char one, char two)
 	return (0);
 }
 
+int	checker_red_pipe(char one, char two, t_divide_str *dvd)
+{
+	if(NoQ(dvd->db_quote, dvd->quote) && ((one == '<' || one == '>') || one == '|') && \
+		(two == '\'' || two == '\"') && dvd)
+			return (1);
+	return (0);
+}
+
 void	i_plus(char *str, int *i, t_divide_str *dvd)
 {
-	if(str[*i] == '\'' || str[*i] == '\"')
+	if((str[*i] == '\'' || str[*i] == '\"'))
 		(*i)++;
 	if((str[*i] == '<' || str[*i] == '>') && NoQ(dvd->db_quote, dvd->quote))
 	{

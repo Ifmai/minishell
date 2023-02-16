@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/14 02:34:21 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/16 03:41:58 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,20 @@
 
 t_data *data;
 
-/* char	*add_que(t_divide_str *dvd, char *str, int *i)
-{
-	char	*divide;
-	int		index;
-
-	if(QTorF(dvd->db_quote, dvd->quote))
-		(*i)++;
-	index = (*i);
-	while(str[*i] != 0)
-	{
-		check_in_str(str[*i], dvd);
-		if(dvd->quote == 2 || dvd->db_quote == 2)
-			break ;
-		(*i)++;
-	}
-	divide = ft_substr(str, index, (*i) - index);
-	return (divide);
-} */
-
 char	*add_str(t_divide_str *dvd, char *str, int *i)
 {
 	char	*divide;
 	int		index;
 
 	index = (*i);
-	i_plus(str,i,dvd);
+	i_plus(str, i, dvd);
 	while(str[*i] != 0)
 	{
+		if(checker_red_pipe(str[*i - 1], str[*i], dvd))
+			break;
 		check_in_str(str[*i], dvd);
-		if((str[*i] == 32 && NoQ(dvd->db_quote, dvd->quote)) || \
-			(RTorF(dvd->rec_l,dvd->rec_r, dvd->pipe_count) && NoQ(dvd->db_quote, dvd->quote)))
+		if(((str[*i] == 32 && NoQ(dvd->db_quote, dvd->quote)) || \
+			(RTorF(dvd->rec_l,dvd->rec_r, dvd->pipe_count) && NoQ(dvd->db_quote, dvd->quote))))
 			break ;
 		(*i)++;
 	}
@@ -87,3 +70,22 @@ t_lexer	*new_node(void *content)
 	node->next = NULL;
 	return (node);
 }
+
+/* char	*add_que(t_divide_str *dvd, char *str, int *i)
+{
+	char	*divide;
+	int		index;
+
+	if(QTorF(dvd->db_quote, dvd->quote))
+		(*i)++;
+	index = (*i);
+	while(str[*i] != 0)
+	{
+		check_in_str(str[*i], dvd);
+		if(dvd->quote == 2 || dvd->db_quote == 2)
+			break ;
+		(*i)++;
+	}
+	divide = ft_substr(str, index, (*i) - index);
+	return (divide);
+} */

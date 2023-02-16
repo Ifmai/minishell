@@ -6,15 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/01/31 09:47:15 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:15:22 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
 t_data *data;
-
-
 
 void	check_in_str(char str, t_divide_str *dvd)
 {
