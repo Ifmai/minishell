@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/16 03:36:20 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/16 06:11:28 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ static int	check_rec(char one, char two)
 
 int	checker_red_pipe(char one, char two, t_divide_str *dvd)
 {
-	if(NoQ(dvd->db_quote, dvd->quote) && ((one == '<' || one == '>') || one == '|') && \
+	if( _macro("NOQ") && ((one == '<' || one == '>') || one == '|') && \
 		(two == '\'' || two == '\"') && dvd)
 			return (1);
 	return (0);
 }
 
-void	i_plus(char *str, int *i, t_divide_str *dvd)
+void	i_plus(char *str, int *i)
 {
 	if((str[*i] == '\'' || str[*i] == '\"'))
 		(*i)++;
-	if((str[*i] == '<' || str[*i] == '>') && NoQ(dvd->db_quote, dvd->quote))
+	if((str[*i] == '<' || str[*i] == '>') &&  _macro("NOQ"))
 	{
 		if(check_rec(str[*i], str[*i + 1]))
 			(*i) += 2;
 		else
 			(*i)++;
 	}
-	if(str[*i] == '|' && NoQ(dvd->db_quote, dvd->quote))
+	if(str[*i] == '|' &&  _macro("NOQ"))
 		(*i)++;
 }

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/15 20:15:22 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/16 05:32:34 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	check_in_str(char str, t_divide_str *dvd)
 		dvd->db_quote++;
 	else if(str == '\'' && dvd->db_quote == 0)
 		dvd->quote++;
-	if(str == '|' && NoQ(dvd->db_quote, dvd->quote))
+	if(str == '|' && _macro("NOQ"))
 		dvd->pipe_count++;
-	if(str == '<' && NoQ(dvd->db_quote, dvd->quote) \
-	&& NOR(dvd->rec_l,dvd->rec_r))
+	if(str == '<' && _macro("NOQ") \
+	&& _macro("NOR"))
 		dvd->rec_l++;
-	if(str == '>' && NoQ(dvd->db_quote, dvd->quote) \
-	&& NOR(dvd->rec_l,dvd->rec_r))
+	if(str == '>' && _macro("NOQ") \
+	&& _macro("NOR"))
 		dvd->rec_r++;
-	if(dvd->db_quote == 2 || dvd->quote == 2)
+	if(_macro("QTorF"))
 		reset_quoete(dvd);
 }
 
@@ -40,7 +40,7 @@ void	divide_string(char *str, t_divide_str *dvd)
 	while(str[i])
 	{
 		check_in_str(str[i], data->dvd_str);
-		if(STR(str[i]))
+		if(str[i] != 32)
 			add(&dvd->lexer, new_node(add_str(dvd, str, &i)));
 		else
 			i++;

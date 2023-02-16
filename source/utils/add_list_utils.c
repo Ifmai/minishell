@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/16 03:41:58 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/16 06:11:39 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 	int		index;
 
 	index = (*i);
-	i_plus(str, i, dvd);
+	i_plus(str, i);
 	while(str[*i] != 0)
 	{
 		if(checker_red_pipe(str[*i - 1], str[*i], dvd))
 			break;
 		check_in_str(str[*i], dvd);
-		if(((str[*i] == 32 && NoQ(dvd->db_quote, dvd->quote)) || \
-			(RTorF(dvd->rec_l,dvd->rec_r, dvd->pipe_count) && NoQ(dvd->db_quote, dvd->quote))))
+		if(((str[*i] == 32 && _macro("NOQ")) || \
+			(_macro("RTORF") && _macro("NOQ"))))
 			break ;
 		(*i)++;
 	}
-	if(RTorF(dvd->rec_l,dvd->rec_r, dvd->pipe_count))
+	if(_macro("RTORF"))
 		reset_redirection(dvd);
 	divide = ft_substr(str, index, (*i) - index);
 	return (divide);
