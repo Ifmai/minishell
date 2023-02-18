@@ -16,6 +16,12 @@ t_data *data;
 
 void	minishell_loop(void)
 {
-	data->line = readline("uWuShell > ");
-	divide_string(data->line, data->dvd_str);
+	while(1)
+	{
+		data->line = readline("uWuShell > ");
+		add_history(data->line);
+		divide_string(data->line, data->dvd_str);
+		if(data->line[0] == '<')
+			break ;
+	}
 }

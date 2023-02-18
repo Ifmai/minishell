@@ -25,6 +25,10 @@ int main(int ac, char **av, char **env)
 	data->env = ft_env(env);
 	define_struct();
 	minishell_loop();
+	create_path();
+	int i = 0;
+	while(data->path[i] != 0)
+		printf("%s\n",data->path[i++]);
 	while(data->dvd_str->lexer != NULL)
 	{
 		printf("%s.\n",data->dvd_str->lexer->str);

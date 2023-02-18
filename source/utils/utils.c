@@ -20,6 +20,21 @@ void	reset_quoete(t_divide_str *dvd)
 	dvd->db_quote = 0;
 }
 
+void	create_path()
+{
+	int		i;
+	char	*temporary;
+
+	i = 0;
+	while(data->env[i][0] != 'P')
+		i++;
+	temporary = ft_strdup(data->env[i]);
+	i = 0;
+	while(temporary[i] != '/')
+		i++;
+	data->path = ft_split((temporary + i) , ':');
+	free(temporary);
+}
 
 void	define_struct(void)
 {

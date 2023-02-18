@@ -41,6 +41,7 @@ typedef struct s_data
 	char			*line;
 	char			**env;
 	int				check_signal;
+	char			**path;
 	t_divide_str	*dvd_str;
 }				t_data;
 
@@ -66,4 +67,5 @@ void	reset_quoete(t_divide_str *dvd);
 void	reset_redirection(t_divide_str *dvd);
 void	i_plus(char *str, int *i);
 int		checker_red_pipe(char one, char two, t_divide_str *dvd);
+void	create_path();
 #endif

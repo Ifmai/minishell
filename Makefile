@@ -14,7 +14,7 @@ all: $(LIB) $(LIBFT) ${NAME}
 
 $(NAME): $(SRCS) ${LIBFT}
 	@gcc $(CFLAGS) $(LDFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
-	@echo "<3 :3 uWuShell :3 <3"
+	@echo "❤️ 💋 uWuShell 💋 ❤️"
 
 $(LIBFT):
 	@make -C ./libft
