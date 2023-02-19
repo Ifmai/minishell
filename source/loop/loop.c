@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/19 08:33:47 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/19 09:16:38 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	minishell_loop(void)
 // execve( path alıyor , command_create(dönen double array), env)
 	
 // Command Create Deneme kodu.
-	/* char **d;
+/* 	char **d;
 	char **s = command_create();
 	int i = 0;
 	while(s[i] != 0)

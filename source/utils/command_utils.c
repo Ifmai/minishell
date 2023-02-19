@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/18 21:06:24 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/19 09:05:45 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,14 @@ char	**command_create()
 	char		**command;
 
 	iter = data->dvd_str->lexer;
-    len = 0;
-	printf("%d \n",i);
-    while(len < i && iter != NULL)
-	{
+    len = -1;
+    while(++len < i && iter != NULL)
         iter = iter->next;
-		len++;
-	}
 	len = len_list(iter);
 	command = ft_calloc(sizeof(char *) , len + 1);
     if(!command || !iter)
         return (0);
     len = 0;
-	printf("iter geldiği yer : %s\n",iter->str);
-	printf("Len : %d\n",len);
 	while(iter != NULL && !(iter->str[0] == '|' || iter->str[0] == '<' ||
 			iter->str[0] == '>'))
 	{
@@ -45,7 +39,6 @@ char	**command_create()
         len++;
         iter = iter->next;
 	}
-	printf("çıktım\n");
 	if(iter != NULL && (iter->str[0] == '|' || iter->str[0] == '<' ||
 			iter->str[0] == '>'))
 				i++;

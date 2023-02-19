@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/16 06:11:28 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/19 09:15:39 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	checker_red_pipe(char one, char two, t_divide_str *dvd)
 {
 	if( _macro("NOQ") && ((one == '<' || one == '>') || one == '|') && \
 		(two == '\'' || two == '\"') && dvd)
-			return (1);
+		return (1);
+	if( _macro("NOQ") && (one == '|') && (two == '|') && dvd)
+		return (1);
 	return (0);
 }
 
