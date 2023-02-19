@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/16 06:11:39 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:57:53 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	add(t_lexer **lst, t_lexer *new)
 		(*lst) = new;
 	else
 	{
+		if((lst))
+			new->back = last_item(*lst);
 		(last_item(*lst))->next = new;
-		(last_item(*lst))->next = NULL;
 	}
 }
 
@@ -67,6 +68,7 @@ t_lexer	*new_node(void *content)
 	if (!node)
 		return (0);
 	node->str = content;
+	node->back = NULL;
 	node->next = NULL;
 	return (node);
 }

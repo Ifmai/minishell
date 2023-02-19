@@ -21,6 +21,7 @@ typedef struct s_lexer
 {
 	char			*str;
 	struct s_lexer	*next;
+	struct s_lexer	*back;
 }					t_lexer;
 
 
@@ -62,10 +63,21 @@ void	add(t_lexer **lst, t_lexer *new);
 t_lexer	*last_item(t_lexer *lst);
 t_lexer	*new_node(void *content);
 //char	*add_que(t_divide_str *dvd, char *str, int *i);
+
+//Parse utils
 char	*add_str(t_divide_str *dvd, char *str, int *i);
-void	reset_quoete(t_divide_str *dvd);
-void	reset_redirection(t_divide_str *dvd);
 void	i_plus(char *str, int *i);
 int		checker_red_pipe(char one, char two, t_divide_str *dvd);
+
+//reset utils
+void	reset_quoete(t_divide_str *dvd);
+void	reset_redirection(t_divide_str *dvd);
+
+//Path create function
 void	create_path();
+
+//Command utils
+char	**command_create();
+int	len_list(t_lexer *lst);
+
 #endif

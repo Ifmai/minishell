@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/15 20:32:02 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:01:40 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,20 @@ int	chardb_len(char **db)
 	return (i);	
 }
 
+int	len_list(t_lexer *lst)
+{
+	t_lexer	*iter;
+	int		i;
+
+	iter = lst;
+	i = 0;
+	while (iter != NULL)
+	{
+		if(iter->str[0] == '|' || iter->str[0] == '<' ||
+			iter->str[0] == '>')
+				break;
+		i++;
+		iter = iter->next;
+	}
+	return (i);
+}

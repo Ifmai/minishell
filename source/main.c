@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:38:40 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/01/31 08:02:40 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:29:45 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ int main(int ac, char **av, char **env)
 	data = malloc(sizeof(t_data));
 	data->env = ft_env(env);
 	define_struct();
-	minishell_loop();
 	create_path();
-	int i = 0;
-	while(data->path[i] != 0)
-		printf("%s\n",data->path[i++]);
-	while(data->dvd_str->lexer != NULL)
+	minishell_loop();
+/* 	while(data->dvd_str->lexer != NULL)
 	{
 		printf("%s.\n",data->dvd_str->lexer->str);
 		data->dvd_str->lexer = data->dvd_str->lexer->next;
-	}
+	} */
 }
