@@ -79,5 +79,7 @@ void	create_path();
 //Command utils
 char	**command_create();
 int	len_list(t_lexer *lst);
+int _counter_macro(t_lexer *lexer, char search);
+void	count_pipe_rec();
 
 #endif

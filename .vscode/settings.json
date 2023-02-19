@@ -6,6 +6,8 @@
         "history.h": "c",
         "fcntl.h": "c",
         "stdlib.h": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "macro.h": "c",
+        "readline.h": "c"
     }
 }

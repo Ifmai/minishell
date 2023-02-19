@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:49:27 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/16 06:07:52 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/19 11:38:53 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_data *data;
 
-t_bool _macro(char *str)
+int _macro(char *str)
 {
     if(macrocomp(str, "NOQ"))
         return (noq());
@@ -25,6 +25,27 @@ t_bool _macro(char *str)
 	if(macrocomp(str, "RTORF"))
 		return (rtorf());
 	return (FALSE);
+}
+
+int _counter_macro(t_lexer *lexer, char search)
+{
+	t_lexer	*iter;
+	int		i;
+	int		count;
+
+	count = 0;
+	iter = lexer;
+	while(iter != NULL)
+	{
+		i = -1;
+		while(iter ->str[++i])
+		{
+			if(iter->str[i] == search)
+				count++;
+		}
+		iter = iter->next;
+	}
+	return (count);
 }
 
 t_bool macrocomp(const char *s1, const char *s2)

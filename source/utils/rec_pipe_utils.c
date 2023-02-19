@@ -6,13 +6,21 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/19 09:15:39 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/19 11:40:55 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
 t_data *data;
+
+void	count_pipe_rec()
+{
+	data->dvd_str->rec_l = _counter_macro(data->dvd_str->lexer, '<');
+	data->dvd_str->rec_r = _counter_macro(data->dvd_str->lexer, '>');
+	data->dvd_str->pipe_count = _counter_macro(data->dvd_str->lexer, '|');
+}
+
 
 void	reset_redirection(t_divide_str *dvd)
 {
