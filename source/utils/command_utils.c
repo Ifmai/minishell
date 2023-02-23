@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/19 15:05:01 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:37:21 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,21 @@ char	**command_create()
 			iter->str[0] == '>'))
 				i++;
 	return (command);
+}
+
+char	*new_str_join(char const *s1, char const *s2)
+{
+	char	*back;
+	size_t	total_len;
+
+	if (!s1 || !s2)
+		return (0);
+	total_len = (ft_strlen(s1) + ft_strlen(s2)) + 1;
+	back = malloc(total_len * sizeof(char));
+	if (!back)
+		return (0);
+	ft_strlcpy(back, s1, ft_strlen(s1) + 1);
+	ft_strlcat(back, s2, total_len);
+	free(s1);
+	return (back);
 }

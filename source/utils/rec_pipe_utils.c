@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/19 11:40:55 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:03:43 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	count_pipe_rec()
 	data->dvd_str->rec_l = _counter_macro(data->dvd_str->lexer, '<');
 	data->dvd_str->rec_r = _counter_macro(data->dvd_str->lexer, '>');
 	data->dvd_str->pipe_count = _counter_macro(data->dvd_str->lexer, '|');
+	if(data->dvd_str->pipe_count == 0)
+		data->dvd_str->pipe_count = 1; // hiç pipe yoksa pid için 1 lik yer açıyorum.
 }
 
 

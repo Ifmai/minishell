@@ -43,6 +43,7 @@ typedef struct s_data
 	char			**env;
 	int				check_signal;
 	char			**path;
+	pid_t			*pid;
 	t_divide_str	*dvd_str;
 }				t_data;
 
@@ -68,18 +69,20 @@ t_lexer	*new_node(void *content);
 char	*add_str(t_divide_str *dvd, char *str, int *i);
 void	i_plus(char *str, int *i);
 int		checker_red_pipe(char one, char two, t_divide_str *dvd);
+void	create_path();
 
 //reset utils
 void	reset_quoete(t_divide_str *dvd);
 void	reset_redirection(t_divide_str *dvd);
 
-//Path create function
-void	create_path();
+//Execute function
+void    exec_one_command();
 
 //Command utils
 char	**command_create();
-int	len_list(t_lexer *lst);
-int _counter_macro(t_lexer *lexer, char search);
+int		len_list(t_lexer *lst);
+int		_counter_macro(t_lexer *lexer, char search);
 void	count_pipe_rec();
+char	*new_str_join(char const *s1, char const *s2);
 
 #endif
