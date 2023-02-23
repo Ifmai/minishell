@@ -83,6 +83,6 @@ char	**command_create();
 int		len_list(t_lexer *lst);
 int		_counter_macro(t_lexer *lexer, char search);
 void	count_pipe_rec();
-char	*new_str_join(char const *s1, char const *s2);
+char	*new_str_join(char  *s1, char  *s2);
 
 #endif

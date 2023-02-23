@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/23 19:37:13 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:59:23 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,20 @@ static char	*true_command(char **command)
 		true_path = ft_strdup(data->path[i]);
 		true_path = new_str_join(true_path, "/");
 		true_path = new_str_join(true_path, command[0]);
-		if(accsess(true_path))
-			break;
+		if(access(true_path, F_OK) != -1 )
+		{
+			printf("burdan döndüm true \n");
+			return (true_path);
+		}
 		free(true_path);
 		i++;
 	}
-	true_path = ft_strdup(data->path[i]);
-	return (i);
+	free(true_path);
+	return (true_path);
 }
 
 void    exec_one_command()
 {
-	int		i;
 	char	**command;
 	char	*true_path;
 	
@@ -46,9 +48,15 @@ void    exec_one_command()
 	{
 		command = command_create();
 		true_path = true_command(command);
-		execve(true_path,command,data->env);
-		exit (0);
+		printf("%s\n",true_path);
+		if(true_path)
+			execve("/bin/ls", command, data->env);
+		else
+		{
+			printf("hatalı komut kanka %s",command[0]);
+			exit (0);
+		}
 	}
 	else
-		waitpid(data->pid[0]);
+		while (waitpid(-1,0,0) != -1);
 }

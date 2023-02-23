@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:38:40 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/19 09:07:36 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:30:45 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int main(int ac, char **av, char **env)
 	define_struct();
 	create_path();
 	minishell_loop();
-	while(data->dvd_str->lexer != NULL)
+/* 	while(data->dvd_str->lexer != NULL)
 	{
 		printf("%s.\n",data->dvd_str->lexer->str);
 		data->dvd_str->lexer = data->dvd_str->lexer->next;
-	}
+	} */
 }

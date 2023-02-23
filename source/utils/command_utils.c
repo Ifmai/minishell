@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/23 19:37:21 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:26:59 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**command_create()
 	return (command);
 }
 
-char	*new_str_join(char const *s1, char const *s2)
+char	*new_str_join(char  *s1, char  *s2)
 {
 	char	*back;
 	size_t	total_len;
