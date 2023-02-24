@@ -78,6 +78,7 @@ void	reset_redirection(t_divide_str *dvd);
 
 //Execute function
 void    exec_one_command();
+void    exec_multiple_command();
 
 //Command utils
 char	**command_create();

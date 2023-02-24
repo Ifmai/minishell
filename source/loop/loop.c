@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/24 17:15:42 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:35:05 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	minishell_loop(void)
 		count_pipe_rec();
 		if(data->dvd_str->pipe_count == 0 && ft_strlen(data->line) != 1)
 			exec_one_command();
-/* 		else
-			exec_multiple_command(); */
+		else
+			exec_multiple_command();
 
 		//tek komut çalışıyor burda değerleri sıfırlamam gerekiyor yoksa leaks kalıyor.
 		// büyük ihtimalle command fork içinde çalıştığından static çalışmıcak multide sorun yaşarmısın bilmiyorum bakman lazım
