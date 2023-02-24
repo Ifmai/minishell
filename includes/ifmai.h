@@ -45,6 +45,7 @@ typedef struct s_data
 	char			**path;
 	pid_t			*pid;
 	t_divide_str	*dvd_str;
+	int				fd[2];
 }				t_data;
 
 // include main function
@@ -84,5 +85,7 @@ int		len_list(t_lexer *lst);
 int		_counter_macro(t_lexer *lexer, char search);
 void	count_pipe_rec();
 char	*new_str_join(char  *s1, char  *s2);
+char	*true_command(char **command);
+void    free_command_db(char **command);
 
 #endif
