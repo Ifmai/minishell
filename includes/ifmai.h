@@ -87,5 +87,6 @@ void	count_pipe_rec();
 char	*new_str_join(char  *s1, char  *s2);
 char	*true_command(char **command);
 void    free_command_db(char **command);
+void    close_pipe_fd();
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:21:22 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/24 18:22:53 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:31:13 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ char	*true_command(char **command)
 		i++;
 	}
 	return (0);
+}
+
+void    close_pipe_fd()
+{
+    close(data->fd[0]);
+    close(data->fd[1]);
 }
 
 void    free_command_db(char **command)
