@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   reset_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 00:36:22 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:49:19 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,28 @@
 
 t_data *data;
 
-void	minishell_loop(void)
+void	lexer_clear(t_lexer **lst, void (*del)(void*))
 {
-	while(1)
+	t_lexer	*cnext;
+
+	if (!lst || !del || !*lst)
+		return ;
+	cnext = (*lst);
+	while (cnext != NULL)
 	{
-		data->line = readline("uWuShell > ");
-		add_history(data->line);
-		divide_string(data->line, data->dvd_str);
-		count_pipe_rec();
-		if(data->dvd_str->pipe_count == 0 && ft_strlen(data->line) != 1)
-			exec_one_command();
-		else if(data->dvd_str->pipe_count > 0)
-			exec_multiple_command();
-		reset_command_struct();
-		//system("leaks minishell");
+		cnext = (*lst)->next;
+		(*del)((*lst)->str);
+		free(*lst);
+		(*lst) = cnext;
 	}
+}
+
+void reset_command_struct()
+{
+    lexer_clear(&data->dvd_str->lexer, free);
+	data->command_count = 0;
+    free(data->line);
+    free(data->pid);
+	free_fd();
+	_macro("VALUE_RESET");
 }

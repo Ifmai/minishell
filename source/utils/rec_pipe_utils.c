@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/24 18:01:43 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:35:17 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,23 @@ t_data *data;
 
 void	count_pipe_rec()
 {
-	data->dvd_str->rec_l = _counter_macro(data->dvd_str->lexer, '<');
-	data->dvd_str->rec_r = _counter_macro(data->dvd_str->lexer, '>');
-	data->dvd_str->pipe_count = _counter_macro(data->dvd_str->lexer, '|');
-	if(data->dvd_str->pipe_count == 0)
-		data->pid = malloc(sizeof(pid_t) * 1); // hiç pipe yoksa pid için 1 lik yer açıyorum.
-	else if (data->dvd_str->pipe_count > 0)
-		data->pid = malloc(sizeof(pid_t) * 1); // hiç pipe yoksa pid için 1 lik yer açıyorum.
+	int	i;
+	t_lexer	*iter;
+
+	reset_redirection(data->dvd_str);
+	iter = data->dvd_str->lexer;
+	while(iter != NULL)
+	{
+		i = 0;
+		while(iter->str[i] != 0)
+		{
+			check_in_str(iter->str[i],data->dvd_str);
+			i++;
+		}
+		iter = iter->next;
+	}
+	data->pid = malloc(sizeof(pid_t) * 1);
+	data->fd = malloc(sizeof(data->fd) * data->dvd_str->pipe_count);
 }
 
 

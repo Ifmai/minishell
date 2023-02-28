@@ -8,6 +8,8 @@
         "stdlib.h": "c",
         "sstream": "c",
         "macro.h": "c",
-        "readline.h": "c"
-    }
+        "readline.h": "c",
+        "iterator": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

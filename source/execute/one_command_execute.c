@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/24 18:27:34 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:39:39 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void    exec_one_command()
 {
 	char	**command;
 	char	*true_path;
-	
 	//froklıyıp access kullanıp command create kullancaz onu yapcan bropa
 	command = command_create();
 	true_path = true_command(command);
@@ -32,8 +31,9 @@ void    exec_one_command()
 		}
 		else
 			while (waitpid(-1,0,0) != -1);
+		free(true_path);
 	}
-	else
+	else if(chardb_len(command) != 0)
 		printf("bash: command not found: %s\n",command[0]);
-    free_command_db(command);
+	free_command_db(command);
 }

@@ -1,4 +1,4 @@
-prefix=/Users/hozdemir/Documents/GitHub/minishell/lib/lib/readline
+prefix=/Users/cerrah/Desktop/alp/lib/lib/readline
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

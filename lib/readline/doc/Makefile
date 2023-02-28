@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /Users/hozdemir/Documents/GitHub/minishell/lib/readline
+prefix = /Users/hozdemir/Desktop/alp/lib/readline
 
 datarootdir = ${prefix}/share
 
@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /Users/hozdemir/Documents/GitHub/minishell/lib/readline
+BUILD_DIR = /Users/hozdemir/Desktop/alp/lib/readline
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo

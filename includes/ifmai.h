@@ -45,7 +45,8 @@ typedef struct s_data
 	char			**path;
 	pid_t			*pid;
 	t_divide_str	*dvd_str;
-	int				fd[2];
+	int				**fd;
+	int				command_count;
 }				t_data;
 
 // include main function
@@ -75,10 +76,15 @@ void	create_path();
 //reset utils
 void	reset_quoete(t_divide_str *dvd);
 void	reset_redirection(t_divide_str *dvd);
+void	reset_command_struct();
+void    free_command_db(char **command);
+void    free_fd();
 
 //Execute function
 void    exec_one_command();
 void    exec_multiple_command();
+void    close_pipe_fd();
+void	create_pipe_fd();
 
 //Command utils
 char	**command_create();
@@ -87,7 +93,5 @@ int		_counter_macro(t_lexer *lexer, char search);
 void	count_pipe_rec();
 char	*new_str_join(char  *s1, char  *s2);
 char	*true_command(char **command);
-void    free_command_db(char **command);
-void    close_pipe_fd();
 
 #endif

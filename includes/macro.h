@@ -22,6 +22,7 @@ typedef enum s_bool
 }   t_bool;
 
 int _macro(char *str);
+t_bool	reset_value();
 t_bool macrocomp(const char *s1, const char *s2);
 t_bool qtorf();
 t_bool rtorf();

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:21:22 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/24 18:31:13 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/28 00:33:39 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,43 @@
 
 t_data  *data;
 
-char	*true_command(char **command)
+void    free_fd()
 {
-	int		i;
-	char	*true_path;
+	int	i;
 
 	i = 0;
-	while (data->path[i] != 0)
+	while(i < data->dvd_str->pipe_count)
 	{
-		true_path = ft_strdup(data->path[i]);
-		true_path = new_str_join(true_path, "/");
-		true_path = new_str_join(true_path, command[0]);
-		if(access(true_path, F_OK) != -1 )
-			return (true_path);
-		free(true_path);
+    	free(data->fd[i]);
 		i++;
 	}
-	return (0);
+	free(data->fd);
 }
 
 void    close_pipe_fd()
 {
-    close(data->fd[0]);
-    close(data->fd[1]);
+	int	i;
+
+	i = 0;
+	while(i < data->dvd_str->pipe_count)
+	{
+    	close(data->fd[i][0]);
+    	close(data->fd[i][1]);
+		i++;
+	}
+}
+
+void	create_pipe_fd()
+{
+	int	i;
+
+	i = 0;
+    while(i < data->dvd_str->pipe_count)
+    {
+		data->fd[i] = malloc(sizeof(int) * 2);
+        pipe(data->fd[i]);
+        i++;
+    }
 }
 
 void    free_command_db(char **command)

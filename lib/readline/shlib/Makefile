@@ -32,7 +32,7 @@ datarootdir = ${prefix}/share
 srcdir = .
 VPATH = ..
 topdir = ..
-BUILD_DIR = /Users/hozdemir/Documents/GitHub/minishell/lib/readline
+BUILD_DIR = /Users/hozdemir/Desktop/alp/lib/readline
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -52,7 +52,7 @@ SHELL = /bin/sh
 host_os = darwin19.6.0
 host_vendor = apple
 
-prefix = /Users/hozdemir/Documents/GitHub/minishell/lib/readline
+prefix = /Users/hozdemir/Desktop/alp/lib/readline
 exec_prefix = ${prefix}
 includedir = ${prefix}/include
 bindir = ${exec_prefix}/bin
