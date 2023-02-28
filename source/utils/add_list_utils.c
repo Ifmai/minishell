@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/18 20:57:53 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/28 03:37:10 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,28 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 	divide = ft_substr(str, index, (*i) - index);
 	return (divide);
 }
+
+char	*new_strtrim(char *s1, char *set)
+{
+	size_t	len;
+	size_t	i;
+	char	*rtn;
+
+	i = 0;
+	if (!s1)
+		return (NULL);
+	len = ft_strlen(s1) - 1;
+	while (check_trim(s1[i], set))
+		i++;
+	while (check_trim(s1[len], set))
+		len--;
+	rtn = ft_substr(s1, i, len - i + 1);
+	if (!rtn)
+		return (NULL);
+	free(s1);
+	return (rtn);
+}
+
 
 void	add(t_lexer **lst, t_lexer *new)
 {

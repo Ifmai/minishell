@@ -59,6 +59,7 @@ void	define_struct(void);
 char	**ft_env(char **env);
 int		chardb_len(char **db);
 void	check_in_str(char str, t_divide_str *dvd);
+int		check_trim(char a, char const *set);
 
 
 // Add list function
@@ -88,10 +89,12 @@ void	create_pipe_fd();
 
 //Command utils
 char	**command_create();
+void	delete_qoute();
 int		len_list(t_lexer *lst);
 int		_counter_macro(t_lexer *lexer, char search);
 void	count_pipe_rec();
 char	*new_str_join(char  *s1, char  *s2);
 char	*true_command(char **command);
+char	*new_strtrim(char *s1, char *set);
 
 #endif

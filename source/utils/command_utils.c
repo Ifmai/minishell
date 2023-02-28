@@ -6,13 +6,30 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 00:36:42 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/28 03:42:43 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
 t_data *data;
+
+void	delete_qoute() // "sofıdjpsdfk"sapdkpoasd gibi bir örnekte silmiyor bu düzeltilcek.
+{
+	t_lexer	*iter;
+	int		i;
+
+	i = 0;
+	iter = data->dvd_str->lexer;
+	while(iter != NULL)
+	{
+		if(iter->str[i] == '\"' && iter->str[ft_strlen(iter->str) - 1] == '\"')
+			iter->str = new_strtrim(iter->str, "\"");
+		if(iter->str[i] == '\'' && iter->str[ft_strlen(iter->str) - 1] == '\'')
+			iter->str = new_strtrim(iter->str, "\'");
+		iter = iter->next;
+	}
+}
 
 char	*true_command(char **command)
 {
