@@ -24,6 +24,19 @@ typedef struct s_lexer
 	struct s_lexer	*back;
 }					t_lexer;
 
+typedef struct s_red
+{
+	int		heredoc;
+	int		appened;
+	int		input;
+	int		output;
+	int		temp_quote;
+	int		temp_db_quote;
+	char	**heredoc_string;
+	char	**input_string;
+	char	**output_string;
+}			t_redirection;
+
 
 typedef struct s_divide_string
 {
@@ -45,6 +58,7 @@ typedef struct s_data
 	char			**path;
 	pid_t			*pid;
 	t_divide_str	*dvd_str;
+	t_redirection	*_redirection;
 	int				**fd;
 	int				command_count;
 }				t_data;
@@ -75,7 +89,6 @@ int		checker_red_pipe(char one, char two, t_divide_str *dvd);
 void	create_path();
 
 //reset utils
-void	reset_quoete(t_divide_str *dvd);
 void	reset_redirection(t_divide_str *dvd);
 void	reset_command_struct();
 void    free_command_db(char **command);
@@ -89,6 +102,7 @@ void	create_pipe_fd();
 
 //Command utils
 char	**command_create();
+void    counter_redirection(char *str, t_redirection *redirection , int i);
 void	delete_qoute();
 int		len_list(t_lexer *lst);
 int		_counter_macro(t_lexer *lexer, char search);

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 00:24:04 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:59:32 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	check_in_str(char str, t_divide_str *dvd)
 	&& _macro("NOR"))
 		dvd->rec_r++;
 	if(_macro("QTorF"))
-		reset_quoete(dvd);
+		_macro("reset_quoete");
+
 }
 
 void	divide_string(char *str, t_divide_str *dvd)

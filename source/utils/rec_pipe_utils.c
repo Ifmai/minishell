@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 00:35:17 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:04:44 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	count_pipe_rec()
 		while(iter->str[i] != 0)
 		{
 			check_in_str(iter->str[i],data->dvd_str);
+			counter_redirection(iter->str, data->_redirection, 0);
 			i++;
 		}
 		iter = iter->next;
