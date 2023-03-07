@@ -21,7 +21,7 @@ RL_LIBRARY_VERSION = 8.2
 SHELL = /bin/sh
 RM = rm -f
 
-prefix = /Users/hozdemir/Desktop/alp/lib/readline
+prefix = /Users/cerrah/Desktop/alp/lib/readline
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share
@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 
 top_srcdir = ..
 #BUILD_DIR = .
-BUILD_DIR = /Users/hozdemir/Desktop/alp/lib/readline
+BUILD_DIR = /Users/cerrah/Desktop/alp/lib/readline
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c

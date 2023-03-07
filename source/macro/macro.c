@@ -29,8 +29,6 @@ int _macro(char *str)
         return (noqt());
 	if(macrocomp(str, "QTorFT"))
 		return (qtorft());
-	if(macrocomp(str, "NORT"))
-		return (nort());
 	if(macrocomp(str, "RTORFT"))
 		return (rtorft());
 	if(macrocomp(str, "VALUE_RESET"))
@@ -95,5 +93,6 @@ t_bool	reset_value()
 	data->_redirection->output_string = 0;
 	data->_redirection->temp_db_quote = 0;
 	data->_redirection->temp_quote = 0;
+	data->_redirection->fd_rec = 0;
 	return (TRUE);
 }

@@ -24,6 +24,7 @@ int main(int ac, char **av, char **env)
 	data = malloc(sizeof(t_data));
 	data->env = ft_env(env);
 	define_struct();
+	export_create();
 	create_path();
 	minishell_loop();
 /* 	while(data->dvd_str->lexer != NULL)

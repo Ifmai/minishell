@@ -44,3 +44,34 @@ void	create_path()
 	data->path = ft_split((temporary + i) , ':');
 	free(temporary);
 }
+
+static void ft_swap(char **a, char **b)
+{
+	char	*tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void    export_create()
+{
+	int		j;
+	int		i;
+    int     len;
+
+    len = chardb_len(data->env);
+    data->export = ft_env(data->env);
+	i = 0;
+	while (i < len - 1)
+	{
+		j = 1;
+		while (j <  len - 1)
+		{
+			if (ft_strcmp(data->export[j], data->export[j + 1]) > 0)
+				ft_swap(&data->export[j], &data->export[j + 1]);
+			j++;
+		}
+		i++;
+	}
+}

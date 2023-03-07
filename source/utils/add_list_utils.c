@@ -23,7 +23,7 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 	i_plus(str, i);
 	while(str[*i] != 0)
 	{
-		if(checker_red_pipe(str[*i - 1], str[*i], dvd))
+		if((*i) != 0 && checker_red_pipe(str[*i - 1], str[*i]))
 			break;
 		check_in_str(str[*i], dvd);
 		if(((str[*i] == 32 && _macro("NOQ")) || \

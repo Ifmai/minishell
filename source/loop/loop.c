@@ -21,6 +21,7 @@ void	minishell_loop(void)
 		data->line = readline("uWuShell > ");
 		add_history(data->line);
 		divide_string(data->line, data->dvd_str);
+		/// syntax error kontrol fonksiyonu buraya yazılcak.
 		count_pipe_rec();
 		delete_qoute();
 		if(data->dvd_str->pipe_count == 0 && ft_strlen(data->line) != 1)

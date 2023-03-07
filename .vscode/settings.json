@@ -9,7 +9,8 @@
         "sstream": "c",
         "macro.h": "c",
         "readline.h": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "rec_": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

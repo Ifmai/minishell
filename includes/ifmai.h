@@ -20,6 +20,7 @@
 typedef struct s_lexer
 {
 	char			*str;
+	//int				error; fonksiyonu durdurmak için kullanabiliriz.
 	struct s_lexer	*next;
 	struct s_lexer	*back;
 }					t_lexer;
@@ -32,9 +33,11 @@ typedef struct s_red
 	int		output;
 	int		temp_quote;
 	int		temp_db_quote;
-	char	**heredoc_string;
+	int		fd_rec;
+	char	**heredoc_string; 
 	char	**input_string;
 	char	**output_string;
+	char	**appened_string;
 }			t_redirection;
 
 
@@ -54,6 +57,7 @@ typedef struct s_data
 {
 	char			*line;
 	char			**env;
+	char			**export;
 	int				check_signal;
 	char			**path;
 	pid_t			*pid;
@@ -71,10 +75,25 @@ void	divide_string(char *str, t_divide_str *dvd_str);
 //Utils
 void	define_struct(void);
 char	**ft_env(char **env);
+void    export_create();
 int		chardb_len(char **db);
 void	check_in_str(char str, t_divide_str *dvd);
 int		check_trim(char a, char const *set);
+int		ft_strcmp(char *s1, char *s2);
 
+//Buildin function
+void    echo_command();
+void    pwd_command(char **command);
+void    cd_command(char **command);
+void    export_command(char **command);
+
+//Export Utils funciton
+char    *free_new_strdup(char *_free, char *command);
+char    *new_strdup(char *command);
+char    **double_strjoin(char **s1, char *add);
+
+//Rec utils function
+void    redirection_value_define(t_redirection *rec);
 
 // Add list function
 void	add(t_lexer **lst, t_lexer *new);
@@ -85,7 +104,7 @@ t_lexer	*new_node(void *content);
 //Parse utils
 char	*add_str(t_divide_str *dvd, char *str, int *i);
 void	i_plus(char *str, int *i);
-int		checker_red_pipe(char one, char two, t_divide_str *dvd);
+int		checker_red_pipe(char one, char two);
 void	create_path();
 
 //reset utils
@@ -99,6 +118,7 @@ void    exec_one_command();
 void    exec_multiple_command();
 void    close_pipe_fd();
 void	create_pipe_fd();
+void	execute_builtins(char *select, char **command);
 
 //Command utils
 char	**command_create();
@@ -110,5 +130,5 @@ void	count_pipe_rec();
 char	*new_str_join(char  *s1, char  *s2);
 char	*true_command(char **command);
 char	*new_strtrim(char *s1, char *set);
-
+int		is_it_builtins(char **command);
 #endif

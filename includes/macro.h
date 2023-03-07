@@ -29,7 +29,6 @@ t_bool qtorf();
 t_bool rtorf();
 t_bool nor();
 t_bool noq();
-t_bool nort();
 t_bool rtorft();
 t_bool qtorft();
 t_bool noqt();

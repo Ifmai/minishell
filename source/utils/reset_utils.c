@@ -34,6 +34,9 @@ void reset_command_struct()
 {
     lexer_clear(&data->dvd_str->lexer, free);
 	data->command_count = 0;
+	if(data->_redirection->fd_rec)
+		close(data->_redirection->fd_rec);
+	data->_redirection->fd_rec = 0;
     free(data->line);
     free(data->pid);
 	free_fd();

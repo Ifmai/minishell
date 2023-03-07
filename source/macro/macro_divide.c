@@ -14,8 +14,6 @@
 
 t_data *data;
 
-
-
 t_bool nor()
 {
     if(data->dvd_str->rec_l == 0 && data->dvd_str->rec_r == 0)

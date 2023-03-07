@@ -16,17 +16,23 @@ t_data *data;
 
 void    exec_one_command()
 {
+	int		builtins;
 	char	**command;
 	char	*true_path;
-	//froklıyıp access kullanıp command create kullancaz onu yapcan bropa
+
+	true_path = NULL;
 	command = command_create();
-	true_path = true_command(command);
-	if(true_path)
+	builtins = is_it_builtins(command);
+	if(builtins == FALSE)
+		true_path = true_command(command);
+	if(true_path || builtins == TRUE)
 	{
 		data->pid[0] = fork();
 		if(data->pid[0] == 0)
 		{
-			execve(true_path, command, data->env);
+			if(builtins == FALSE)
+				execve(true_path, command, data->env);
+			execute_builtins(command[0], command);
 			exit(0);
 		}
 		else

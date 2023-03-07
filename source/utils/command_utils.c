@@ -14,6 +14,31 @@
 
 t_data *data;
 
+int	is_it_builtins(char **command)
+{
+	if(chardb_len(command) == 0)
+		return (FALSE);
+	if(macrocomp(command[0], "echo"))
+		return (TRUE);
+	else if(macrocomp(command[0], "export"))
+	{
+		export_command(command);
+		return (TRUE);
+	}
+	else if(macrocomp(command[0], "exit"))
+		return (TRUE);
+	else if(macrocomp(command[0], "env"))
+		return (TRUE);
+	else if(macrocomp(command[0], "pwd"))
+		return (TRUE);
+	else if(macrocomp(command[0], "cd"))
+	{
+		cd_command(command);
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 void	delete_qoute() // "sofıdjpsdfk"sapdkpoasd gibi bir örnekte silmiyor bu düzeltilcek.
 {
 	t_lexer	*iter;

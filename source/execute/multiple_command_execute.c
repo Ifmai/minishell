@@ -58,7 +58,7 @@ void    execute_command(char *true_path, char **command, int i)
     }
 }
 
-void    exec_multiple_command()
+void     exec_multiple_command()
 {
     int i;
     char    **command;
@@ -72,7 +72,7 @@ void    exec_multiple_command()
         true_path = true_command(command);
         if(true_path)
             execute_command(true_path, command, i);
-        else if (chardb_len(command) != 1)
+        else if (chardb_len(command) != 0)
             printf("bash: command not found: %s\n",command[0]);
         free_command_db(command);
         i++;

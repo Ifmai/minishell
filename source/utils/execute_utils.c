@@ -14,6 +14,20 @@
 
 t_data  *data;
 
+void	execute_builtins(char *select, char **command)
+{
+	if(macrocomp(select, "echo"))
+		echo_command(command);
+	else if(macrocomp(select, "pwd"))
+		pwd_command(command);
+	/* else if(macrocomp(select, "export"))
+		export_command(command); */
+	/* else if(macrocomp(select, "exit"))
+		return (TRUE);
+	else if(macrocomp(select, "env"))
+		return (TRUE); */
+}
+
 void    free_fd()
 {
 	int	i;

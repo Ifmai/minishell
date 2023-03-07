@@ -23,14 +23,6 @@ t_bool	reset_quoete()
 	return (TRUE);
 }
 
-t_bool nort()
-{
-    if(data->_redirection->appened == 0 && data->_redirection->heredoc == 0 \
-        && data->_redirection->input == 0 && data->_redirection->output == 0)
-		return (TRUE);
-	return (FALSE);
-}
-
 t_bool rtorft()
 {
     if((data->_redirection->appened == 1 || data->_redirection->heredoc == 1 \
