@@ -61,69 +61,6 @@ void file_operations(char *redir_param,char *symbol, t_redirection *redir)
     //file didnt opened2
 	free(edited_param);
 }
-/*
-bir düğümü listeden kaldırmak için
-Fonksiyon, verilen düğümün bir önceki ve bir sonraki düğümle olan bağlantısını keser ve verilen düğümü listeden kaldırır.
-*/
-/* void remove_node(t_lexer **head, t_lexer *node) 
-{
-    static int i = 0;
-    printf("girdim bro : %d\n",i++);
-    if (*head == NULL || node == NULL) 
-        return;
-    if (*head == node) 
-    {  // Eğer silinecek düğüm, listenin başındaysa
-        *head = node->next;
-    }
-    else if (node->next != NULL) 
-    {  // Eğer silinecek düğüm listenin sonunda değilse
-        node->next->back = node->back;
-    }
-    else if (node->back != NULL) 
-    {  // Eğer silinecek düğüm listenin başında değilse
-        node->back->next = node->next;
-    }
-    free(node->str);
-    node->back = NULL;
-    node->next = NULL;
-    free(node);
-} */
-
- /*
- kelime veya sembol) listesindeki I/O yönlendirmelerini tespit eder ve bu yönlendirmeler için file_operations() fonksiyonunu çağırır. 
- bu yönlendirmelerin belirtilen token'ların listesinden silinmesi için remove_node() fonksiyonu kullanılır.
- */
-
-/* void redirection(t_data *data)
-{
-    t_lexer *arg;
-    t_redirection *redir;
-    t_lexer *head;
-    int     index;
-
-    arg = data->dvd_str->lexer;
-    head = arg;
-    redir = data->_redirection;
-    index = 0;
-    printf("rec\n");
-    while(arg != NULL)
-    {
-        if(is_redir_symbol(arg))
-        {
-            file_operations(arg->next->str, arg->str,redir);
-            remove_node(&(arg->back),arg);// redir verilerininin bağlantısını kopar (şu anki ve next data silinmeli)
-            remove_node(&(arg->back),arg);//next data
-            // bu silme fonksiyonları çalışmıyor.
-        }
-        arg = arg->next;
-    }
-    arg = head;
-    while(arg != NULL)
-    {
-        printf("arg->str : %s\n",arg->str);
-        arg = arg->next;
-    }
-} */
 
 char    **change_command(char **command, int i)
 {
@@ -150,7 +87,6 @@ char    **change_command(char **command, int i)
 
 char    **redirection(char **command)
 {
-    //char    **new_command;
     char    **temp;
     int     index;
     int     i;

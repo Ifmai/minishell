@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/10 20:32:13 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:41:03 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,18 @@ char	*true_command(char **command)
 {
 	int		i;
 	char	*true_path;
-	char	*edit_command;
 
-	edit_command = edit_data(command[0]);
 	i = 0;
 	while (data->path[i] != 0)
 	{
 		true_path = ft_strdup(data->path[i]);
 		true_path = new_str_join(true_path, "/");
-		true_path = new_str_join(true_path, edit_command);
+		true_path = new_str_join(true_path, command[0]);
 		if(access(true_path, F_OK) != -1 )
 			return (true_path);
 		free(true_path);
 		i++;
 	}
-	free(edit_command);
 	return (0);
 }
 
