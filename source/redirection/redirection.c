@@ -43,14 +43,11 @@ editlenmiş parametre freelenir
 */
 void file_operations(char *redir_param,char *symbol, t_redirection *redir)
 {
-    char	*temp;
     char	*edited_param;
 
     data->in_fd = STDIN_FILENO;// bunlar dataya taşıncak.
     data->out_fd = STDOUT_FILENO;// iki tanesini gereksiz bir fd tutup o fd yi açıp yazıp kapatıcaz gereksiz değişken kullanımı.
-    temp = edit_data(redir_param); // path'le birleştirilmesi gerekiyor //len yok burda burçaaaaak.
-	edited_param = ft_strjoin(add_symbol(),temp);
-	free(temp);
+	edited_param = ft_strjoin(add_symbol(),redir_param);
 	if (macrocomp("<<",symbol))
         data->in_fd = redir->fd_heredoc;
     else if (macrocomp("<",symbol))
