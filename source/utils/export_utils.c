@@ -14,82 +14,49 @@
 
 t_data *data;
 
-char    *in_array(char *command, char *ret, int j, int i)
+static char    *in_array(char *command, char *ret, int i)
 {
-    int flag;
     char    *first;
+    char    *two;
 
-    flag = ft_strchr(command, "=");
-    if(flag != 0)
+    if(ft_strchr(command, '='))
     {
         while(command[i] != '=')
             i++;
         first = ft_substr(command, 0 , i + 1);
-        
-        
+        two = ft_substr(command, i + 1, ft_strlen(command) - (i + 1));
+        two = add_char(two, '\"');
+        ret = ft_strjoin(first, two);
     }
-
+    else
+        ret = ft_strdup(command);
+    return (ret);
 }
-/*     while(j < len)
-        {
-            if(command[i] != 0)
-            {
-                new[j] = command[i];
-                i++;
-            }
-            if((command[i - 1] == '=') || (j > i && j + 2 == len))
-            {
-                if(j + 2 != len)
-                    j++;
-                new[j] = '\"';
-            }
-            j++;
-        }  */
 
 char    *new_strdup(char *command)
 {
-    int i;
-    int len;
-    int j;
+    int     len;
     char    *new;
 
-    i = 0;
-    j = 0;
     if(ft_strchr(command, '='))
         len = ft_strlen(command) + 3;
     else
         len = ft_strlen(command) + 1;
     new = ft_calloc(sizeof(char), len);
-    while(command[i] != 0 | command[i] == '=')
-        i++;
-    return (new);
+    return (in_array(command, new, 0));
 }
 
 char    *free_new_strdup(char *_free, char *command)
 {
-    int i;
-    int len;
-    int j;
+    int     len;
     char    *new;
 
-    i = 0;
-    j = 0;
     if(ft_strchr(command, '='))
         len = ft_strlen(command) + 3;// çift tırnak ve null için toplam 3
     else
         len = ft_strlen(command) + 1;
     new = ft_calloc(sizeof(char), len);
-    while(i < len)
-    {
-        new[j] = command[i];
-        if((command[i] == '=') || (j > i && j + 1 == len))
-        {
-            j++;
-            new[j] = '\"';
-        }
-        i++;
-        j++;
-    }
+    new = in_array(command, new, 0);
     free(_free);
     return (new);
 }
@@ -110,4 +77,3 @@ char    **double_strjoin(char **s1, char *add)
     free(s1);
     return (ret);
 }
-

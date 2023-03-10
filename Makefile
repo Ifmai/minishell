@@ -3,7 +3,8 @@ SRCS = ./source/main.c ./source/utils/utils.c ./source/utils/env_add.c ./source/
 		./source/utils/command_utils.c ./source/execute/one_command_execute.c ./source/execute/multiple_command_execute.c \
 		./source/utils/execute_utils.c ./source/utils/reset_utils.c ./source/macro/macro_counter_redirection.c \
 		./source/utils/redirection_ultils.c ./source/builtin/echo.c ./source/builtin/cd_pwd.c ./source/builtin/export.c \
-		./source/utils/export_utils.c
+		./source/utils/export_utils.c ./source/edit_data/edit_data.c ./source/variables/variables.c ./source/utils/syntax_err.c \
+		./source/utils/quote_utils.c ./source/redirection/redirection.c ./source/redirection/heredoc.c
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I./lib/readline/include -fsanitize=address -g

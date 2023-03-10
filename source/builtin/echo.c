@@ -25,8 +25,8 @@ void    echo_command(char **command)
         i = 2;
     if(command[i] == 0)
         return ;
-    if(data->_redirection->output || data->_redirection->appened)
-        fd = data->_redirection->fd_rec;// output varsa bunu kullancaz.
+    /* if(data->_redirection->output || data->_redirection->appened)
+        fd = data->_redirection->fd_rec;// output varsa bunu kullancaz. */
     while(command[i])
     {
         write(fd,command[i],ft_strlen(command[i]));

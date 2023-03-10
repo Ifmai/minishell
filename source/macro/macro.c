@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:49:27 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 13:01:04 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:16:34 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ int _macro(char *str)
 	if(macrocomp(str, "RTORF"))
 		return (rtorf());
 	// aşağısı redirection counter için ve temp quoute kontrolü için kullanılıyor.
-	if(macrocomp(str, "NOQT"))
-        return (noqt());
-	if(macrocomp(str, "QTorFT"))
-		return (qtorft());
-	if(macrocomp(str, "RTORFT"))
-		return (rtorft());
 	if(macrocomp(str, "VALUE_RESET"))
 		return (reset_value());
 	if(macrocomp(str, "reset_quoete"))
@@ -62,7 +56,8 @@ int _counter_macro(t_lexer *lexer, char search)
 t_bool macrocomp(const char *s1, const char *s2)
 {
 	int	i;
-
+	// if(!s1 || !s2)
+	// 	return (FALSE);
 	i = 0;
 	while ((s1[i] != 0 || s2[i] != 0))
 	{
@@ -84,15 +79,9 @@ t_bool	reset_value()
 	data->dvd_str->rec_r = 0;
 	data->check_signal = 0;
 	data->command_count = 0;
-	data->_redirection->appened = 0;
-	data->_redirection->heredoc = 0;
-	data->_redirection->input = 0;
-	data->_redirection->output = 0;
-	data->_redirection->heredoc_string = 0;
-	data->_redirection->input_string = 0;
-	data->_redirection->output_string = 0;
-	data->_redirection->temp_db_quote = 0;
-	data->_redirection->temp_quote = 0;
-	data->_redirection->fd_rec = 0;
+	data->_redirection->fd_appened = 0;
+	data->_redirection->fd_heredoc = 0;
+	data->_redirection->fd_input = 0;
+	data->_redirection->fd_output = 0;
 	return (TRUE);
 }

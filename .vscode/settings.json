@@ -10,7 +10,12 @@
         "macro.h": "c",
         "readline.h": "c",
         "iterator": "c",
-        "rec_": "c"
+        "rec_": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "unordered_map": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

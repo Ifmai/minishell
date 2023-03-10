@@ -16,6 +16,8 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 
+#define Qt(hold,num) ((hold+num) % (num*2))
+
 // Structs
 typedef struct s_lexer
 {
@@ -27,19 +29,11 @@ typedef struct s_lexer
 
 typedef struct s_red
 {
-	int		heredoc;
-	int		appened;
-	int		input;
-	int		output;
-	int		temp_quote;
-	int		temp_db_quote;
-	int		fd_rec;
-	char	**heredoc_string; 
-	char	**input_string;
-	char	**output_string;
-	char	**appened_string;
+	int		fd_appened;
+	int		fd_input;
+	int		fd_output;// fazlalık. rec fonksiyonları için en azından 
+	int		fd_heredoc;// fazlalık. heredoc da kullandın mı bilmiyom ama rec fonksiyonlarıda gereksiz buda.
 }			t_redirection;
-
 
 typedef struct s_divide_string
 {
@@ -65,6 +59,9 @@ typedef struct s_data
 	t_redirection	*_redirection;
 	int				**fd;
 	int				command_count;
+	int				fd[2];
+	int				in_fd;
+	int				out_fd;
 }				t_data;
 
 // include main function
@@ -92,9 +89,6 @@ char    *free_new_strdup(char *_free, char *command);
 char    *new_strdup(char *command);
 char    **double_strjoin(char **s1, char *add);
 
-//Rec utils function
-void    redirection_value_define(t_redirection *rec);
-
 // Add list function
 void	add(t_lexer **lst, t_lexer *new);
 t_lexer	*last_item(t_lexer *lst);
@@ -120,6 +114,10 @@ void    close_pipe_fd();
 void	create_pipe_fd();
 void	execute_builtins(char *select, char **command);
 
+//Edit Data
+char* add_char(char* str, char add_char);
+char *edit_data(char *substring);
+
 //Command utils
 char	**command_create();
 void    counter_redirection(char *str, t_redirection *redirection , int i);
@@ -131,4 +129,25 @@ char	*new_str_join(char  *s1, char  *s2);
 char	*true_command(char **command);
 char	*new_strtrim(char *s1, char *set);
 int		is_it_builtins(char **command);
+
+//Variables
+char    *get_variable(char *input);
+t_bool	is_variable_char(char data);
+int		variable_len(char *data);
+
+//Quote utils
+void	reset_q_type(int q_hold);
+int		quote_type(char quote,int *q_hold);
+t_bool	is_contains_quote(char *input);
+
+//Rec utils function
+t_bool is_redir_symbol(t_lexer *lexer);
+t_bool syntax_err();
+void	init_heredoc(void);
+void	read_heredoc(char *limiter,t_redirection *redir);
+void 	wait_limiter(char *limiter,int fd);
+void	redirection(t_data *data);
+void	remove_node(t_lexer **head, t_lexer *node);
+void	file_operations(char *redir_param,char *symbol, t_redirection *redir);
+char	*add_symbol();
 #endif

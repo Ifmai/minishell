@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 00:39:39 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:45:07 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void    exec_one_command()
 		data->pid[0] = fork();
 		if(data->pid[0] == 0)
 		{
+			redirection(data);
 			if(builtins == FALSE)
 				execve(true_path, command, data->env);
 			execute_builtins(command[0], command);

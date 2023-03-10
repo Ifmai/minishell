@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 03:42:43 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:46:28 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*true_command(char **command)
 	return (0);
 }
 
-/* char	**command_create()
+char	**command_create()
 {
 	int			len;
 	t_lexer		*iter;
@@ -102,9 +102,9 @@ char	*true_command(char **command)
 		|| iter->str[0] == '<' || iter->str[0] == '>'))
 		data->command_count++;
 	return (command);
-} */
+}
 
-char	**command_create()
+/* char	**command_create()
 {
 	int			len;
 	char		**command;
@@ -125,7 +125,7 @@ char	**command_create()
 		|| data->dvd_str->lexer->str[0] == '<' || data->dvd_str->lexer->str[0] == '>'))
 		data->dvd_str->lexer = data->dvd_str->lexer->next;
 	return (command);
-}
+} */
 
 char	*new_str_join(char  *s1, char  *s2)
 {
