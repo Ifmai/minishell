@@ -45,19 +45,27 @@ void file_operations(char *redir_param,char *symbol, t_redirection *redir)
 {
     char	*edited_param;
 
-    data->in_fd = STDIN_FILENO;// bunlar dataya taşıncak.
-    data->out_fd = STDOUT_FILENO;// iki tanesini gereksiz bir fd tutup o fd yi açıp yazıp kapatıcaz gereksiz değişken kullanımı.
 	edited_param = ft_strjoin(add_symbol(),redir_param);
-	if (macrocomp("<<",symbol))
-        data->in_fd = redir->fd_heredoc;
-    else if (macrocomp("<",symbol))
-        data->in_fd = open(edited_param, O_RDONLY);
-	if (macrocomp(">>",symbol))
-    	data->out_fd = open(edited_param, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	else if (macrocomp(">",symbol))
-    	data->out_fd = open(edited_param, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-    /* if(set_std_file(data->in_fd, data->out_fd) == 0)// bu değişebilir... // burda dosyayı açıp değiştirip kapatıp dup2 da açabilirim.
-        printf("deneme"); */
+    if(macrocomp("<",symbol))
+    {
+        if(data->in_fd)
+            close(data->in_fd);
+        if (macrocomp("<<",symbol))
+            data->in_fd = redir->fd_heredoc;
+        else
+            data->in_fd = open(edited_param, O_RDONLY);
+    }
+    else
+    {
+        if(data->out_fd)
+            close(data->out_fd);
+        if (macrocomp(">>",symbol))
+            data->out_fd = open(edited_param, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+        else
+    	    data->out_fd = open(edited_param, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+    }
+    if(set_std_file(data->in_fd, data->out_fd) == 0)
+        printf("deneme");
     //file didnt opened2
 	free(edited_param);
 }
