@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/10 03:46:28 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:16:10 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,18 @@ int	is_it_builtins(char **command)
 void	delete_qoute() // "sofıdjpsdfk"sapdkpoasd gibi bir örnekte silmiyor bu düzeltilcek.
 {
 	t_lexer	*iter;
+	char	*temp;
 	int		i;
 
 	i = 0;
+
 	iter = data->dvd_str->lexer;
 	while(iter != NULL)
 	{
-		if(iter->str[i] == '\"' && iter->str[ft_strlen(iter->str) - 1] == '\"')
-			iter->str = new_strtrim(iter->str, "\"");
-		if(iter->str[i] == '\'' && iter->str[ft_strlen(iter->str) - 1] == '\'')
-			iter->str = new_strtrim(iter->str, "\'");
+		temp = edit_data(iter->str);
+		free(iter->str);
+		iter->str = ft_strdup(temp);
+		free(temp);
 		iter = iter->next;
 	}
 }
@@ -60,18 +62,21 @@ char	*true_command(char **command)
 {
 	int		i;
 	char	*true_path;
+	char	*edit_command;
 
+	edit_command = edit_data(command[0]);
 	i = 0;
 	while (data->path[i] != 0)
 	{
 		true_path = ft_strdup(data->path[i]);
 		true_path = new_str_join(true_path, "/");
-		true_path = new_str_join(true_path, command[0]);
+		true_path = new_str_join(true_path, edit_command);
 		if(access(true_path, F_OK) != -1 )
 			return (true_path);
 		free(true_path);
 		i++;
 	}
+	free(edit_command);
 	return (0);
 }
 
@@ -90,16 +95,14 @@ char	**command_create()
     if(!command || !iter)
         return (0);
     len = 0;
-	while(iter != NULL && !(iter->str[0] == '|' 
-		|| iter->str[0] == '<' || iter->str[0] == '>'))
+	while(iter != NULL && !(iter->str[0] == '|'))
 	{
 		command[len] = ft_strdup(iter->str);
         data->command_count++;
         len++;
         iter = iter->next;
 	}
-	if(iter != NULL && (iter->str[0] == '|' 
-		|| iter->str[0] == '<' || iter->str[0] == '>'))
+	if(iter != NULL && (iter->str[0] == '|'))
 		data->command_count++;
 	return (command);
 }

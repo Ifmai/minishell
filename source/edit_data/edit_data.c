@@ -67,3 +67,24 @@ char* add_char(char* str, char add_char)
     free(str);
     return (new_str);
 }
+
+
+char	**double_strdup(char **s1)
+{
+	char	**rtn;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = chardb_len(s1) + 1;
+	rtn = ft_calloc(len, sizeof(char *));
+	if (!rtn)
+		return (0);
+	while(s1[i] != 0)
+	{
+		rtn[i] = s1[i];
+		i++;
+	}
+	free(s1);
+	return (rtn);
+}

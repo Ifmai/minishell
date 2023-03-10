@@ -59,7 +59,6 @@ typedef struct s_data
 	t_redirection	*_redirection;
 	int				**fd;
 	int				command_count;
-	int				fd[2];
 	int				in_fd;
 	int				out_fd;
 }				t_data;
@@ -77,6 +76,7 @@ int		chardb_len(char **db);
 void	check_in_str(char str, t_divide_str *dvd);
 int		check_trim(char a, char const *set);
 int		ft_strcmp(char *s1, char *s2);
+char	**double_strdup(char **s1);
 
 //Buildin function
 void    echo_command();
@@ -142,11 +142,13 @@ t_bool	is_contains_quote(char *input);
 
 //Rec utils function
 t_bool is_redir_symbol(t_lexer *lexer);
+t_bool is_redir_symbol_string(char *lexer);
 t_bool syntax_err();
 void	init_heredoc(void);
 void	read_heredoc(char *limiter,t_redirection *redir);
 void 	wait_limiter(char *limiter,int fd);
-void	redirection(t_data *data);
+char    **redirection(char **comand);
+//void	redirection(t_data *data);
 void	remove_node(t_lexer **head, t_lexer *node);
 void	file_operations(char *redir_param,char *symbol, t_redirection *redir);
 char	*add_symbol();

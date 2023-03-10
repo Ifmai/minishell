@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/10 03:45:07 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:04:57 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void    exec_one_command()
 {
 	int		builtins;
 	char	**command;
+	char	**exec_command;
 	char	*true_path;
 
 	true_path = NULL;
@@ -28,12 +29,13 @@ void    exec_one_command()
 	if(true_path || builtins == TRUE)
 	{
 		data->pid[0] = fork();
+		//lexer için edit_data yapcaz çünkü siktiğimin $ işaretini değiştirmiyoruz normalde vb. burçakcım halleder xd.
 		if(data->pid[0] == 0)
 		{
-			redirection(data);
+			exec_command = redirection(command);
 			if(builtins == FALSE)
-				execve(true_path, command, data->env);
-			execute_builtins(command[0], command);
+				execve(true_path, exec_command, data->env);
+			execute_builtins(exec_command[0], exec_command);
 			exit(0);
 		}
 		else

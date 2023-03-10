@@ -27,6 +27,7 @@ void wait_limiter(char *limiter,int _fd)
 		free(edited_data);
 		input = readline(">");
 	}
+	close(_fd);
 }
 /*
 Bu fonksiyon, önceki geçici dosya tanımlayıcısını kapatır ve yeni bir dosya tanımlayıcısı açarak, 

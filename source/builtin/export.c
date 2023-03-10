@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   one_command_execute.c                              :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 00:39:39 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:47:21 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void    export_command(char **command)
         while(command[i])
         {   if(command[i][0] == '=' || ft_isdigit(command[i][0]) \
                 || ft_strchr(command[i], 32))
-                printf("bash: export: `%s': not a valid identifier\n", command[i]);
+                    printf("bash: export: `%s': not a valid identifier\n", command[i]);
             else
                 add_export(command[i]);
             i++;

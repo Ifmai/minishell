@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 14:05:55 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:13:10 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	minishell_loop(void)
 		count_pipe_rec();
 		flag = syntax_err();
 		init_heredoc();
-		//delete_qoute();
+		delete_qoute();
 		if(data->dvd_str->pipe_count == 0 && ft_strlen(data->line) != 1 \
 			&& flag != TRUE)
 			exec_one_command();

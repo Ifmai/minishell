@@ -12,6 +12,13 @@ t_bool is_redir_symbol(t_lexer *lexer)
     return FALSE;
 }
 
+t_bool is_redir_symbol_string(char *lexer)
+{
+    if (macrocomp(lexer,"<") || macrocomp(lexer,">"))
+        return TRUE;
+    return FALSE;
+}
+
 /*
 mevcut t_lexer yapısının üzerinde gezinir ve <, > sembollerini kontrol eder. 
 Eğer bir sembol bulunursa, hemen sonrasındaki t_lexer yapısının sembol olup olmadığı kontrol edilir. Eğer sembol değilse veya yoksa, | sembolüne eşit değilse, syntax hatası olduğu sonucuna varılır ve TRUE döndürülür. Aksi halde, gezinme işlemine devam edilir.

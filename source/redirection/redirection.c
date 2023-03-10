@@ -24,14 +24,14 @@ Fonksiyon, yeniden yönlendirmenin başarılı olup olmadığını kontrol eder.
 // bu fonksiyona gerek kalmayabilir ve ya benim dup2 ya taşıyabilirim file_operations da yapmak yerine....
 int set_std_file(int in_fd, int out_fd)
 {
-    if(STDIN_FILENO != in_fd && in_fd > 0)
+    if(0 != in_fd && in_fd > 0)
     {
-        dup2(in_fd,STDIN_FILENO);
+        dup2(in_fd, 0);
         return in_fd;
     }
-    if(STDOUT_FILENO != out_fd && out_fd > 0)
+    if(1 != out_fd && out_fd > 0)
     {
-        dup2(out_fd,STDOUT_FILENO);
+        dup2(out_fd, 1);
         return out_fd;
     }
     return 0;
@@ -48,37 +48,26 @@ void file_operations(char *redir_param,char *symbol, t_redirection *redir)
 
     data->in_fd = STDIN_FILENO;// bunlar dataya taşıncak.
     data->out_fd = STDOUT_FILENO;// iki tanesini gereksiz bir fd tutup o fd yi açıp yazıp kapatıcaz gereksiz değişken kullanımı.
-    // çünkü açıcaz ve yazıcaz sonra kapatıcaz
-    // outputlarda aktarım gerçekleşmicek bu yüzden çok bir durum yok yani outputlar dosyaya yazıcak.
-    // yönlendirme sadece input ve heredoclar için var. onda ise standart input u manipüle edeceğiz.
-    // ve bunların açılıp açılmama durumlarını true false olarak değiştirmemiz daha iyi gibi.
-    // dup2 da bunların true false 'a göre standart input u manipüle edeceğiz.
-
     temp = edit_data(redir_param); // path'le birleştirilmesi gerekiyor //len yok burda burçaaaaak.
 	edited_param = ft_strjoin(add_symbol(),temp);
 	free(temp);
-    if (macrocomp("<",symbol))
-        data->in_fd = open(edited_param, O_RDONLY);
-	else if (macrocomp("<<",symbol))
+	if (macrocomp("<<",symbol))
         data->in_fd = redir->fd_heredoc;
-	if (macrocomp(">",symbol))
-    	data->out_fd = open(edited_param, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-	else if (macrocomp(">>",symbol))
+    else if (macrocomp("<",symbol))
+        data->in_fd = open(edited_param, O_RDONLY);
+	if (macrocomp(">>",symbol))
     	data->out_fd = open(edited_param, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-    if(set_std_file(data->in_fd, data->out_fd) == 0)// bu değişebilir... // burda dosyayı açıp değiştirip kapatıp dup2 da açabilirim.
-        printf("deneme");
-    //file didnt opened
+	else if (macrocomp(">",symbol))
+    	data->out_fd = open(edited_param, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+    /* if(set_std_file(data->in_fd, data->out_fd) == 0)// bu değişebilir... // burda dosyayı açıp değiştirip kapatıp dup2 da açabilirim.
+        printf("deneme"); */
+    //file didnt opened2
 	free(edited_param);
 }
 /*
 bir düğümü listeden kaldırmak için
 Fonksiyon, verilen düğümün bir önceki ve bir sonraki düğümle olan bağlantısını keser ve verilen düğümü listeden kaldırır.
 */
-
-// aklıma farklı bir fikir geldi silmek yerine bütün kodları şeyle değiştiriebilirz command_create den dönen değeri manipüle ederiz ? 
-// bu sayede pipe ile pipe arasına bakarız ve ona göre işlem yaparız.
-// aynı zamanda bağlı listeden silmek yerine iki boyutlu array i onu atlayarak oluşturmak bundan bin kat daha rahat ve daha az komplike ?
-
 /* void remove_node(t_lexer **head, t_lexer *node) 
 {
     static int i = 0;
@@ -124,7 +113,7 @@ Fonksiyon, verilen düğümün bir önceki ve bir sonraki düğümle olan bağla
     {
         if(is_redir_symbol(arg))
         {
-            file_operations(arg->next->str,arg->str,redir);
+            file_operations(arg->next->str, arg->str,redir);
             remove_node(&(arg->back),arg);// redir verilerininin bağlantısını kopar (şu anki ve next data silinmeli)
             remove_node(&(arg->back),arg);//next data
             // bu silme fonksiyonları çalışmıyor.
@@ -139,7 +128,7 @@ Fonksiyon, verilen düğümün bir önceki ve bir sonraki düğümle olan bağla
     }
 } */
 
-char    **change_command(char   **command, int i)
+char    **change_command(char **command, int i)
 {
     char    **new_command;
     int     j;
@@ -147,22 +136,25 @@ char    **change_command(char   **command, int i)
 
     j = 0;
     index = 0;
-    new_command = malloc(sizeof(char *) * chardb_len(command) - 1);// 2 değil çünkü null için biri gidiyor.
+    new_command = ft_calloc(sizeof(char *) , chardb_len(command) - 1);// 2 değil çünkü null için biri gidiyor.
     while(command[j])
     {
         if(j == i || j == i + 1)
-            command[j];
+            j++;
         else
         {
             new_command[index] = command[j];
             index++;
+            j++;
         }
     }
+    return (new_command);
 }
 
-void    redirection(char **comand)
+char    **redirection(char **command)
 {
-    char    **new_command;
+    //char    **new_command;
+    char    **temp;
     int     index;
     int     i;
 
@@ -170,12 +162,14 @@ void    redirection(char **comand)
     index = 0;
     while(command[i] != 0)
     {
-        if(is_redir_symbol_str(command[i]))
+        if(is_redir_symbol_string(command[i]))
         {
-            file_operations(command[i + 1] , command[i], data->_redirection)
-            change_command(command, i);
-            // neyi siliyor bunda anlamadım.
+            file_operations(command[i + 1] , command[i], data->_redirection);
+            temp = change_command(command, i);
+            command = double_strdup(temp);
         }
-        i++;
+        else
+            i++;
     }
+    return (command);
 }
