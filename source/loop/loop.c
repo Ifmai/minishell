@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/10 20:13:10 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:55:29 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,10 @@ void	minishell_loop(void)
 }
 
 
+// env düzeltilcke güncellencek
+// export eklendikten sonraki kısım ascii ye göre sıralanıcak
+// burçak redirection ile ugrascak dup2 ile
+// ben builtinleri bitiricem
+// exit i yazıcam
+// echo -nnnnnnnnnnnn olursa çalışıcak şekilde düzenlencek -nnnnnnnna olursa çalışmıcak gibi.
+// 
