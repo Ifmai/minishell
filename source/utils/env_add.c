@@ -14,38 +14,38 @@
 
 t_data	*data;
 
-char **ft_env(char **env)
+char	**ft_env(char **env)
 {
-	int	i;
-	char **result;
+	int		i;
+	char	**result;
 
 	i = 0;
-	while(env[i])
+	while (env[i])
 		i++;
-	result = ft_calloc(sizeof(char **) , chardb_len(env) + 1);
+	result = ft_calloc(sizeof(char **), chardb_len(env) + 1);
 	i = -1;
-	while(env[++i])
+	while (env[++i])
 		result[i] = ft_strdup(env[i]);
 	return (result);
 }
 
-void	create_path()
+void	create_path(void)
 {
 	int		i;
 	char	*temporary;
 
 	i = 0;
-	while(data->env[i][0] != 'P')
+	while (data->env[i][0] != 'P')
 		i++;
 	temporary = ft_strdup(data->env[i]);
 	i = 0;
-	while(temporary[i] && temporary[i] != '/')
+	while (temporary[i] && temporary[i] != '/')
 		i++;
-	data->path = ft_split((temporary + i) , ':');
+	data->path = ft_split((temporary + i), ':');
 	free(temporary);
 }
 
-static void ft_swap(char **a, char **b)
+static void	ft_swap(char **a, char **b)
 {
 	char	*tmp;
 
@@ -54,14 +54,14 @@ static void ft_swap(char **a, char **b)
 	*b = tmp;
 }
 
-void    export_create()
+void	export_create(void)
 {
 	int		j;
 	int		i;
-    int     len;
+	int		len;
 
-    len = chardb_len(data->env);
-    data->export = ft_env(data->env);
+	len = chardb_len(data->env);
+	data->export = ft_env(data->env);
 	i = 0;
 	while (i < len - 1)
 	{

@@ -23,32 +23,32 @@ void	reset_redirection(t_divide_str *dvd)
 
 static int	check_rec(char one, char two)
 {
-	if(one == two)
+	if (one == two)
 		return (1);
 	return (0);
 }
 
 int	checker_red_pipe(char one, char two)
 {
-	if( _macro("NOQ") && ((one == '<' || one == '>') || one == '|') && \
+	if ( _macro("NOQ") && ((one == '<' || one == '>') || one == '|') && \
 		(two == '\'' || two == '\"'))
 		return (1);
-	if( _macro("NOQ") && (one == '|') && (two == '|'))
+	if ( _macro("NOQ") && (one == '|') && (two == '|'))
 		return (1);
 	return (0);
 }
 
 void	i_plus(char *str, int *i)
 {
-	if((str[*i] == '\'' || str[*i] == '\"'))
+	if ((str[*i] == '\'' || str[*i] == '\"'))
 		(*i)++;
-	if((str[*i] == '<' || str[*i] == '>') &&  _macro("NOQ"))
+	if ((str[*i] == '<' || str[*i] == '>') && _macro("NOQ"))
 	{
-		if(check_rec(str[*i], str[*i + 1]))
+		if (check_rec(str[*i], str[*i + 1]))
 			(*i) += 2;
 		else
 			(*i)++;
 	}
-	if(str[*i] == '|' &&  _macro("NOQ"))
+	if (str[*i] == '|' && _macro("NOQ"))
 		(*i)++;
 }

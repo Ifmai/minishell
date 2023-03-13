@@ -20,7 +20,7 @@ void	define_struct(void)
 	data->dvd_str->lexer = NULL;
 	data->_var = 0;
 	data->_redirection = malloc(sizeof(t_redirection));
- 	_macro("VALUE_RESET");
+	_macro("VALUE_RESET");
 }
 
 int	chardb_len(char **db)
@@ -28,9 +28,9 @@ int	chardb_len(char **db)
 	int	i;
 
 	i = 0;
-	while(db[i] != 0)
+	while (db[i] != 0)
 		i++;
-	return (i);	
+	return (i);
 }
 
 int	ft_strcmp(char *s1, char *s2)
@@ -57,8 +57,8 @@ int	len_list(t_lexer *lst)
 	i = 0;
 	while (iter != NULL)
 	{
-		if(iter->str[0] == '|')
-			break;
+		if (iter->str[0] == '|')
+			break ;
 		i++;
 		iter = iter->next;
 	}

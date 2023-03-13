@@ -44,7 +44,7 @@ char	*true_command(char **command)
 		true_path = ft_strdup(data->path[i]);
 		true_path = new_str_join(true_path, "/");
 		true_path = new_str_join(true_path, command[0]);
-		if(access(true_path, F_OK) != -1 )
+		if (access(true_path, F_OK) != -1 )
 			return (true_path);
 		free(true_path);
 		i++;
@@ -52,34 +52,34 @@ char	*true_command(char **command)
 	return (0);
 }
 
-char	**command_create()
+char	**command_create(void)
 {
 	int			len;
 	t_lexer		*iter;
 	char		**command;
 
 	iter = data->dvd_str->lexer;
-    len = -1;
-    while(++len < data->command_count && iter != NULL)
-        iter = iter->next;
+	len = -1;
+	while (++len < data->command_count && iter != NULL)
+		iter = iter->next;
 	len = len_list(iter);
-	command = ft_calloc(sizeof(char *) , len + 1);
-    if(!command || !iter)
-        return (0);
-    len = 0;
-	while(iter != NULL && !(iter->str[0] == '|'))
+	command = ft_calloc(sizeof(char *), len + 1);
+	if (!command || !iter)
+		return (0);
+	len = 0;
+	while (iter != NULL && !(iter->str[0] == '|'))
 	{
 		command[len] = ft_strdup(iter->str);
-        data->command_count++;
-        len++;
-        iter = iter->next;
+		data->command_count++;
+		len++;
+		iter = iter->next;
 	}
-	if(iter != NULL && (iter->str[0] == '|'))
+	if (iter != NULL && (iter->str[0] == '|'))
 		data->command_count++;
 	return (command);
 }
 
-char	*new_str_join(char  *s1, char  *s2)
+char	*new_str_join(char *s1, char *s2)
 {
 	char	*back;
 	size_t	total_len;

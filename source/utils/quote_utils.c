@@ -14,49 +14,51 @@
 
 t_data *data;
 
-t_bool is_contains_quote(char *input)
+t_bool	is_contains_quote(char *input)
 {
-    while (*input)
-    {
-        if(*input =='\''|| *input == '\"')
-            return TRUE;
-        input++;
-    }
-    return FALSE;
+	while (*input)
+	{
+		if (*input == '\'' || *input == '\"')
+			return TRUE;
+		input++;
+	}
+	return (FALSE);
 }
 
-int quote_type(char quote,int *q_hold)
+int	quote_type(char quote,int *q_hold)
 {
-    static int hold = 0;
+	static int	hold = 0;
 
-    if (quote == '\'' || quote == '\"')
-    {
-        if(quote == '\''&&(hold == 0 || hold == 1))
-        {
-            *q_hold = QT(*q_hold,1);
-            if(hold == 0)
-                hold = 1;
-            else if(hold == 1)
-                hold = 0;
-            return (1);
-        }
-		else if(quote == '\"' && (hold == 0 || hold == 2 )){
-            *q_hold = QT(*q_hold,2);
-            if(hold == 0)
-                hold = (2);
-            else if (hold == 2)
-                hold = 0;
-            return(2);}
-    }
-    return 0;
+	if (quote == '\'' || quote == '\"')
+	{
+		if (quote == '\'' && (hold == 0 || hold == 1))
+		{
+			*q_hold = QT(*q_hold, 1);
+			if (hold == 0)
+				hold = 1;
+			else if (hold == 1)
+				hold = 0;
+			return (1);
+		}
+		else if (quote == '\"' && (hold == 0 || hold == 2 ))
+		{
+			*q_hold = QT(*q_hold, 2);
+			if (hold == 0)
+				hold = (2);
+			else if (hold == 2)
+				hold = 0;
+			return (2);
+		}
+	}
+	return (0);
 }
 
-void reset_q_type(int q_hold)
+void	reset_q_type(int q_hold)
 {
-    if(q_hold == 0)
-        return;
-    else if(q_hold == 1)
-        quote_type('\'',&q_hold);
-    else
-        quote_type('\"',&q_hold);
+	if (q_hold == 0)
+		return ;
+	else if (q_hold == 1)
+		quote_type('\'', &q_hold);
+	else
+		quote_type('\"', &q_hold);
 }

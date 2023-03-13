@@ -30,12 +30,12 @@ void	lexer_clear(t_lexer **lst, void (*del)(void*))
 	}
 }
 
-void reset_command_struct()
+void	reset_command_struct(void)
 {
-    lexer_clear(&data->dvd_str->lexer, free);
+	lexer_clear(&data->dvd_str->lexer, free);
 	data->command_count = 0;
-    free(data->line);
-    free(data->pid);
+	free(data->line);
+	free(data->pid);
 	free_fd();
 	_macro("VALUE_RESET");
 }
