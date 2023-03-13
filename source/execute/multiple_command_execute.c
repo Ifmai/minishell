@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:13:38 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:15:48 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:04:21 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	execute_command(char *true_path, int builtins, char **command, int i)
 		}
 	}
 	else if (chardb_len(command) != 0)
+	{
 		printf("bash: command not found: %s\n", command[0]);
+		data->_var = 127;
+	}
 }
 
 void	exec_multiple_command(void)

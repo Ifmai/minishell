@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 17:33:25 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:19:38 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	exec_one_command_1(char *true_path, int builtins, char **command)
 	else if (chardb_len(command) != 0)
 	{
 		printf("bash: command not found: %s\n",command[0]);
-		data->_var = 1;
+		data->_var = 127;
 	}
 }
 
-void    exec_one_command()
+void    exec_one_command(void)
 {
 	int		builtins;
 	char	**command;

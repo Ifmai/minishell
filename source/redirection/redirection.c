@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:57:48 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 18:57:49 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:14:25 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_data *data;
 
-char    *add_symbol()
+char	*add_symbol()
 {
 	char	*cwd;
 	char	*added;
@@ -44,18 +44,21 @@ int	set_std_file(int in_fd, int out_fd)
 	return (ret);
 }
 
-void	assign_in_out(char *edited_param, char *symbol)
+void	assign_in_out(char *edited_param, char *symbol, char *redir_param)
 {
-	if (!ft_strncmp("<", symbol,1))
+	if (!ft_strncmp("<", symbol, 1))
 	{
 		if (data->in_fd >= 0)
 			close(data->in_fd);
 		if (macrocomp("<<", symbol))
-			data->in_fd = open("includes/.heredoc.txt",  O_RDONLY,0777);
+			data->in_fd = open("includes/.heredoc.txt", O_RDONLY, 0777);
 		else
-			data->in_fd = open(edited_param, O_RDONLY,0777);
+			data->in_fd = open(edited_param, O_RDONLY, 0777);
 		if (data->in_fd < 0)
+		{
+			printf("%s: No such file or directory\n", redir_param);
 			exit(1);
+		}
 	}
 	else
 	{
@@ -80,13 +83,13 @@ void	file_operations(char *redir_param, char *symbol, t_redirection *redir) {
 		edited_param = redir_param;
 	else
 		edited_param = ft_strjoin(add_symbol(), redir_param);
-	assign_in_out(edited_param,symbol);
+	assign_in_out(edited_param, symbol, redir_param);
 
 	if (set_std_file(data->in_fd, data->out_fd) == -1)
 	{
 		exit(1);
 	}
-    free(edited_param);
+	free(edited_param);
 }
 
 

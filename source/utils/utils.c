@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/12 23:10:14 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:02:41 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	define_struct(void)
 {
 	data->dvd_str = malloc(sizeof(t_divide_str));
 	data->dvd_str->lexer = NULL;
+	data->_var = 0;
 	data->_redirection = malloc(sizeof(t_redirection));
  	_macro("VALUE_RESET");
 }
