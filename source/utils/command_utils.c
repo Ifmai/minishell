@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/10 20:41:03 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:36:14 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,7 @@
 
 t_data *data;
 
-int	is_it_builtins(char **command)
-{
-	if(chardb_len(command) == 0)
-		return (FALSE);
-	if(macrocomp(command[0], "echo"))
-		return (TRUE);
-	else if(macrocomp(command[0], "export"))
-	{
-		export_command(command);
-		return (TRUE);
-	}
-	else if(macrocomp(command[0], "exit"))
-		return (TRUE);
-	else if(macrocomp(command[0], "env"))
-		return (TRUE);
-	else if(macrocomp(command[0], "pwd"))
-		return (TRUE);
-	else if(macrocomp(command[0], "cd"))
-	{
-		cd_command(command);
-		return (TRUE);
-	}
-	return (FALSE);
-}
-
-void	delete_qoute() // "sofıdjpsdfk"sapdkpoasd gibi bir örnekte silmiyor bu düzeltilcek.
+void	delete_qoute()
 {
 	t_lexer	*iter;
 	char	*temp;
@@ -50,7 +25,7 @@ void	delete_qoute() // "sofıdjpsdfk"sapdkpoasd gibi bir örnekte silmiyor bu d�
 	iter = data->dvd_str->lexer;
 	while(iter != NULL)
 	{
-		temp = edit_data(iter->str);
+		temp = edit_data(iter->str,TRUE,TRUE);
 		free(iter->str);
 		iter->str = ft_strdup(temp);
 		free(temp);
@@ -103,29 +78,6 @@ char	**command_create()
 		data->command_count++;
 	return (command);
 }
-
-/* char	**command_create()
-{
-	int			len;
-	char		**command;
-
-	len = len_list(data->dvd_str->lexer);
-	command = ft_calloc(sizeof(char *) , len + 1);
-    if(!command)
-        return (0);
-    len = 0;
-	while(data->dvd_str->lexer != NULL && !(data->dvd_str->lexer->str[0] == '|' 
-		|| data->dvd_str->lexer->str[0] == '<' || data->dvd_str->lexer->str[0] == '>'))
-	{
-		command[len] = ft_strdup(data->dvd_str->lexer->str);
-        len++;
-        data->dvd_str->lexer = data->dvd_str->lexer->next;
-	}
-	if(data->dvd_str->lexer != NULL && (data->dvd_str->lexer->str[0] == '|' 
-		|| data->dvd_str->lexer->str[0] == '<' || data->dvd_str->lexer->str[0] == '>'))
-		data->dvd_str->lexer = data->dvd_str->lexer->next;
-	return (command);
-} */
 
 char	*new_str_join(char  *s1, char  *s2)
 {

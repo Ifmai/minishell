@@ -14,31 +14,31 @@
 
 t_data *data;
 
-t_bool nor()
+t_bool	nor(void)
 {
-    if(data->dvd_str->rec_l == 0 && data->dvd_str->rec_r == 0)
+	if (data->dvd_str->rec_l == 0 && data->dvd_str->rec_r == 0)
 		return (TRUE);
 	return (FALSE);
 }
 
-t_bool rtorf()
+t_bool	rtorf(void)
 {
-    if((data->dvd_str->rec_l == 1 || data->dvd_str->rec_r == 1) || \
+	if ((data->dvd_str->rec_l == 1 || data->dvd_str->rec_r == 1) || \
 		data->dvd_str->pipe_count == 1)
 		return (TRUE);
 	return (FALSE);
 }
 
-t_bool qtorf()
+t_bool	qtorf(void)
 {
-    if(data->dvd_str->db_quote == 2 || data->dvd_str->quote == 2)
+	if (data->dvd_str->db_quote == 2 || data->dvd_str->quote == 2)
 		return (TRUE);
 	return (FALSE);
 }
 
-t_bool noq()
+t_bool	noq(void)
 {
-    if(data->dvd_str->db_quote == 0 && data->dvd_str->quote == 0)
+	if (data->dvd_str->db_quote == 0 && data->dvd_str->quote == 0)
 		return (TRUE);
 	return (FALSE);
 }

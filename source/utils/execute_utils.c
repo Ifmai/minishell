@@ -6,27 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:21:22 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 00:33:39 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:31:24 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
 t_data  *data;
-
-void	execute_builtins(char *select, char **command)
-{
-	if(macrocomp(select, "echo"))
-		echo_command(command);
-	else if(macrocomp(select, "pwd"))
-		pwd_command(command);
-	/* else if(macrocomp(select, "export"))
-		export_command(command); */
-	/* else if(macrocomp(select, "exit"))
-		return (TRUE);
-	else if(macrocomp(select, "env"))
-		return (TRUE); */
-}
 
 void    free_fd()
 {

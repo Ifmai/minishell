@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quote_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 17:13:54 by hozdemir          #+#    #+#             */
+/*   Updated: 2023/03/13 17:13:55 by hozdemir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/ifmai.h"
-/*
-quote içerip içermediğini kontrol eder (herhangi bir işaret görürse(quote) direkt TRUE döndürür)
-*/
+
+t_data *data;
+
 t_bool is_contains_quote(char *input)
 {
     while (*input)
@@ -13,10 +25,6 @@ t_bool is_contains_quote(char *input)
     return FALSE;
 }
 
-/*
-quote_type:
-It allows us to understand whether double quotes or single quotes come first.
-*/
 int quote_type(char quote,int *q_hold)
 {
     static int hold = 0;
@@ -43,10 +51,6 @@ int quote_type(char quote,int *q_hold)
     return 0;
 }
 
-/*
-reset_q_type:
-to not leave the static variable open
-*/
 void reset_q_type(int q_hold)
 {
     if(q_hold == 0)

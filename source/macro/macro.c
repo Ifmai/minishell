@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:49:27 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/10 12:16:34 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:57:54 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 t_data *data;
 
-int _macro(char *str)
+int	_macro(char *str)
 {
-    if(macrocomp(str, "NOQ"))
-        return (noq());
-	if(macrocomp(str, "QTorF"))
+	if (macrocomp(str, "NOQ"))
+		return (noq());
+	if (macrocomp(str, "QTorF")) 
 		return (qtorf());
-	if(macrocomp(str, "NOR"))
+	if (macrocomp(str, "NOR"))
 		return (nor());
-	if(macrocomp(str, "RTORF"))
+	if (macrocomp(str, "RTORF"))
 		return (rtorf());
-	// aşağısı redirection counter için ve temp quoute kontrolü için kullanılıyor.
-	if(macrocomp(str, "VALUE_RESET"))
+	if (macrocomp(str, "VALUE_RESET"))
 		return (reset_value());
-	if(macrocomp(str, "reset_quoete"))
+	if (macrocomp(str, "reset_quoete"))
 		return (reset_quoete());
 	return (FALSE);
 }
@@ -40,12 +39,12 @@ int _counter_macro(t_lexer *lexer, char search)
 
 	count = 0;
 	iter = lexer;
-	while(iter != NULL)
+	while (iter != NULL)
 	{
 		i = -1;
-		while(iter ->str[++i])
+		while (iter ->str[++i])
 		{
-			if(iter->str[i] == search)
+			if (iter->str[i] == search)
 				count++;
 		}
 		iter = iter->next;
@@ -53,11 +52,10 @@ int _counter_macro(t_lexer *lexer, char search)
 	return (count);
 }
 
-t_bool macrocomp(const char *s1, const char *s2)
+t_bool	macrocomp(const char *s1, const char *s2)
 {
 	int	i;
-	// if(!s1 || !s2)
-	// 	return (FALSE);
+
 	i = 0;
 	while ((s1[i] != 0 || s2[i] != 0))
 	{
@@ -68,8 +66,9 @@ t_bool macrocomp(const char *s1, const char *s2)
 	return (TRUE);
 }
 
-t_bool	reset_value()
+t_bool	reset_value(void)
 {
+	data->_var = 0;
 	data->dvd_str->db_quote = 0;
 	data->dvd_str->quote = 0;
 	data->dvd_str->pipe_count = 0;

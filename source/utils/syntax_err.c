@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_err.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 17:14:18 by hozdemir          #+#    #+#             */
+/*   Updated: 2023/03/13 17:14:19 by hozdemir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/ifmai.h"
-/*
- bir t_lexer yapısının str öğesinin < veya > sembolüne eşit olup olmadığını kontrol eder.
- Eğer sembol bu karakterlerden birine eşitse, TRUE döndürülür; aksi halde FALSE döndürülür.
-*/
+
 t_data  *data;
 
 t_bool is_redir_symbol(t_lexer *lexer)
@@ -14,16 +23,10 @@ t_bool is_redir_symbol(t_lexer *lexer)
 
 t_bool is_redir_symbol_string(char *lexer)
 {
-    if (macrocomp(lexer,"<") || macrocomp(lexer,">"))
-        return TRUE;
+    if (!ft_strncmp(lexer,"<",1) || !ft_strncmp(lexer,">",1)){
+        return TRUE;}
     return FALSE;
 }
-
-/*
-mevcut t_lexer yapısının üzerinde gezinir ve <, > sembollerini kontrol eder. 
-Eğer bir sembol bulunursa, hemen sonrasındaki t_lexer yapısının sembol olup olmadığı kontrol edilir. Eğer sembol değilse veya yoksa, | sembolüne eşit değilse, syntax hatası olduğu sonucuna varılır ve TRUE döndürülür. Aksi halde, gezinme işlemine devam edilir.
-
-*/
 
 t_bool syntax_err()
 {
@@ -38,7 +41,7 @@ t_bool syntax_err()
         {
             if (!(lexer->next)||is_redir_symbol(lexer->next) || macrocomp(lexer->str,"|"))
             {
-                lexer->next = NULL;//freeleme konulabilir
+                lexer->next = NULL;
                 lexer = head;
                 return TRUE;
             }

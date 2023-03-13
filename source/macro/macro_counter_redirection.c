@@ -14,7 +14,7 @@
 
 t_data *data;
 
-t_bool	reset_quoete()
+t_bool	reset_quoete(void)
 {
 	data->dvd_str->quote = 0;
 	data->dvd_str->db_quote = 0;

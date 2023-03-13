@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_divide.c                                    :+:      :+:    :+:   */
+/*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 12:59:32 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:13:34 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,20 @@ char    *new_strdup(char *command)
     return (in_array(command, new, 0));
 }
 
-char    *free_new_strdup(char *_free, char *command)
+char    *free_new_strdup(char *_free, char *command, int flag)
 {
     int     len;
     char    *new;
 
     if(ft_strchr(command, '='))
-        len = ft_strlen(command) + 3;// çift tırnak ve null için toplam 3
+        len = ft_strlen(command) + 3;
     else
         len = ft_strlen(command) + 1;
     new = ft_calloc(sizeof(char), len);
-    new = in_array(command, new, 0);
+    if (flag == 1)
+        new = in_array(command, new, 0);
+    else if (flag == 0)
+        new = ft_strdup(command);
     free(_free);
     return (new);
 }

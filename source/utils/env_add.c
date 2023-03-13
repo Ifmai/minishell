@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 04:15:05 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 03:36:54 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:15:42 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	create_path()
 		i++;
 	temporary = ft_strdup(data->env[i]);
 	i = 0;
-	while(temporary[i] != '/')
+	while(temporary[i] && temporary[i] != '/')
 		i++;
 	data->path = ft_split((temporary + i) , ':');
 	free(temporary);

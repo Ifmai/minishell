@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_divide.c                                    :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 12:59:32 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:50:43 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 t_data *data;
 
-void    echo_command(char **command)
+void	echo_command(char **command)
 {
-    int fd;
-    int i;
+	int		i;
+	char	*check;
 
-    i = 1;
-    fd = 1;
-    if(macrocomp(command[1], "-n"))
-        i = 2;
-    if(command[i] == 0)
-        return ;
-    /* if(data->_redirection->output || data->_redirection->appened)
-        fd = data->_redirection->fd_rec;// output varsa bunu kullancaz. */
-    while(command[i])
+	check = ft_strtrim(command[1], "-n");
+	i = 1;
+    if (!command[i])
     {
-        write(fd,command[i],ft_strlen(command[i]));
-        if(command[i + 1] != 0)
-            write(1," ",1);
-        i++;
+     printf("\n");
+    return ;
     }
-    if(!macrocomp(command[1], "-n"))
+    if (check[0] == 0)
+        i = 2;
+    while (command[i])
+    {
+        write(1, command[i], ft_strlen(command[i]));
+        if(command[i + 1] != 0)
+            write(1, " ", 1);
+        i++;    
+    }
+    if( !(check[0] == 0))
         printf("\n");
+    free(check);
 }

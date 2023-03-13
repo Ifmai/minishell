@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /Users/hozdemir/Downloads/minishellim/lib/readline
+BUILD_DIR = /Users/hozdemir/Desktop/minishell-main-4-2-3/lib/readline
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -48,7 +48,7 @@ MV = mv
 
 SHELL = /bin/sh
 
-prefix = /Users/hozdemir/Downloads/minishellim/lib/readline
+prefix = /Users/hozdemir/Desktop/minishell-main-4-2-3/lib/readline
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share

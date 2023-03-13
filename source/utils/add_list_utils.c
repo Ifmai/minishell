@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 03:37:10 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:13:01 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,3 @@ t_lexer	*new_node(void *content)
 	node->next = NULL;
 	return (node);
 }
-
-/* char	*add_que(t_divide_str *dvd, char *str, int *i)
-{
-	char	*divide;
-	int		index;
-
-	if(QTorF(dvd->db_quote, dvd->quote))
-		(*i)++;
-	index = (*i);
-	while(str[*i] != 0)
-	{
-		check_in_str(str[*i], dvd);
-		if(dvd->quote == 2 || dvd->db_quote == 2)
-			break ;
-		(*i)++;
-	}
-	divide = ft_substr(str, index, (*i) - index);
-	return (divide);
-} */
