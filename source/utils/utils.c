@@ -6,20 +6,20 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:02:41 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:23:08 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 void	define_struct(void)
 {
-	data->dvd_str = malloc(sizeof(t_divide_str));
-	data->dvd_str->lexer = NULL;
-	data->_var = 0;
-	data->_redirection = malloc(sizeof(t_redirection));
+	g_data->dvd_str = malloc(sizeof(t_divide_str));
+	g_data->dvd_str->lexer = NULL;
+	g_data->_var = 0;
+	g_data->_redirection = malloc(sizeof(t_redirection));
 	_macro("VALUE_RESET");
 }
 

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:13:38 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:46:28 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:13:48 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ void	select_dup2(int i)
 	close_pipe_fd();
 }
 
+void	close_pipe(int i)
+{
+	if (i == g_data->dvd_str->pipe_count)
+		close_pipe_fd();
+	else if (i > 0 && i < g_data->dvd_str->pipe_count)
+	{
+		close(g_data->fd[i - 1][0]);
+		close(g_data->fd[i - 1][1]);
+	}
+}
+
 void	execute_command(char *true_path, int builtins, char **command, int i)
 {
 	char	**exec_command;
@@ -51,17 +62,11 @@ void	execute_command(char *true_path, int builtins, char **command, int i)
 			if (builtins == FALSE)
 				execve(true_path, exec_command, g_data->env);
 			execute_builtins(exec_command[0], exec_command, 0);
-			exit(0);
+			exit(1);
 		}
 		else
 		{
-			if (i == g_data->dvd_str->pipe_count)
-				close_pipe_fd();
-			else if (i > 0 && i < g_data->dvd_str->pipe_count)
-			{
-				close(g_data->fd[i - 1][0]);
-				close(g_data->fd[i - 1][1]);
-			}
+			close_pipe();
 			free(true_path);
 		}
 	}

@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/12 18:36:14 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:45:01 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data *g_data;
 
 void	delete_qoute()
 {
@@ -22,7 +22,7 @@ void	delete_qoute()
 
 	i = 0;
 
-	iter = data->dvd_str->lexer;
+	iter = g_data->dvd_str->lexer;
 	while(iter != NULL)
 	{
 		temp = edit_data(iter->str,TRUE,TRUE);
@@ -39,9 +39,9 @@ char	*true_command(char **command)
 	char	*true_path;
 
 	i = 0;
-	while (data->path[i] != 0)
+	while (g_data->path[i] != 0)
 	{
-		true_path = ft_strdup(data->path[i]);
+		true_path = ft_strdup(g_data->path[i]);
 		true_path = new_str_join(true_path, "/");
 		true_path = new_str_join(true_path, command[0]);
 		if (access(true_path, F_OK) != -1 )
@@ -58,10 +58,10 @@ char	**command_create(void)
 	t_lexer		*iter;
 	char		**command;
 
-	iter = data->dvd_str->lexer;
-	len = -1;
-	while (++len < data->command_count && iter != NULL)
-		iter = iter->next;
+	iter = g_data->dvd_str->lexer;
+    len = -1;
+    while(++len < g_data->command_count && iter != NULL)
+        iter = iter->next;
 	len = len_list(iter);
 	command = ft_calloc(sizeof(char *), len + 1);
 	if (!command || !iter)
@@ -70,12 +70,12 @@ char	**command_create(void)
 	while (iter != NULL && !(iter->str[0] == '|'))
 	{
 		command[len] = ft_strdup(iter->str);
-		data->command_count++;
-		len++;
-		iter = iter->next;
+        g_data->command_count++;
+        len++;
+        iter = iter->next;
 	}
-	if (iter != NULL && (iter->str[0] == '|'))
-		data->command_count++;
+	if(iter != NULL && (iter->str[0] == '|'))
+		g_data->command_count++;
 	return (command);
 }
 

@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/27 18:49:19 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:21:58 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 void	lexer_clear(t_lexer **lst, void (*del)(void*))
 {
@@ -32,10 +32,10 @@ void	lexer_clear(t_lexer **lst, void (*del)(void*))
 
 void	reset_command_struct(void)
 {
-	lexer_clear(&data->dvd_str->lexer, free);
-	data->command_count = 0;
-	free(data->line);
-	free(data->pid);
+    lexer_clear(&g_data->dvd_str->lexer, free);
+	g_data->command_count = 0;
+    free(g_data->line);
+    free(g_data->pid);
 	free_fd();
 	_macro("VALUE_RESET");
 }

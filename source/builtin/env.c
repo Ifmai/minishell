@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:37:51 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:40:47 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:35:44 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_env(char *find)
 	i = 0;
 	while (g_data->env[i])
 	{
-	j = 0;
+		j = 0;
 		while (g_data->env[i][j] && g_data->env[i][j] != '=')
 			j++;
 		flag = ft_strncmp(g_data->env[i], find, j);

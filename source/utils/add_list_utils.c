@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 17:13:01 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:17:43 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data	*data;
+t_data	*g_data;
 
 char	*add_str(t_divide_str *dvd, char *str, int *i)
 {

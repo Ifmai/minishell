@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:30:06 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 18:55:46 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:17:49 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 t_bool	is_it_builtins_2(char **command)
 {

@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 04:15:05 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 18:15:42 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:45:39 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data	*data;
+t_data	*g_data;
 
 char	**ft_env(char **env)
 {
@@ -35,13 +35,13 @@ void	create_path(void)
 	char	*temporary;
 
 	i = 0;
-	while (data->env[i][0] != 'P')
+	while (g_data->env[i][0] != 'P')
 		i++;
-	temporary = ft_strdup(data->env[i]);
+	temporary = ft_strdup(g_data->env[i]);
 	i = 0;
 	while (temporary[i] && temporary[i] != '/')
 		i++;
-	data->path = ft_split((temporary + i), ':');
+	g_data->path = ft_split((temporary + i), ':');
 	free(temporary);
 }
 
@@ -60,16 +60,16 @@ void	export_create(void)
 	int		i;
 	int		len;
 
-	len = chardb_len(data->env);
-	data->export = ft_env(data->env);
+	len = chardb_len(g_data->env);
+	g_data->export = ft_env(g_data->env);
 	i = 0;
 	while (i < len - 1)
 	{
 		j = 1;
 		while (j <  len - 1)
 		{
-			if (ft_strcmp(data->export[j], data->export[j + 1]) > 0)
-				ft_swap(&data->export[j], &data->export[j + 1]);
+			if (ft_strcmp(g_data->export[j], g_data->export[j + 1]) > 0)
+				ft_swap(&g_data->export[j], &g_data->export[j + 1]);
 			j++;
 		}
 		i++;

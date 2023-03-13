@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:46:38 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:44:30 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ void	exec_one_command_1(char *true_path, int builtins, char **command)
 			if (builtins == FALSE)
 				execve(true_path, exec_command, g_data->env);
 			execute_builtins(exec_command[0], exec_command, 0);
-			exit(0);
+			exit(1);
 		}
 		else
-		{
 			while (waitpid(-1, &g_data->_var, 0) != -1)
 				continue ;
-		}
 		free(true_path);
 	}
 	else if (chardb_len(command) != 0)

@@ -6,26 +6,26 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:13:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:29:18 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:21:40 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 t_bool	is_contains_quote(char *input)
 {
 	while (*input)
 	{
 		if (*input == '\'' || *input == '\"')
-			return TRUE;
+			return (TRUE);
 		input++;
 	}
 	return (FALSE);
 }
 
-int	quote_type(char quote,int *q_hold)
+int	quote_type(char quote, int *q_hold)
 {
 	static int	hold = 0;
 
