@@ -14,51 +14,51 @@
 
 t_data  *data;
 
-void    free_fd()
+void	free_fd(void)
 {
 	int	i;
 
 	i = 0;
-	while(i < data->dvd_str->pipe_count)
+	while (i < data->dvd_str->pipe_count)
 	{
-    	free(data->fd[i]);
+		free(data->fd[i]);
 		i++;
 	}
 	free(data->fd);
 }
 
-void    close_pipe_fd()
+void	close_pipe_fd(void)
 {
 	int	i;
 
 	i = 0;
-	while(i < data->dvd_str->pipe_count)
+	while (i < data->dvd_str->pipe_count)
 	{
-    	close(data->fd[i][0]);
-    	close(data->fd[i][1]);
+		close(data->fd[i][0]);
+		close(data->fd[i][1]);
 		i++;
 	}
 }
 
-void	create_pipe_fd()
+void	create_pipe_fd(void)
 {
 	int	i;
 
 	i = 0;
-    while(i < data->dvd_str->pipe_count)
-    {
+	while (i < data->dvd_str->pipe_count)
+	{
 		data->fd[i] = malloc(sizeof(int) * 2);
-        pipe(data->fd[i]);
-        i++;
-    }
+		pipe(data->fd[i]);
+		i++;
+	}
 }
 
-void    free_command_db(char **command)
+void	free_command_db(char **command)
 {
-    int i;
+	int	i;
 
     i = 0;
-    while(command[i] != 0)
-        free(command[i++]);
-    free(command);
+	while (command[i] != 0)
+		free(command[i++]);
+	free(command);
 }

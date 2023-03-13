@@ -16,15 +16,15 @@ t_data	*data;
 
 void	count_pipe_rec()
 {
-	int	i;
+	int		i;
 	t_lexer	*iter;
 
 	reset_redirection(data->dvd_str);
 	iter = data->dvd_str->lexer;
-	while(iter != NULL)
+	while (iter != NULL)
 	{
 		i = 0;
-		while(iter->str[i] != 0)
+		while (iter->str[i] != 0)
 		{
 			check_in_str(iter->str[i],data->dvd_str);
 			i++;

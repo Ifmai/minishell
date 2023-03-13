@@ -14,40 +14,43 @@
 
 t_data  *data;
 
-t_bool is_redir_symbol(t_lexer *lexer)
+t_bool	is_redir_symbol(t_lexer *lexer)
 {
-    if (macrocomp(lexer->str,"<") || macrocomp(lexer->str,">"))
-        return TRUE;
-    return FALSE;
+	if (macrocomp(lexer->str, "<") || macrocomp(lexer->str, ">"))
+		return (TRUE);
+	return (FALSE);
 }
 
-t_bool is_redir_symbol_string(char *lexer)
+t_bool	is_redir_symbol_string(char *lexer)
 {
-    if (!ft_strncmp(lexer,"<",1) || !ft_strncmp(lexer,">",1)){
-        return TRUE;}
-    return FALSE;
+	if (!ft_strncmp(lexer, "<", 1) || !ft_strncmp(lexer, ">", 1))
+	{
+		return (TRUE);
+	}
+	return (FALSE);
 }
 
-t_bool syntax_err()
+t_bool	syntax_err(void)
 {
-    t_lexer *head;
-    t_lexer *lexer;
+	t_lexer	*head;
+	t_lexer	*lexer;
 
-    lexer = data->dvd_str->lexer;
-    head = lexer;
-    while (lexer && lexer->str)
-    {
-        if(macrocomp(lexer->str,"<") || macrocomp(lexer->str,">"))
-        {
-            if (!(lexer->next)||is_redir_symbol(lexer->next) || macrocomp(lexer->str,"|"))
-            {
-                lexer->next = NULL;
-                lexer = head;
-                return TRUE;
-            }
-        }
-            lexer = lexer->next;
-    }
-    lexer = head;
-    return FALSE;
+	lexer = data->dvd_str->lexer;
+	head = lexer;
+	while (lexer && lexer->str)
+	{
+		if (macrocomp(lexer->str, "<") || macrocomp(lexer->str, ">"))
+		{
+			if (!(lexer->next) || is_redir_symbol(lexer->next) \
+			|| macrocomp(lexer->str, "|"))
+			{
+				lexer->next = NULL;
+				lexer = head;
+				return (TRUE);
+			}
+		}
+		lexer = lexer->next;
+	}
+	lexer = head;
+	return (FALSE);
 }

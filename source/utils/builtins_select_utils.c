@@ -35,16 +35,16 @@ t_bool	is_it_builtins_2(char **command)
 
 int	is_it_builtins(char **command)
 {
-	if(chardb_len(command) == 0)
+	if (chardb_len(command) == 0)
 		return (FALSE);
-	if(macrocomp(command[0], "echo"))
+	if (macrocomp(command[0], "echo"))
 		return (TRUE);
-	else if(macrocomp(command[0], "export"))
+	else if (macrocomp(command[0], "export"))
 	{
 		export_command(command, 1);
 		return (TRUE);
 	}
-	else if(macrocomp(command[0], "env"))
+	else if (macrocomp(command[0], "env"))
 	{
 		env_command(command, 1);
 		return (TRUE);
@@ -52,16 +52,16 @@ int	is_it_builtins(char **command)
 	return (is_it_builtins_2(command));
 }
 
-void	execute_builtins(char *select, char **command , int flag)
+void	execute_builtins(char *select, char **command, int flag)
 {
-	if(macrocomp(select, "echo"))
+	if (macrocomp(select, "echo"))
 		echo_command(command);
-	else if(macrocomp(select, "pwd"))
+	else if (macrocomp(select, "pwd"))
 		pwd_command(command);
-	else if(macrocomp(select, "export"))
+	else if (macrocomp(select, "export"))
 		export_command(command, flag);
-	else if(macrocomp(select, "env"))
+	else if (macrocomp(select, "env"))
 		env_command(command, flag);
-	else if(macrocomp(select, "exit"))
+	else if (macrocomp(select, "exit"))
 		exit_command(command);
 }

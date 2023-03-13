@@ -12,7 +12,7 @@
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*data;
 
 char	*add_str(t_divide_str *dvd, char *str, int *i)
 {
@@ -21,17 +21,17 @@ char	*add_str(t_divide_str *dvd, char *str, int *i)
 
 	index = (*i);
 	i_plus(str, i);
-	while(str[*i] != 0)
+	while (str[*i] != 0)
 	{
-		if((*i) != 0 && checker_red_pipe(str[*i - 1], str[*i]))
-			break;
+		if ((*i) != 0 && checker_red_pipe(str[*i - 1], str[*i]))
+			break ;
 		check_in_str(str[*i], dvd);
-		if(((str[*i] == 32 && _macro("NOQ")) || \
+		if (((str[*i] == 32 && _macro("NOQ")) || \
 			(_macro("RTORF") && _macro("NOQ"))))
 			break ;
 		(*i)++;
 	}
-	if(_macro("RTORF"))
+	if (_macro("RTORF"))
 		reset_redirection(dvd);
 	divide = ft_substr(str, index, (*i) - index);
 	return (divide);
@@ -58,7 +58,6 @@ char	*new_strtrim(char *s1, char *set)
 	return (rtn);
 }
 
-
 void	add(t_lexer **lst, t_lexer *new)
 {
 	if (!new || !lst)
@@ -67,7 +66,7 @@ void	add(t_lexer **lst, t_lexer *new)
 		(*lst) = new;
 	else
 	{
-		if((lst))
+		if ((lst))
 			new->back = last_item(*lst);
 		(last_item(*lst))->next = new;
 	}
