@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 19:20:39 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:42:45 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void	minishell_loop(void)
 
 	while (1)
 	{
+		ft_signal();
 		data->line = readline("uWuShell >");
 		if (macrocomp(data->line, ""))
 			continue ;
+		ctrl_d(data->line);
 		add_history(data->line);
 		divide_string(data->line, data->dvd_str);
 		count_pipe_rec();

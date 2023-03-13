@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:02:27 by hozdemir         ###   ########.fr       */
+/*   Created: 2023/03/13 20:19:43 by hozdemir          #+#    #+#             */
+/*   Updated: 2023/03/13 20:43:43 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data  *g_data;
 
-void	echo_command(char **command)
+void	ctrl_d(char *input)
 {
-	int		i;
-	char	*check;
+	if (!input)
+	{
+		printf("exit\n");
+		exit(0);
+	}
+}
 
-	check = ft_strtrim(command[1], "-n");
-	i = 1;
-	if (!command[i])
-	{
-		printf("\n");
-		return ;
-	}
-	if (check[0] == 0)
-		i = 2;
-	while (command[i])
-	{
-		write(1, command[i], ft_strlen(command[i]));
-		if (command[i + 1] != 0)
-			write(1, " ", 1);
-		i++;
-	}
-	if (!(check[0] == 0))
-		printf("\n");
-	free(check);
+void	ft_sig(int signo)
+{
+	(void)signo;
+
+    ioctl(STDIN_FILENO, TIOCSTI, "\n");
+	write(1, "\033[A", 3);
+}
+
+void	ft_signal(void)
+{
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ft_sig);
 }

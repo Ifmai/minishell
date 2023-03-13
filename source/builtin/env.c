@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:37:51 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 18:00:04 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:04:06 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	write_env(void)
 
 	i = 0;
 	while (data->env[i])
-		printf("%s\n",data->env[i++]);
+		printf("%s\n", data->env[i++]);
 }
 
 void	env_command(char **command, int flag)

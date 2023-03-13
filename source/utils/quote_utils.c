@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:13:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 17:13:55 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:29:18 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int quote_type(char quote,int *q_hold)
     {
         if(quote == '\''&&(hold == 0 || hold == 1))
         {
-            *q_hold = Qt(*q_hold,1);
+            *q_hold = QT(*q_hold,1);
             if(hold == 0)
                 hold = 1;
             else if(hold == 1)
@@ -41,7 +41,7 @@ int quote_type(char quote,int *q_hold)
             return (1);
         }
 		else if(quote == '\"' && (hold == 0 || hold == 2 )){
-            *q_hold = Qt(*q_hold,2);
+            *q_hold = QT(*q_hold,2);
             if(hold == 0)
                 hold = (2);
             else if (hold == 2)

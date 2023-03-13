@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:04:14 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 18:36:37 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:08:35 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,30 @@ static int	new_atoi(const char *s)
 	return ((int)back);
 }
 
-void    exit_command(char **command)
+void	exit_command(char **command)
 {
-    int	exit_value;
+	int	exit_value;
 
-    if (!command[1])
-        exit (data->_var);
-    else if (chardb_len(command) > 2)
-    {
-        printf("bash: exit: too many arguments");
-        exit (1);
-    }
-    else if(command[1])
-    {
-        if (ft_check_str(command[1]))
-        {
-            printf("bash: exit: %s: numeric argument required\n", command[1]);
-            exit(255);
-        }
-        exit_value = new_atoi(command[1]);
-        if(exit_value == -1)
-        {
-            printf("bash: exit: %s: numeric argument required\n", command[1]);
-            exit(255);
-        }
-        exit(exit_value);
-    }
+	if (!command[1])
+		exit (data->_var);
+	else if (chardb_len(command) > 2)
+	{
+		printf("bash: exit: too many arguments");
+		exit (1);
+	}
+	else if (command[1])
+	{
+		if (ft_check_str(command[1]))
+		{
+			printf("bash: exit: %s: numeric argument required\n", command[1]);
+			exit(255);
+		}
+	exit_value = new_atoi(command[1]);
+		if (exit_value == -1)
+		{
+			printf("bash: exit: %s: numeric argument required\n", command[1]);
+			exit(255);
+		}
+		exit(exit_value);
+	}
 }

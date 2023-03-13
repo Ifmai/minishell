@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 18:58:37 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:09:42 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	add_export(char *command)
 	flag = 0;
 	i = 0;
 	while (command[j] && command[j] != '=')
-        j++;
+		j++;
 	while (data->export[i])
 	{
 		flag = ft_strncmp(data->export[i], command, j);
@@ -33,7 +33,7 @@ void	add_export(char *command)
 		i++;
 	}
 	if (flag == 0)
-		data->export[i] = free_new_strdup(data->export[i], command, 1); 
+		data->export[i] = free_new_strdup(data->export[i], command, 1);
 	else
 		data->export = double_strjoin(data->export, new_strdup(command));
 }
@@ -44,7 +44,7 @@ static	void	write_export(void)
 
 	i = 0;
 	while (data->export[i])
-		printf("declare -x %s\n",data->export[i++]);
+		printf("declare -x %s\n", data->export[i++]);
 }
 
 void	export_command(char **command, int flag)

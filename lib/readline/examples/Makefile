@@ -21,7 +21,7 @@ RL_LIBRARY_VERSION = 8.2
 SHELL = /bin/sh
 RM = rm -f
 
-prefix = /Users/hozdemir/Desktop/minishell-main-4-2-3/lib/readline
+prefix = /Users/hozdemir/Documents/GitHub/mini/lib/readline
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share
@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 
 top_srcdir = ..
 #BUILD_DIR = .
-BUILD_DIR = /Users/hozdemir/Desktop/minishell-main-4-2-3/lib/readline
+BUILD_DIR = /Users/hozdemir/Documents/GitHub/mini/lib/readline
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c

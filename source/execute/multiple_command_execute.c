@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:13:38 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 17:08:33 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:15:48 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_data  *data;
 
 void	select_dup2(int i)
 {
-	if 	(i == 0)
+	if (i == 0)
 	{
 		dup2(data->fd[i][1], 1);
 		close(data->fd[i][1]);
 	}
-	else if(i > 0 && i < data->dvd_str->pipe_count)
+	else if (i > 0 && i < data->dvd_str->pipe_count)
 	{
 		dup2(data->fd[i - 1][0], 0);
 		dup2(data->fd[i][1], 1);

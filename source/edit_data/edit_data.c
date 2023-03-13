@@ -6,21 +6,23 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:58:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 19:16:29 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:14:43 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-char *char_to_str(char ch)
+char	*char_to_str(char ch)
 {
-    char* str = (char*) malloc(2 * sizeof(char));
-    str[0] = ch;
-    str[1] = '\0';
-    return str;
+	char	*str;
+
+	str = malloc(2 * sizeof(char));
+	str[0] = ch;
+	str[1] = '\0';
+	return (str);
 }
 
-char *edit_data(char *substring,t_bool var_flag, t_bool q_flag)
+char	*edit_data(char	*substring, t_bool var_flag, t_bool q_flag)
 {
 	char	*edited_data;
 	char	*joined_data;
@@ -43,8 +45,8 @@ char *edit_data(char *substring,t_bool var_flag, t_bool q_flag)
 				edited_data = char_to_str(*substring++);
 			joined_data = new_str_join(joined_data, edited_data);
 		}
+		free(edited_data);
 	}
-	free(edited_data);
 	reset_q_type(quote);
 	return (joined_data);
 }

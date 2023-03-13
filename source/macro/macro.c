@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:49:27 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 18:57:54 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:37:02 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ t_bool	macrocomp(const char *s1, const char *s2)
 	int	i;
 
 	i = 0;
+	if(!s1 || !s2)
+		return (FALSE);
 	while ((s1[i] != 0 || s2[i] != 0))
 	{
 		if (s1[i] != s2[i])

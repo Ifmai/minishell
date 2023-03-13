@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:12:04 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 19:13:59 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:38:24 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ t_data	*data;
 void	wait_limiter(char *limiter, int _fd)
 {
 	t_bool	var_flag;
+	char	*loop;
 	char	*input;
 	char	*edited_data;
 
 	var_flag = !is_contains_quote(limiter);
 	input = readline(">");
-	while (!macrocomp(edit_data(limiter, FALSE, TRUE), input))
+	loop = edit_data(limiter, FALSE, TRUE);
+	while (!macrocomp(loop, input))
 	{
 		if (var_flag)
 			edited_data = edit_data(input, TRUE, FALSE);
@@ -31,8 +33,13 @@ void	wait_limiter(char *limiter, int _fd)
 		write(_fd, edited_data, ft_strlen(edited_data));
 		write(_fd, "\n", 1);
 		free(edited_data);
+		free(input);
+		free(loop);
 		input = readline(">");
+		loop = edit_data(limiter, FALSE, TRUE);
 	}
+	free(loop);
+	free(input);
 }
 
 void	read_heredoc(char *limiter)

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 17:39:52 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:00:02 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	pwd_command(char **command)
 	if (!str)
 		printf(".\n");
 	else
-		printf("%s\n",str);
+		printf("%s\n", str);
 	free(str);
 }
-
