@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:42:36 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:30:55 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:33:09 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,8 @@ void	file_operations(char	*redir_param, \
 char	*symbol, t_redirection	*redir);
 t_bool	is_redir_symbol(t_lexer *lexer);
 t_bool	is_redir_symbol_string(char *lexer);
+
+void	assign_in_out(char *edited_param, char *symbol, char *redir_param);
+int		set_std_file(int in_fd, int out_fd);
 
 #endif

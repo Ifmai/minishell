@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:12:04 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 19:38:24 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:41:25 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data	*data;
+t_data	*g_data;
 
 void	wait_limiter(char *limiter, int _fd)
 {
@@ -60,10 +60,10 @@ void	init_heredoc(void)
 	int			index;
 
 	index = 0;
-	arg = data->dvd_str->lexer;
+	arg = g_data->dvd_str->lexer;
 	while (arg != NULL)
 	{
-		if (macrocomp(arg->str,"<<") && arg->next)
+		if (macrocomp(arg->str, "<<") && arg->next)
 			read_heredoc(arg->next->str);
 		arg = arg->next;
 	}

@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/02/28 12:59:32 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:40:57 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 void	check_in_str(char str, t_divide_str *dvd)
 {
@@ -41,7 +41,7 @@ void	divide_string(char *str, t_divide_str *dvd)
 		return ;
 	while (str[i])
 	{
-		check_in_str(str[i], data->dvd_str);
+		check_in_str(str[i], g_data->dvd_str);
 		if (str[i] != 32)
 			add(&dvd->lexer, new_node(add_str(dvd, str, &i)));
 		else

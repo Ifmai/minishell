@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:00:02 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:40:38 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 void	cd_command(char **command)
 {

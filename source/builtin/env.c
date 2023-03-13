@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:37:51 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:15:49 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:40:47 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 char	*get_env(char *find)
 {
@@ -22,17 +22,17 @@ char	*get_env(char *find)
 
 	flag = 0;
 	i = 0;
-	while (data->env[i])
+	while (g_data->env[i])
 	{
 	j = 0;
-		while (data->env[i][j] && data->env[i][j] != '=')
+		while (g_data->env[i][j] && g_data->env[i][j] != '=')
 			j++;
-		flag = ft_strncmp(data->env[i], find, j);
+		flag = ft_strncmp(g_data->env[i], find, j);
 		if (flag == 0)
 			break ;
 		i++;
 	}
-	return (ft_substr(data->env[i], j + 1, ft_strlen(data->env[i]) - j));
+	return (ft_substr(g_data->env[i], j + 1, ft_strlen(g_data->env[i]) - j));
 }
 
 void	add_env(char *command)
@@ -46,17 +46,17 @@ void	add_env(char *command)
 	i = 0;
 	while (command[j] && command[j] != '=')
 		j++;
-	while (data->env[i])
+	while (g_data->env[i])
 	{
-		flag = ft_strncmp(data->env[i], command, j);
+		flag = ft_strncmp(g_data->env[i], command, j);
 		if (flag == 0)
 			break ;
 		i++;
 	}
 	if (flag == 0)
-		data->env[i] = free_new_strdup(data->env[i], command, 0);
+		g_data->env[i] = free_new_strdup(g_data->env[i], command, 0);
 	else
-		data->env = double_strjoin(data->env, ft_strdup(command));
+		g_data->env = double_strjoin(g_data->env, ft_strdup(command));
 }
 
 void	write_env(void)
@@ -64,8 +64,8 @@ void	write_env(void)
 	int	i;
 
 	i = 0;
-	while (data->env[i])
-		printf("%s\n", data->env[i++]);
+	while (g_data->env[i])
+		printf("%s\n", g_data->env[i++]);
 }
 
 void	env_command(char **command, int flag)

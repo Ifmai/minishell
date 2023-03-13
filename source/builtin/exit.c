@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:04:14 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:08:35 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:40:51 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 static int	ft_check_str(const char *s)
 {
@@ -62,7 +62,7 @@ void	exit_command(char **command)
 	int	exit_value;
 
 	if (!command[1])
-		exit (data->_var);
+		exit (g_data->_var);
 	else if (chardb_len(command) > 2)
 	{
 		printf("bash: exit: too many arguments");

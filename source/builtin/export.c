@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:09:42 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:40:54 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 void	add_export(char *command)
 {
@@ -25,17 +25,17 @@ void	add_export(char *command)
 	i = 0;
 	while (command[j] && command[j] != '=')
 		j++;
-	while (data->export[i])
+	while (g_data->export[i])
 	{
-		flag = ft_strncmp(data->export[i], command, j);
+		flag = ft_strncmp(g_data->export[i], command, j);
 		if (flag == 0)
 			break ;
 		i++;
 	}
 	if (flag == 0)
-		data->export[i] = free_new_strdup(data->export[i], command, 1);
+		g_data->export[i] = free_new_strdup(g_data->export[i], command, 1);
 	else
-		data->export = double_strjoin(data->export, new_strdup(command));
+		g_data->export = double_strjoin(g_data->export, new_strdup(command));
 }
 
 static	void	write_export(void)
@@ -43,8 +43,8 @@ static	void	write_export(void)
 	int	i;
 
 	i = 0;
-	while (data->export[i])
-		printf("declare -x %s\n", data->export[i++]);
+	while (g_data->export[i])
+		printf("declare -x %s\n", g_data->export[i++]);
 }
 
 void	export_command(char **command, int flag)

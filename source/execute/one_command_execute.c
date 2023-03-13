@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:19:38 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:46:38 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 void	exec_one_command_1(char *true_path, int builtins, char **command)
 {
@@ -22,27 +22,30 @@ void	exec_one_command_1(char *true_path, int builtins, char **command)
 	redir = is_redir_symbol_string(command[0]);
 	if (true_path || builtins == TRUE || redir)
 	{
-		data->pid[0] = fork();
-		if (data->pid[0] == 0)
+		g_data->pid[0] = fork();
+		if (g_data->pid[0] == 0)
 		{
 			exec_command = redirection(command);
 			if (builtins == FALSE)
-				execve(true_path, exec_command, data->env);
+				execve(true_path, exec_command, g_data->env);
 			execute_builtins(exec_command[0], exec_command, 0);
 			exit(0);
 		}
 		else
-			while (waitpid(-1, &data->_var, 0) != -1);
+		{
+			while (waitpid(-1, &g_data->_var, 0) != -1)
+				continue ;
+		}
 		free(true_path);
 	}
 	else if (chardb_len(command) != 0)
 	{
-		printf("bash: command not found: %s\n",command[0]);
-		data->_var = 127;
+		printf("bash: command not found: %s\n", command[0]);
+		g_data->_var = 127;
 	}
 }
 
-void    exec_one_command(void)
+void	exec_one_command(void)
 {
 	int		builtins;
 	char	**command;

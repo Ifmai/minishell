@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:42:45 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:41:17 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data	*g_data;
 
 void	minishell_loop(void)
 {
@@ -21,22 +21,22 @@ void	minishell_loop(void)
 	while (1)
 	{
 		ft_signal();
-		data->line = readline("uWuShell >");
-		if (macrocomp(data->line, ""))
+		g_data->line = readline("uWuShell >");
+		if (macrocomp(g_data->line, ""))
 			continue ;
-		ctrl_d(data->line);
-		add_history(data->line);
-		divide_string(data->line, data->dvd_str);
+		ctrl_d(g_data->line);
+		add_history(g_data->line);
+		divide_string(g_data->line, g_data->dvd_str);
 		count_pipe_rec();
 		flag = syntax_err();
 		init_heredoc();
 		delete_qoute();
-		data->in_fd = -1;
-		data->out_fd = -1;
-		if (data->dvd_str->pipe_count == 0 && ft_strlen(data->line) != 1 \
+		g_data->in_fd = -1;
+		g_data->out_fd = -1;
+		if (g_data->dvd_str->pipe_count == 0 && ft_strlen(g_data->line) != 1 \
 			&& flag != TRUE)
 			exec_one_command();
-		else if (data->dvd_str->pipe_count > 0 && flag != TRUE)
+		else if (g_data->dvd_str->pipe_count > 0 && flag != TRUE)
 			exec_multiple_command();
 		reset_command_struct();
 	}

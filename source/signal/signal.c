@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:19:43 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 20:43:43 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:40:09 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data  *g_data;
+t_data	*g_data;
 
 void	ctrl_d(char *input)
 {
@@ -26,8 +26,7 @@ void	ctrl_d(char *input)
 void	ft_sig(int signo)
 {
 	(void)signo;
-
-    ioctl(STDIN_FILENO, TIOCSTI, "\n");
+	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	write(1, "\033[A", 3);
 }
 

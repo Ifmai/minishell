@@ -6,19 +6,19 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:49:27 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:02:35 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:47:37 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *data;
+t_data *g_data;
 
 int	_macro(char *str)
 {
 	if (macrocomp(str, "NOQ"))
 		return (noq());
-	if (macrocomp(str, "QTorF")) 
+	if (macrocomp(str, "QTorF"))
 		return (qtorf());
 	if (macrocomp(str, "NOR"))
 		return (nor());
@@ -31,7 +31,7 @@ int	_macro(char *str)
 	return (FALSE);
 }
 
-int _counter_macro(t_lexer *lexer, char search)
+int	_counter_macro(t_lexer *lexer, char search)
 {
 	t_lexer	*iter;
 	int		i;
@@ -57,7 +57,7 @@ t_bool	macrocomp(const char *s1, const char *s2)
 	int	i;
 
 	i = 0;
-	if(!s1 || !s2)
+	if (!s1 || !s2)
 		return (FALSE);
 	while ((s1[i] != 0 || s2[i] != 0))
 	{
@@ -70,18 +70,18 @@ t_bool	macrocomp(const char *s1, const char *s2)
 
 t_bool	reset_value(void)
 {
-	data->dvd_str->db_quote = 0;
-	data->dvd_str->quote = 0;
-	data->dvd_str->pipe_count = 0;
-	data->dvd_str->rec_db_l = 0;
-	data->dvd_str->rec_db_r = 0;
-	data->dvd_str->rec_l = 0;
-	data->dvd_str->rec_r = 0;
-	data->check_signal = 0;
-	data->command_count = 0;
-	data->_redirection->fd_appened = 0;
-	data->_redirection->fd_heredoc = 0;
-	data->_redirection->fd_input = 0;
-	data->_redirection->fd_output = 0;
+	g_data->dvd_str->db_quote = 0;
+	g_data->dvd_str->quote = 0;
+	g_data->dvd_str->pipe_count = 0;
+	g_data->dvd_str->rec_db_l = 0;
+	g_data->dvd_str->rec_db_r = 0;
+	g_data->dvd_str->rec_l = 0;
+	g_data->dvd_str->rec_r = 0;
+	g_data->check_signal = 0;
+	g_data->command_count = 0;
+	g_data->_redirection->fd_appened = 0;
+	g_data->_redirection->fd_heredoc = 0;
+	g_data->_redirection->fd_input = 0;
+	g_data->_redirection->fd_output = 0;
 	return (TRUE);
 }
