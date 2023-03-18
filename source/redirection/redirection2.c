@@ -61,12 +61,15 @@ void	assign_in_out_1(char *edit_param, char *symbol, char *redir_param)
 
 void	assign_in_out(char *edited_param, char *symbol, char *redir_param)
 {
+	char *path;
+
+	path = ft_strjoin("includes/heredoc",ft_itoa(g_data->i));
 	if (!ft_strncmp("<", symbol, 1))
 	{
 		if (g_data->in_fd >= 0)
 			close(g_data->in_fd);
 		if (macrocomp("<<", symbol))
-			g_data->in_fd = open("includes/.heredoc.txt", O_RDONLY, 0777);
+			g_data->in_fd = open(path, O_RDONLY, 0777);
 		else
 			g_data->in_fd = open(edited_param, O_RDONLY, 0777);
 		if (g_data->in_fd < 0)

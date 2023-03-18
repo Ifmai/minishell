@@ -42,15 +42,18 @@ void	wait_limiter(char *limiter, int _fd)
 	free(input);
 }
 
-void	read_heredoc(char *limiter)
+void	read_heredoc(char *limiter, int index)
 {
 	int	fd;
+	char *path;
 
-	fd = open("includes/.heredoc.txt"\
+	path = ft_strjoin("includes/heredoc",ft_itoa(index));
+	fd = open(path\
 	, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
 		exit(1);
 	wait_limiter(limiter, fd);
+	free(path);
 	close(fd);
 }
 
@@ -64,7 +67,9 @@ void	init_heredoc(void)
 	while (arg != NULL)
 	{
 		if (macrocomp(arg->str, "<<") && arg->next)
-			read_heredoc(arg->next->str);
+			read_heredoc(arg->next->str,index);
+		if(macrocomp(arg->str,"|"))
+			index++;
 		arg = arg->next;
 	}
 }

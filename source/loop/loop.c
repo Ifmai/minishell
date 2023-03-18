@@ -33,6 +33,7 @@ void	minishell_loop(void)
 		delete_qoute();
 		g_data->in_fd = -1;
 		g_data->out_fd = -1;
+		g_data->i = 0;
 		if (g_data->dvd_str->pipe_count == 0 && ft_strlen(g_data->line) != 1 \
 			&& flag != TRUE)
 			exec_one_command();

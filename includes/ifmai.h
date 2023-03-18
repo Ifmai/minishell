@@ -74,6 +74,7 @@ typedef struct s_data
 	int				in_fd;
 	int				out_fd;
 	int				_var;
+	int				i;
 }				t_data;
 
 // include main function
@@ -166,7 +167,7 @@ int		is_it_builtins(char **command);
 // Redirection function
 char	**redirection(char **comand);
 void	init_heredoc(void);
-void	read_heredoc(char *limiter);
+void	read_heredoc(char *limiter, int index);
 void	wait_limiter(char	*limiter, int fd);
 
 // Redirection : Heredoc Utils

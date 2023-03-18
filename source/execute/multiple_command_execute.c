@@ -89,6 +89,7 @@ void	exec_multiple_command(void)
 	create_pipe_fd();
 	while (i <= g_data->dvd_str->pipe_count)
 	{
+		g_data->i = i;
 		command = command_create();
 		builtins = is_it_builtins(command);
 		if (builtins == FALSE)
