@@ -66,7 +66,7 @@ void	execute_command(char *true_path, int builtins, char **command, int i)
 		}
 		else
 		{
-			close_pipe();
+			close_pipe(i);//?
 			free(true_path);
 		}
 	}

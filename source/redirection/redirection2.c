@@ -46,13 +46,14 @@ int	set_std_file(int in_fd, int out_fd)
 
 void	assign_in_out_1(char *edit_param, char *symbol, char *redir_param)
 {
+	(void) redir_param;
 	if (g_data->out_fd >= 0)
 		close(g_data->out_fd);
 	if (macrocomp(">>", symbol))
-		g_data->out_fd = open(edited_param, O_WRONLY \
+		g_data->out_fd = open(edit_param, O_WRONLY \
 		| O_CREAT | O_APPEND, 0777);
 	else
-		g_data->out_fd = open(edited_param, O_WRONLY \
+		g_data->out_fd = open(edit_param, O_WRONLY \
 		| O_CREAT | O_TRUNC, 0777);
 	if (g_data->out_fd < 0)
 		exit(1);

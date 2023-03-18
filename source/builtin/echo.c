@@ -19,7 +19,8 @@ void	echo_command(char **command)
 	int		i;
 	char	*check;
 
-	check = ft_strtrim(command[1], "-n");
+	if(command[1])
+		check = ft_strtrim(command[1], "-n");
 	i = 1;
 	if (!command[i])
 	{

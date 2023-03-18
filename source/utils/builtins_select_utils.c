@@ -30,6 +30,11 @@ t_bool	is_it_builtins_2(char **command)
 		exit_command(command);
 		return (TRUE);
 	}
+	else if (macrocomp(command[0], "unset"))
+	{
+		unset_command(command);
+		return(TRUE);
+	}
 	return (FALSE);
 }
 

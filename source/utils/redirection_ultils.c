@@ -19,15 +19,9 @@ void	count_pipe_rec(void)
 	int		i;
 	t_lexer	*iter;
 
-<<<<<<< Updated upstream
-	reset_redirection(data->dvd_str);
-	iter = data->dvd_str->lexer;
-	while (iter != NULL)
-=======
 	reset_redirection(g_data->dvd_str);
 	iter = g_data->dvd_str->lexer;
-	while(iter != NULL)
->>>>>>> Stashed changes
+	while (iter != NULL)
 	{
 		i = 0;
 		while (iter->str[i] != 0)

@@ -133,6 +133,7 @@ void	cd_command(char **command);
 void	export_command(char **command, int flag);
 void	env_command(char **command, int flag);
 void	exit_command(char **command);
+void	unset_command(char **command);
 
 //Buildin : Env Utils funciton 
 void	write_env(void);

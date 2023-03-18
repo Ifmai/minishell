@@ -32,6 +32,8 @@ char	*get_env(char *find)
 			break ;
 		i++;
 	}
+	if (flag != 0)
+			return (NULL);
 	return (ft_substr(g_data->env[i], j + 1, ft_strlen(g_data->env[i]) - j));
 }
 

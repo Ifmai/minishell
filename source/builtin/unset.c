@@ -17,45 +17,42 @@ t_data	*g_data;
 // aklımda ki fikir get_index ile = 'in olduğu index i bulup ona göre strncmp yapıp doğrumu env'de mi değil mi ona bakmak
 // sonrasında silmek ancak 1'den çok unset verirse ????
 // çalışıyor bu yüzden 10dk da çıkan bu +30 saat uykusuz çalışmakla.
-
-/* int	get_index(char *command)
+int get_index(const char *str)
 {
-	int	i;
-
-	i = 0;
-	while (g_data->env[i][j] && g_data->env[i][j] != '=')
-		i++;
-	i++;
+    int i = 0;
+    while (str[i] && str[i] != '=') {
+        i++;
+    }
+    return i;
 }
 
-void	delete_env(int index, char *command, int *i, int *j)
+void delete_env(const char *varname)
 {
-	while (g_data->env[*i] != 0)
-	{
-		index = get_index(g_data->env[*i]);
-		if (ft_strncmp(g_data->env[*i], command, index))
-			(*i)++;
-		new[*j] = ft_strdup(g_data->env[*i]);
-	}
+    int env_len = chardb_len(g_data->env);
+    char **new_env = (char **)malloc(sizeof(char *) * (env_len + 1));
+    if (new_env == NULL) {
+        printf("Error: Memory allocation failed.\n");
+        return;
+    }
+
+    int j = 0;
+    for (int i = 0; i < env_len; i++) {
+        int index = get_index(g_data->env[i]);
+        if (ft_strncmp(g_data->env[i], varname, index) != 0) {
+            new_env[j++] = g_data->env[i];
+        } 
+    }
+    new_env[j] = NULL;
+    g_data->env = new_env;
 }
 
-void	unset_command(char **command)
+void unset_command(char **args)
 {
-	int		i;
-	int		index;
-	int		x;
-	int		j;
-	char	**new;
-
-	if (!command[1])
-		return ;
-	i = 0;
-	j = 0;
-	x = 0;
-	new = ft_calloc(sizeof(char *), \
-		chardb_len(g_data->env) - chardb_len(command) - 2);
-	while(command[x] != 0)
-	{
-
-	}
-} */
+    if (args[1] == NULL) {
+        printf("unset: Too few arguments.\n");
+        return;
+    }
+    for (int i = 1; args[i] != NULL; i++) {
+        delete_env(args[i]);
+    }
+}
