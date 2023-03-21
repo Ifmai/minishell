@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:42:36 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:33:09 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:12:57 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # include <readline/history.h>
 # include <sys/ioctl.h>
 # include "../libft/libft.h"
-
-# define QT(hold, num) ((hold + num) % (num * 2))
 
 // Structs
 typedef struct s_lexer
@@ -120,6 +118,7 @@ int		variable_len(char *data);
 void	reset_q_type(int q_hold);
 int		quote_type(char quote, int *q_hold);
 t_bool	is_contains_quote(char *input);
+int		qt(int hold, int num);
 
 // Loop : reset utils
 void	reset_redirection(t_divide_str *dvd);

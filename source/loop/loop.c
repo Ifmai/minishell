@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:20:25 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:52:25 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	minishell_loop(void)
 		else if (g_data->dvd_str->pipe_count > 0 && flag != TRUE)
 			exec_multiple_command();
 		reset_command_struct();
+		//system("leaks minishell");
 	}
 }
