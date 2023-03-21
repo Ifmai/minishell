@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:58:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 16:34:23 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:46:41 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ char	*edit_data(char	*substring, t_bool var_flag, t_bool q_flag)
 			else
 				edited_data = char_to_str(*substring++);
 			joined_data = new_str_join(joined_data, edited_data);
-		}
-		if (!edited_data)
 			free(edited_data);
+		}
 	}
 	reset_q_type(quote);
 	return (joined_data);

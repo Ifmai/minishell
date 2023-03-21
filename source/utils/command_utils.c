@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:45:01 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:16:55 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 t_data *g_data;
 
-void	delete_qoute()
+void	delete_qoute(void)
 {
 	t_lexer	*iter;
 	char	*temp;
 	int		i;
 
 	i = 0;
-
 	iter = g_data->dvd_str->lexer;
-	while(iter != NULL)
+	while (iter != NULL)
 	{
-		temp = edit_data(iter->str,TRUE,TRUE);
+		temp = edit_data(iter->str, TRUE, TRUE);
 		free(iter->str);
 		iter->str = ft_strdup(temp);
 		free(temp);
@@ -59,9 +58,9 @@ char	**command_create(void)
 	char		**command;
 
 	iter = g_data->dvd_str->lexer;
-    len = -1;
-    while(++len < g_data->command_count && iter != NULL)
-        iter = iter->next;
+	len = -1;
+	while (++len < g_data->command_count && iter != NULL)
+		iter = iter->next;
 	len = len_list(iter);
 	command = ft_calloc(sizeof(char *), len + 1);
 	if (!command || !iter)
@@ -70,11 +69,11 @@ char	**command_create(void)
 	while (iter != NULL && !(iter->str[0] == '|'))
 	{
 		command[len] = ft_strdup(iter->str);
-        g_data->command_count++;
-        len++;
-        iter = iter->next;
+		g_data->command_count++;
+		len++;
+		iter = iter->next;
 	}
-	if(iter != NULL && (iter->str[0] == '|'))
+	if (iter != NULL && (iter->str[0] == '|'))
 		g_data->command_count++;
 	return (command);
 }
