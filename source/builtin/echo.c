@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:40:43 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:29:38 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,35 @@
 
 t_data	*g_data;
 
+static int	check_flag(char *command)
+{
+	int	i;
+
+	i = 0;
+	if (!command || command[0] != '-')
+		return (0);
+	while (command[++i])
+	{
+		if (command[i] != 'n')
+			return (0);
+	}
+	return (1);
+}
+
 void	echo_command(char **command)
 {
 	int		i;
-	char	*check;
+	int		check;
 
-	if(command[1])
-		check = ft_strtrim(command[1], "-n");
+	if (command[1])
+		check = check_flag(command[1]);
 	i = 1;
-	if (!command[i])
+	if (!command[i] || !command[i + 1])
 	{
 		printf("\n");
 		return ;
 	}
-	if (check[0] == 0)
+	if (check == 1)
 		i = 2;
 	while (command[i])
 	{
@@ -36,7 +51,6 @@ void	echo_command(char **command)
 			write(1, " ", 1);
 		i++;
 	}
-	if (!(check[0] == 0))
+	if (check == 0)
 		printf("\n");
-	free(check);
 }
