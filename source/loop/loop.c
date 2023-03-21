@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 18:52:25 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 23:07:06 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,9 @@ void	minishell_loop(void)
 		//system("leaks minishell");
 	}
 }
+
+
+//env de old path güncellencek güncellemedik aq.
+//hata mesajalrına göre inde $? yerine gelen kod neyse ona göre mesaj.
+// "|" içinde ki pipe sorunumuz var mimiminincik.
+// 

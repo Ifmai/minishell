@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 18:01:05 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:14:47 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static char	*in_array(char *command, char *ret, int i)
 		two = ft_substr(command, i + 1, ft_strlen(command) - (i + 1));
 		two = add_char(two, '\"');
 		ret = ft_strjoin(first, two);
+		free(first);
+		free(two);
 	}
 	else
 		ret = ft_strdup(command);
@@ -43,7 +45,8 @@ char	*new_strdup(char *command)
 	else
 		len = ft_strlen(command) + 1;
 	new = ft_calloc(sizeof(char), len);
-	return (in_array(command, new, 0));
+	new = in_array(command, new, 0);
+	return (new);
 }
 
 char	*free_new_strdup(char *_free, char *command, int flag)
@@ -73,10 +76,10 @@ char	**double_strjoin(char **s1, char *add)
 	ret = ft_calloc(sizeof(char *), chardb_len(s1) + 2);
 	while (s1[i] != 0)
 	{
-		ret[i] = s1[i];
+		ret[i] = ft_strdup(s1[i]);
 		i++;
 	}
 	ret[i] = add;
-	free(s1);
+	free_command_db(s1);
 	return (ret);
 }
