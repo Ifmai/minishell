@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 16:29:38 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 00:47:14 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	echo_command(char **command)
 	if (command[1])
 		check = check_flag(command[1]);
 	i = 1;
-	if (!command[i] || !command[i + 1])
+	if (!command[i] && !command[i + 1])
 	{
 		printf("\n");
 		return ;
