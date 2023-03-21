@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:05:01 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:20:05 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:02:41 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ void	count_pipe_rec(void)
 	g_data->pid = malloc(sizeof(pid_t) * 1);
 	g_data->fd = malloc(sizeof(g_data->fd) * g_data->dvd_str->pipe_count);
 }
-

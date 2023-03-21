@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 00:02:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:19:44 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:02:34 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static int	check_rec(char one, char two)
 
 int	checker_red_pipe(char one, char two)
 {
-	if ( _macro("NOQ") && ((one == '<' || one == '>') || one == '|') && \
+	if (_macro("NOQ") && ((one == '<' || one == '>') || one == '|') && \
 		(two == '\'' || two == '\"'))
 		return (1);
-	if ( _macro("NOQ") && (one == '|') && (two == '|'))
+	if (_macro("NOQ") && (one == '|') && (two == '|'))
 		return (1);
 	return (0);
 }

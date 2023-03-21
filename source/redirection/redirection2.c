@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:30:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:17:27 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:56:34 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	set_std_file(int in_fd, int out_fd)
 		if (dup2(in_fd, STDIN_FILENO) == -1)
 			ret = -1;
 	}
-
 	if (out_fd >= 0)
 	{
 		if (dup2(out_fd, STDOUT_FILENO) == -1)
@@ -61,9 +60,9 @@ void	assign_in_out_1(char *edit_param, char *symbol, char *redir_param)
 
 void	assign_in_out(char *edited_param, char *symbol, char *redir_param)
 {
-	char *path;
+	char	*path;
 
-	path = ft_strjoin("includes/heredoc",ft_itoa(g_data->i));
+	path = ft_strjoin("includes/heredoc", ft_itoa(g_data->i));
 	if (!ft_strncmp("<", symbol, 1))
 	{
 		if (g_data->in_fd >= 0)

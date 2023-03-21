@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:57:48 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:41:29 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:55:59 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@ void	file_operations(char *redir_param, char *symbol, t_redirection *redir)
 	else
 		edited_param = ft_strjoin(add_symbol(), redir_param);
 	assign_in_out(edited_param, symbol, redir_param);
-
 	if (set_std_file(g_data->in_fd, g_data->out_fd) == -1)
 	{
 		exit(1);
 	}
 	free(edited_param);
 }
-
-
 
 char	**change_command(char **command, int i)
 {
@@ -46,7 +43,7 @@ char	**change_command(char **command, int i)
 	while (command[j])
 	{
 		if (j == i)
-            j += 2;
+			j += 2;
 		else
 		{
 			new_command[index] = command[j];

@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:16:55 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:58:42 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *g_data;
+t_data	*g_data;
 
 void	delete_qoute(void)
 {
@@ -43,7 +43,7 @@ char	*true_command(char **command)
 		true_path = ft_strdup(g_data->path[i]);
 		true_path = new_str_join(true_path, "/");
 		true_path = new_str_join(true_path, command[0]);
-		if (access(true_path, F_OK) != -1 )
+		if (access(true_path, F_OK) != -1)
 			return (true_path);
 		free(true_path);
 		i++;

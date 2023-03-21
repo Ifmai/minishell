@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:37:51 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:35:44 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:03:54 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*get_env(char *find)
 		i++;
 	}
 	if (flag != 0)
-			return (NULL);
+		return (NULL);
 	return (ft_substr(g_data->env[i], j + 1, ft_strlen(g_data->env[i]) - j));
 }
 

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:13:38 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:19:59 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:52:39 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	execute_command(char *true_path, int builtins, char **command, int i)
 		}
 		else
 		{
-			close_pipe(i);//?
+			close_pipe(i);
 			free(true_path);
 		}
 	}

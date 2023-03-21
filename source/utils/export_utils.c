@@ -6,13 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:31:40 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:01:05 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
-t_data *g_data;
+t_data	*g_data;
 
 static char	*in_array(char *command, char *ret, int i)
 {
@@ -22,8 +22,8 @@ static char	*in_array(char *command, char *ret, int i)
 	if (ft_strchr(command, '='))
 	{
 		while (command[i] != '=')
-            i++;
-		first = ft_substr(command, 0 , i + 1);
+			i++;
+		first = ft_substr(command, 0, i + 1);
 		two = ft_substr(command, i + 1, ft_strlen(command) - (i + 1));
 		two = add_char(two, '\"');
 		ret = ft_strjoin(first, two);

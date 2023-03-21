@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 16:57:43 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:02:55 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	lexer_clear(t_lexer **lst, void (*del)(void*))
 
 void	reset_command_struct(void)
 {
-    lexer_clear(&g_data->dvd_str->lexer, free);
+	lexer_clear(&g_data->dvd_str->lexer, free);
 	g_data->command_count = 0;
-    free(g_data->line);
-    free(g_data->pid);
+	free(g_data->line);
+	free(g_data->pid);
 	free_fd();
 	_macro("VALUE_RESET");
 }

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:30:06 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:17:49 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:58:02 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_bool	is_it_builtins_2(char **command)
 	else if (macrocomp(command[0], "unset"))
 	{
 		unset_command(command);
-		return(TRUE);
+		return (TRUE);
 	}
 	return (FALSE);
 }

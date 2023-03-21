@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:12:04 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:41:25 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:57:30 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	wait_limiter(char *limiter, int _fd)
 
 void	read_heredoc(char *limiter, int index)
 {
-	int	fd;
-	char *path;
+	int		fd;
+	char	*path;
 
-	path = ft_strjoin("includes/heredoc",ft_itoa(index));
-	fd = open(path\
+	path = ft_strjoin("includes/heredoc", ft_itoa(index));
+	fd = open(path \
 	, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
 		exit(1);
@@ -67,8 +67,8 @@ void	init_heredoc(void)
 	while (arg != NULL)
 	{
 		if (macrocomp(arg->str, "<<") && arg->next)
-			read_heredoc(arg->next->str,index);
-		if(macrocomp(arg->str,"|"))
+			read_heredoc(arg->next->str, index);
+		if (macrocomp(arg->str, "|"))
 			index++;
 		arg = arg->next;
 	}

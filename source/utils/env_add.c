@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 04:15:05 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:45:39 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:00:32 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	export_create(void)
 	while (i < len - 1)
 	{
 		j = 1;
-		while (j <  len - 1)
+		while (j < len - 1)
 		{
 			if (ft_strcmp(g_data->export[j], g_data->export[j + 1]) > 0)
 				ft_swap(&g_data->export[j], &g_data->export[j + 1]);

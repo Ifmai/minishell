@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:20:00 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:52:55 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	exec_one_command(void)
 	int		builtins;
 	char	**command;
 	char	*true_path;
-	
+
 	true_path = NULL;
 	command = command_create();
 	builtins = is_it_builtins(command);
