@@ -15,11 +15,15 @@ LIBC = ar -rcs
 LIBFT = ./libft/libft.a
 GET_NEXT_LINE = ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c
 LIB				= ./lib/.minishell
+LIBFT_DIR = ./libft
 LDFLAGS			= -L./lib/readline/lib -lreadline
 
-all: $(LIB) $(LIBFT) ${NAME} 
+all: $(LIB) $(LIBFT_DIR) $(LIBFT) ${NAME} 
 
-$(NAME): $(SRCS) ${LIBFT}
+$(LIBFT_DIR):
+	@git clone https://github.com/Ifmai/libft-42-cursus.git libft
+
+$(NAME): $(SRCS) $(LIBFT_DIR) ${LIBFT}
 	@gcc $(CFLAGS) $(LDFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 	@echo "❤️ 💋 uWuShell 💋 ❤️"
 
@@ -35,6 +39,7 @@ fclean:
 
 
 fffclean: fclean
+	@${RM} $(LIBFT_DIR)
 	@make fclean -C ./lib
 
 re: fclean all
