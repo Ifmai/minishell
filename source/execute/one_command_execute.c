@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/23 00:12:25 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:35:56 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	exec_one_command(void)
 	char	*true_path;
 	char	**new_command;
 
+	g_data->in_fd = -2;
+	g_data->out_fd = -2;
 	true_path = NULL;
 	command = command_create();
 	command = redirection(command);
