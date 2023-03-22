@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 08:47:15 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:23:26 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void	reset_command_struct(t_bool flag)
 	if(flag != TRUE)
 		free_fd();
 	_macro("VALUE_RESET");
+	g_data->signal_select = 0;;
 }

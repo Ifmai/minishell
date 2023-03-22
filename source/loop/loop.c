@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 08:47:06 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:55:45 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	minishell_loop(void)
 
 	while (1)
 	{
-		ft_signal();
+		g_data->signals = 1;
+		g_data->signal_select = DEFAULT;
 		g_data->line = readline("uWuShell :3 ");
 		if ((macrocomp(remove_spaces(g_data->line), "")))
 			continue ;
@@ -40,12 +41,15 @@ void	minishell_loop(void)
 		g_data->in_fd = -1;
 		g_data->out_fd = -1;
 		g_data->i = 0;
-		if (g_data->dvd_str->pipe_count == 0 && flag != TRUE)
+		g_data->_redirection->redir_control = 1;
+		if (g_data->dvd_str->pipe_count == 0 && flag != TRUE \
+			&& g_data->signals == 1)
 			exec_one_command();
-		else if (g_data->dvd_str->pipe_count > 0 && flag != TRUE)
+		else if (g_data->dvd_str->pipe_count > 0 && flag != TRUE \
+			&& g_data->signals == 1)
 			exec_multiple_command();
-		else
-			printf("erorr pü\n");
+		else if (g_data->signals == 1)
+			printf("erorr pü\n"); // bu error değişicek
 		reset_command_struct(flag);
 		//system("leaks minishell");
 	}

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:14:18 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 09:02:42 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:06:12 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_bool	is_redir_symbol(t_lexer *lexer)
 
 t_bool	is_redir_symbol_string(char *lexer)
 {
+	if(!lexer)
+		return (FALSE);
 	if (!ft_strncmp(lexer, "<", 1) || !ft_strncmp(lexer, ">", 1))
 	{
 		return (TRUE);

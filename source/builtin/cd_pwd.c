@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:40:38 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:56:41 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ void	cd_command(char **command)
 	int	i;
 
 	i = 1;
-	if (ft_strchr(command[i], 32) || command[i + 1] != 0)
+
+	if (command[i] == 0)
+	{
+		reload_old_path();
+		chdir(getenv("HOME"));
+	}
+	else if (ft_strchr(command[i], 32) || command[i + 1] != 0)
 		printf("cd: string not in pwd: %s\n", command[i]);
 	else
 	{
 		reload_old_path();
-		if (command[i] == 0)
-			chdir(getenv("HOME"));
-		else
-			chdir(command[i]);
+		chdir(command[i]);
 	}
 }
 

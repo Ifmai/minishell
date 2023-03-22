@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:30:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:56:34 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:00:55 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*add_symbol(void)
 	return (added);
 }
 
-int	set_std_file(int in_fd, int out_fd)
+void	set_std_file(int in_fd, int out_fd)
 {
 	int	ret;
 
@@ -40,7 +40,8 @@ int	set_std_file(int in_fd, int out_fd)
 		if (dup2(out_fd, STDOUT_FILENO) == -1)
 			ret = -1;
 	}
-	return (ret);
+	if(ret == -1)
+		exit (1);
 }
 
 void	assign_in_out_1(char *edit_param, char *symbol, char *redir_param)
@@ -74,7 +75,7 @@ void	assign_in_out(char *edited_param, char *symbol, char *redir_param)
 		if (g_data->in_fd < 0)
 		{
 			printf("%s: No such file or directory\n", redir_param);
-			exit(1);
+			g_data->_redirection->redir_control = 0;
 		}
 	}
 	else

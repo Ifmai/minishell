@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 23:56:04 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:58:44 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ void	exec_one_command_1(char *true_path, int builtins, char **command)
 	if (true_path || builtins == TRUE || redir == TRUE)
 	{
 		g_data->pid[0] = fork();
-		if (g_data->pid[0] == 0)
+		if (g_data->pid[0] == CHILD)
 		{
-			if (set_std_file(g_data->in_fd, g_data->out_fd) == -1)
-				exit(1);
+			set_std_file(g_data->in_fd, g_data->out_fd);
 			if (builtins == TRUE)
 				execute_builtins(command[0], command, 0);
 			execve(true_path, command, g_data->env);
@@ -55,10 +54,14 @@ void	exec_one_command(void)
 	true_path = NULL;
 	command = command_create();
 	command = redirection(command);
+	if(g_data->_redirection->redir_control == 0)
+		return ;
 	new_command = edit_command(command);
 	builtins = is_it_builtins(new_command);
 	if (builtins == FALSE)
 		true_path = true_command(new_command);
+	g_data->signal_select = CHILD;
 	exec_one_command_1(true_path, builtins, new_command);
+	g_data->signal_select = DEFAULT;
 	free_command_db(new_command);
 }

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:38:40 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 09:21:26 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:35:49 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	main(int ac, char **av, char **env)
 	g_data->env = ft_env(env);
 	define_struct();
 	export_create();
-	//create_path();
+	ft_signal();
 	minishell_loop();
 }

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:57:25 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 18:07:31 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:42:10 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*get_variable(char *input)
 	{
 		input++;
 		if (*input == '?')
-			return (ft_itoa(g_data->_var));
+			return (ft_itoa(g_data->_var % 256));
 		i = variable_len(input);
 		temp = ft_substr(input, 0, i);
 		var_data = get_env(temp);

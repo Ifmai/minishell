@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:57:48 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:55:59 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:59:42 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ char	**redirection(char **command)
 	char	*temp;
 
 	i = 0;
-	g_data->_redirection->torf = FALSE;
 	while (command[i] != 0 && command[i + 1])
 	{
 		if (is_redir_symbol_string(command[i]))
 		{
 			temp = edit_data(command[i + 1], TRUE, TRUE);
 			file_operations(temp, command[i], g_data->_redirection);
+			if(g_data->_redirection->redir_control == 0)
+				return NULL;
 			command = change_command(command, i);
 			free(temp);
-			g_data->_redirection->torf = TRUE;
 		}
 		else
 			i++;

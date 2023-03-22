@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:13:38 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 09:06:24 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:33:56 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	execute_command(char *true_path, int builtins, char **command, int i)
 {
 	if (true_path || builtins == TRUE)
 	{
+		g_data->signal_select = CHILD;
 		g_data->pid[0] = fork();
-		if (g_data->pid[0] == 0)
+		if (g_data->pid[0] == CHILD)
 		{
 			select_dup2(i);
-			if (set_std_file(g_data->in_fd, g_data->out_fd) == -1)
-				exit(1);
+			set_std_file(g_data->in_fd, g_data->out_fd);
 			if (builtins == TRUE)
 				execute_builtinz(command[0], command, 0);
 			execve(true_path, command, g_data->env);
@@ -91,5 +91,6 @@ void	exec_multiple_command(void)
 	}
 	while (waitpid(-1, &g_data->_var, 0) != -1)
 		continue ;
+	g_data->signal_select = DEFAULT;
 }
 

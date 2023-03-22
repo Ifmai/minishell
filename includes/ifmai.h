@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:42:36 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 09:07:05 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:55:16 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # include <sys/ioctl.h>
 # include "../libft/libft.h"
 
+# define CHILD 0
+# define HEREDOC 1
+# define DEFAULT 2
+
 // Structs
 typedef struct s_lexer
 {
@@ -44,6 +48,7 @@ typedef struct s_red
 	int		fd_input;
 	int		fd_output;
 	int		fd_heredoc;
+	int		redir_control;
 }			t_redirection;
 
 typedef struct s_divide_string
@@ -63,7 +68,6 @@ typedef struct s_data
 	char			*line;
 	char			**env;
 	char			**export;
-	int				check_signal;
 	char			**path;
 	pid_t			*pid;
 	t_divide_str	*dvd_str;
@@ -74,6 +78,8 @@ typedef struct s_data
 	int				out_fd;
 	int				_var;
 	int				i;
+	int				signal_select;
+	int				signals;
 }				t_data;
 
 // include main function
@@ -184,6 +190,11 @@ t_bool	is_redir_symbol(t_lexer *lexer);
 t_bool	is_redir_symbol_string(char *lexer);
 
 void	assign_in_out(char *edited_param, char *symbol, char *redir_param);
-int		set_std_file(int in_fd, int out_fd);
+void	set_std_file(int in_fd, int out_fd);
+
+
+
+void	sigquit(int signo);
+void	ft_sig(int signo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:49:27 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:54:42 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:25:00 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ t_bool	reset_value(void)
 	g_data->dvd_str->rec_db_r = 0;
 	g_data->dvd_str->rec_l = 0;
 	g_data->dvd_str->rec_r = 0;
-	g_data->check_signal = 0;
 	g_data->command_count = 0;
 	g_data->_redirection->fd_appened = 0;
 	g_data->_redirection->fd_heredoc = 0;
 	g_data->_redirection->fd_input = 0;
 	g_data->_redirection->fd_output = 0;
+	g_data->signals = 1;
 	return (TRUE);
 }
