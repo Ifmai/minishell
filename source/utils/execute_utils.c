@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:21:22 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 09:23:37 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:37:20 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,17 @@ void	free_command_db(char **command)
 	int	i;
 
 	i = 0;
-	if(command)
+
+	if(!command)
 		return ;
 	while (command[i] != 0)
-		free(command[i++]);
+	{
+		free(command[i]);
+		i++;
+	}
 	free(command);
+
 }
+
+
+// unset path senaryosunu değiştir.

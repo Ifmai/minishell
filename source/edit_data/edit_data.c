@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:58:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 16:46:41 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:41:54 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*edit_data(char	*substring, t_bool var_flag, t_bool q_flag)
 
 	quote = 0;
 	joined_data = ft_strdup("");
-	while (*substring != '\0')
+	while (substring && *substring != '\0')
 	{
 		while (q_flag && quote_type(*substring, &quote))
 			substring++;

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:12:04 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 18:05:32 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:34:27 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	wait_limiter(char *limiter, int _fd)
 	while (!macrocomp(loop, input))
 	{
 		if(g_data->_redirection->torf == TRUE || g_data->signals == 0)
-			return ;	
+			break ;	
 		if (var_flag)
 			edited_data = edit_data(input, TRUE, FALSE);
 		else
@@ -50,14 +50,19 @@ void	read_heredoc(char *limiter, int index)
 {
 	int		fd;
 	char	*path;
+	char	*itoas;
 
-	path = ft_strjoin("includes/heredoc", ft_itoa(index));
-	fd = open(path \
-	, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	itoas = ft_itoa(index);
+	path = ft_strjoin("includes/heredoc", itoas);
+	fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd < 0)
+	{
+		free(path);
 		exit(1);
+	}
 	wait_limiter(limiter, fd);
 	free(path);
+	free(itoas);
 	close(fd);
 }
 

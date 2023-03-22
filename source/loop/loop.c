@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 16:55:45 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 23:00:08 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	minishell_loop(void)
 {
 	t_bool	flag;
 
+	g_data->path = NULL;
 	while (1)
 	{
 		g_data->signals = 1;
@@ -38,8 +39,8 @@ void	minishell_loop(void)
 		count_pipe_rec();
 		flag = syntax_err();
 		init_heredoc();
-		g_data->in_fd = -1;
-		g_data->out_fd = -1;
+		g_data->in_fd = -2;
+		g_data->out_fd = -2;
 		g_data->i = 0;
 		g_data->_redirection->redir_control = 1;
 		if (g_data->dvd_str->pipe_count == 0 && flag != TRUE \
@@ -51,7 +52,7 @@ void	minishell_loop(void)
 		else if (g_data->signals == 1)
 			printf("erorr pü\n"); // bu error değişicek
 		reset_command_struct(flag);
-		//system("leaks minishell");
+		system("leaks minishell");
 	}
 }
 

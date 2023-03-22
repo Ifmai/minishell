@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:30:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 17:00:55 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:21:55 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ void	assign_in_out_1(char *edit_param, char *symbol, char *redir_param)
 void	assign_in_out(char *edited_param, char *symbol, char *redir_param)
 {
 	char	*path;
+	char	*itoas;
 
-	path = ft_strjoin("includes/heredoc", ft_itoa(g_data->i));
+	itoas = ft_itoa(g_data->i);
+	path = ft_strjoin("includes/heredoc", itoas);
 	if (!ft_strncmp("<", symbol, 1))
 	{
 		if (g_data->in_fd >= 0)
@@ -80,4 +82,6 @@ void	assign_in_out(char *edited_param, char *symbol, char *redir_param)
 	}
 	else
 		assign_in_out_1(edited_param, symbol, redir_param);
+	free(path);
+	free(itoas);
 }

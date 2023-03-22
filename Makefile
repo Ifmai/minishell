@@ -9,7 +9,7 @@ SRCS = ./source/main.c ./source/utils/utils.c ./source/utils/env_add.c ./source/
 		source/builtin/unset.c source/utils/multiple_command_utils.c
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I./lib/readline/include -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra -I./lib/readline/include -g #-fsanitize=address 
 RM = rm -rf
 LIBC = ar -rcs
 LIBFT = ./libft/libft.a

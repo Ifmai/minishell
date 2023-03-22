@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:57:48 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 16:59:42 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:26:58 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@ t_data	*g_data;
 void	file_operations(char *redir_param, char *symbol, t_redirection *redir)
 {
 	char	*edited_param;
-
+	char	*cwd;
+	
 	(void)redir;
 	if (redir_param[0] == '/')
 		edited_param = redir_param;
 	else
-		edited_param = ft_strjoin(add_symbol(), redir_param);
+	{
+		cwd = add_symbol();
+		edited_param = ft_strjoin(cwd, redir_param);
+		free(cwd);
+	}
 	assign_in_out(edited_param, symbol, redir_param);
 	free(edited_param);
 }
@@ -42,11 +47,12 @@ char	**change_command(char **command, int i)
 			j += 2;
 		else
 		{
-			new_command[index] = command[j];
+			new_command[index] = ft_strdup(command[j]);
 			index++;
 			j++;
 		}
 	}
+	free_command_db(command);
 	return (new_command);
 }
 
