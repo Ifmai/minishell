@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 01:27:45 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 22:23:08 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:29:07 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ t_data	*g_data;
 
 void	define_struct(void)
 {
+	g_data->signal_select = DEFAULT;
 	g_data->dvd_str = malloc(sizeof(t_divide_str));
 	g_data->dvd_str->lexer = NULL;
 	g_data->_var = 0;
+	g_data->i = 0;
 	g_data->_redirection = malloc(sizeof(t_redirection));
 	_macro("VALUE_RESET");
 }

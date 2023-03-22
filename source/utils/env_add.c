@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 04:15:05 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 21:56:09 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:21:41 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,22 @@ char	**ft_env(char **env)
 	return (result);
 }
 
-void	free_g_path()
+void	free_g_path(void)
 {
 	int	i;
 
 	i = 0;
-
-	if(g_data->path == NULL)
+	if (g_data->path == NULL)
 		return ;
- 	if ((g_data->path)[i] == NULL)
-		return ; 
+	if (g_data->path[i] == NULL)
+		return ;
 	while (g_data->path[i] != NULL)
 	{
 		free(g_data->path[i]);
 		i++;
 	}
 	free(g_data->path);
-
 }
-
 
 void	create_path(void)
 {
@@ -56,11 +53,11 @@ void	create_path(void)
 
 	i = 0;
 	temporary = NULL;
-	if(g_data->path)
+	if (g_data->path)
 		free_g_path();
 	while (g_data->env[i] && g_data->env[i][0] != 'P')
 		i++;
-	if(i != chardb_len(g_data->env))
+	if (i != chardb_len(g_data->env))
 	{
 		temporary = ft_strdup(g_data->env[i]);
 		i = 0;

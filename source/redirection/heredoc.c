@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:12:04 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 22:34:27 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:18:25 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 t_data	*g_data;
 
-void	wait_limiter(char *limiter, int _fd)
+static void	free_arg(char *loop, char *input)
 {
-	t_bool	var_flag;
+	free(input);
+	free(loop);
+}
+
+void	wait_limiter(char *limiter, int _fd, t_bool	var_flag)
+{
 	char	*loop;
 	char	*input;
 	char	*edited_data;
@@ -26,8 +31,8 @@ void	wait_limiter(char *limiter, int _fd)
 	loop = edit_data(limiter, FALSE, TRUE);
 	while (!macrocomp(loop, input))
 	{
-		if(g_data->_redirection->torf == TRUE || g_data->signals == 0)
-			break ;	
+		if (g_data->_redirection->torf == TRUE || g_data->signals == 0)
+			break ;
 		if (var_flag)
 			edited_data = edit_data(input, TRUE, FALSE);
 		else
@@ -35,15 +40,13 @@ void	wait_limiter(char *limiter, int _fd)
 		write(_fd, edited_data, ft_strlen(edited_data));
 		write(_fd, "\n", 1);
 		free(edited_data);
-		free(input);
-		free(loop);
+		free_arg(loop, input);
 		input = readline(">");
 		loop = edit_data(limiter, FALSE, TRUE);
-		if(!input)
+		if (!input)
 			ctrl_d(input);
 	}
-	free(loop);
-	free(input);
+	free_arg(loop, input);
 }
 
 void	read_heredoc(char *limiter, int index)
@@ -60,7 +63,7 @@ void	read_heredoc(char *limiter, int index)
 		free(path);
 		exit(1);
 	}
-	wait_limiter(limiter, fd);
+	wait_limiter(limiter, fd, 0);
 	free(path);
 	free(itoas);
 	close(fd);
@@ -77,7 +80,7 @@ void	init_heredoc(void)
 	g_data->signal_select = HEREDOC;
 	while (arg != NULL)
 	{
-		if(g_data->_redirection->torf == TRUE)
+		if (g_data->_redirection->torf == TRUE)
 			break ;
 		if (macrocomp(arg->str, "<<") && arg->next)
 			read_heredoc(arg->next->str, index);

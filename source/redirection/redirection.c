@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:57:48 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 22:26:58 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:19:15 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	file_operations(char *redir_param, char *symbol, t_redirection *redir)
 {
 	char	*edited_param;
 	char	*cwd;
-	
+
 	(void)redir;
 	if (redir_param[0] == '/')
 		edited_param = redir_param;
@@ -68,8 +68,8 @@ char	**redirection(char **command)
 		{
 			temp = edit_data(command[i + 1], TRUE, TRUE);
 			file_operations(temp, command[i], g_data->_redirection);
-			if(g_data->_redirection->redir_control == 0)
-				return NULL;
+			if (g_data->_redirection->redir_control == 0)
+				return (NULL);
 			command = change_command(command, i);
 			free(temp);
 		}

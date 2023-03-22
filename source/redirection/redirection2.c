@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:30:07 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 22:21:55 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:19:29 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	set_std_file(int in_fd, int out_fd)
 	ret = 0;
 	if (in_fd >= 0)
 	{
-		if (dup2(in_fd, STDIN_FILENO) == -1)
+		if (dup2(in_fd, STDIN_FILENO) == -2)
 			ret = -1;
 	}
 	if (out_fd >= 0)
 	{
-		if (dup2(out_fd, STDOUT_FILENO) == -1)
+		if (dup2(out_fd, STDOUT_FILENO) == -2)
 			ret = -1;
 	}
-	if(ret == -1)
+	if (ret == -1)
 		exit (1);
 }
 

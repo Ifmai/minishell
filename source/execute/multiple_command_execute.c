@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:13:38 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 23:04:28 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:11:56 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,13 @@ void	exec_multiple_command(void)
 	char	*true_path;
 	char	**new_command;
 
-	i = 0;
+	i = -1;
 	true_path = NULL;
 	create_pipe_fd();
-	while (i <= g_data->dvd_str->pipe_count)
+	while (++i <= g_data->dvd_str->pipe_count)
 	{
+		g_data->in_fd = -2;
+		g_data->out_fd = -2;
 		g_data->i = i;
 		command = command_create();
 		command = redirection(command);
@@ -87,10 +89,7 @@ void	exec_multiple_command(void)
 			true_path = true_command(new_command);
 		execute_command(true_path, builtins, new_command, i);
 		free_command_db(new_command);
-		i++;
 	}
 	while (waitpid(-1, &g_data->_var, 0) != -1)
 		continue ;
-	g_data->signal_select = DEFAULT;
 }
-

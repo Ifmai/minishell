@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:38:40 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 21:24:06 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:27:25 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av, char **env)
 		return (0);
 	g_data = malloc(sizeof(t_data));
 	g_data->env = ft_env(env);
+	g_data->signal_select = DEFAULT;
 	define_struct();
 	export_create();
 	ft_signal();

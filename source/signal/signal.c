@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:40:18 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 16:25:12 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:19:47 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ctrl_d(char *input)
 		printf("exit\n");
 		exit(0);
 	}
-	if(g_data->signal_select == HEREDOC)
+	if (g_data->signal_select == HEREDOC)
 	{
 		g_data->_redirection->torf = TRUE;
 		return ;
@@ -53,7 +53,6 @@ void	sigquit_handler(int sig)
 	if (g_data->signal_select == CHILD)
 		write(1, "Quit: 3\n", 8);
 }
-
 
 void	ft_signal(void)
 {

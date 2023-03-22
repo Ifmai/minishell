@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 21:50:40 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:20:23 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ char	*true_command(char **command)
 	int		i;
 	char	*true_path;
 
-	i = 0;
+	i = -1;
 	create_path();
-	if(command == NULL)
-		return NULL;
-	if(command[0] == NULL)
+	if (command == NULL)
+		return (NULL);
+	if (command[0] == NULL)
 		return (ft_strdup(""));
 	if (command[0][0] == '/' && access(command[0], F_OK) != -1)
 		return (ft_strdup(command[0]));
 	else if (command[0][0] == '/')
 		return (NULL);
-	if(!g_data->path)
+	if (!g_data->path)
 		return (NULL);
-	while (g_data->path[i] != 0)
+	while (g_data->path[++i] != 0)
 	{
 		true_path = ft_strdup(g_data->path[i]);
 		true_path = new_str_join(true_path, "/");
@@ -76,7 +76,6 @@ char	*true_command(char **command)
 		if (access(true_path, F_OK) != -1)
 			return (true_path);
 		free(true_path);
-		i++;
 	}
 	return (NULL);
 }

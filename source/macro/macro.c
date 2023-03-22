@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 04:49:27 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 16:25:00 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:14:42 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_bool	macrocomp(const char *s1, const char *s2)
 
 t_bool	reset_value(void)
 {
+	g_data->path = NULL;
 	g_data->dvd_str->db_quote = 0;
 	g_data->dvd_str->quote = 0;
 	g_data->dvd_str->pipe_count = 0;

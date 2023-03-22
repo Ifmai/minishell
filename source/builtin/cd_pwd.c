@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 13:56:41 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:08:36 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	cd_command(char **command)
 	int	i;
 
 	i = 1;
-
 	if (command[i] == 0)
 	{
 		reload_old_path();

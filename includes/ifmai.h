@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:42:36 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 16:55:16 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:18:27 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int		is_it_builtins(char **command);
 char	**redirection(char **comand);
 void	init_heredoc(void);
 void	read_heredoc(char *limiter, int index);
-void	wait_limiter(char	*limiter, int fd);
+void	wait_limiter(char	*limiter, int fd, t_bool var_flag);
 
 // Redirection : Heredoc Utils
 void	remove_node(t_lexer **head, t_lexer *node);
@@ -191,8 +191,6 @@ t_bool	is_redir_symbol_string(char *lexer);
 
 void	assign_in_out(char *edited_param, char *symbol, char *redir_param);
 void	set_std_file(int in_fd, int out_fd);
-
-
 
 void	sigquit(int signo);
 void	ft_sig(int signo);

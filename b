@@ -1,8 +1,0 @@
-aspdokasod
-asdoğasdğasd
-aspdalsda
-sdpğaosdlpasdl
-dpğasldüpasd
-asdğasdlpasd
-aspdlaspda
-a
