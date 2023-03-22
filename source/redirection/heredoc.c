@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:12:04 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 16:08:32 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:05:32 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	wait_limiter(char *limiter, int _fd)
 	loop = edit_data(limiter, FALSE, TRUE);
 	while (!macrocomp(loop, input))
 	{
-		//burda kontrol edicez.
+		if(g_data->_redirection->torf == TRUE || g_data->signals == 0)
+			return ;	
 		if (var_flag)
 			edited_data = edit_data(input, TRUE, FALSE);
 		else
@@ -38,7 +39,8 @@ void	wait_limiter(char *limiter, int _fd)
 		free(loop);
 		input = readline(">");
 		loop = edit_data(limiter, FALSE, TRUE);
-		//burda çağırıcaz
+		if(!input)
+			ctrl_d(input);
 	}
 	free(loop);
 	free(input);
@@ -66,6 +68,8 @@ void	init_heredoc(void)
 
 	index = 0;
 	arg = g_data->dvd_str->lexer;
+	g_data->_redirection->torf = FALSE;
+	g_data->signal_select = HEREDOC;
 	while (arg != NULL)
 	{
 		if(g_data->_redirection->torf == TRUE)
@@ -76,4 +80,5 @@ void	init_heredoc(void)
 			index++;
 		arg = arg->next;
 	}
+	g_data->signal_select = DEFAULT;
 }
