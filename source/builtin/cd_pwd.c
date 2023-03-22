@@ -14,17 +14,31 @@
 
 t_data	*g_data;
 
+void reload_old_path()
+{
+	char *path;
+	char    buff[4096 + 1];
+	path = ft_strjoin("OLDPWD=",getcwd(buff, 4096));
+	add_export(path);
+	add_env(path);
+	free(path);
+}
+
 void	cd_command(char **command)
 {
 	int	i;
 
 	i = 1;
-	if (command[i] == 0)
-		chdir(getenv("HOME"));
-	else if (ft_strchr(command[i], 32) || command[i + 1] != 0)
+	if (ft_strchr(command[i], 32) || command[i + 1] != 0)
 		printf("cd: string not in pwd: %s\n", command[i]);
 	else
+	{
+		reload_old_path();
+	if (command[i] == 0)
+		chdir(getenv("HOME"));
+	else
 		chdir(command[i]);
+	}
 }
 
 void	pwd_command(char **command)

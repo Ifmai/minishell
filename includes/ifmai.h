@@ -132,6 +132,7 @@ void	echo_command(char **command);
 void	pwd_command(char **command);
 void	cd_command(char **command);
 void	export_command(char **command, int flag);
+void	add_export(char *command);
 void	env_command(char **command, int flag);
 void	exit_command(char **command);
 void	unset_command(char **command);
