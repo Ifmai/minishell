@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   multiple_command_utils.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/22 09:06:51 by hozdemir          #+#    #+#             */
+/*   Updated: 2023/03/22 09:08:07 by hozdemir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/ifmai.h"
 
 t_data	*g_data;
@@ -9,17 +21,11 @@ t_bool	is_it_builtinz_2(char **command)
 	else if (macrocomp(command[0], "pwd"))
 		return (TRUE);
 	else if (macrocomp(command[0], "cd"))
-	{
 		return (TRUE);
-	}
 	else if (macrocomp(command[0], "exit"))
-	{
 		return (TRUE);
-	}
 	else if (macrocomp(command[0], "unset"))
-	{
 		return (TRUE);
-	}
 	return (FALSE);
 }
 
@@ -30,13 +36,9 @@ int	is_it_builtinz(char **command)
 	if (macrocomp(command[0], "echo"))
 		return (TRUE);
 	else if (macrocomp(command[0], "export"))
-	{
 		return (TRUE);
-	}
 	else if (macrocomp(command[0], "env"))
-	{
 		return (TRUE);
-	}
 	return (is_it_builtinz_2(command));
 }
 

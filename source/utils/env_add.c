@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 04:15:05 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 18:00:32 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 09:25:50 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,22 @@ void	create_path(void)
 	char	*temporary;
 
 	i = 0;
-	while (g_data->env[i][0] != 'P')
+	temporary = NULL;
+	if(g_data->path)
+		free_command_db(g_data->path);
+	while (g_data->env[i] && g_data->env[i][0] != 'P')
 		i++;
-	temporary = ft_strdup(g_data->env[i]);
-	i = 0;
-	while (temporary[i] && temporary[i] != '/')
-		i++;
-	g_data->path = ft_split((temporary + i), ':');
-	free(temporary);
+	if(i != chardb_len(g_data->env))
+	{
+		temporary = ft_strdup(g_data->env[i]);
+		i = 0;
+		while (temporary[i] && temporary[i] != '/')
+			i++;
+		g_data->path = ft_split((temporary + i), ':');
+		free(temporary);
+	}
+	else
+		g_data->path = NULL;
 }
 
 static void	ft_swap(char **a, char **b)

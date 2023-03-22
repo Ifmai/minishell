@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:42:36 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 18:12:57 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 09:07:05 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		qt(int hold, int num);
 
 // Loop : reset utils
 void	reset_redirection(t_divide_str *dvd);
-void	reset_command_struct(void);
+void	reset_command_struct(t_bool flag);
 void	free_command_db(char **command);
 void	free_fd(void);
 
@@ -153,6 +153,7 @@ void	execute_builtinz(char *select, char **command, int flag);
 void	exec_one_command(void);
 void	exec_multiple_command(void);
 void	close_pipe_fd(void);
+void	close_pipe(int i);
 void	create_pipe_fd(void);
 void	execute_builtins(char *select, char **command, int flag);
 

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:14:18 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 18:03:32 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/22 09:02:42 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,38 @@ t_bool	is_redir_symbol_string(char *lexer)
 	return (FALSE);
 }
 
-t_bool	syntax_err(void) // neden lexer üzerinden kontrol ettin ki ? // g_data->line üzerinden baksana ?
+t_bool	pipe_syntax(t_lexer	*lexer)
 {
-	t_lexer	*head;
+	if(macrocomp(lexer->str, "|"))
+	{
+		if(!lexer->next || macrocomp(lexer->next->str, "|"))
+		{
+			lexer->next = NULL;
+			return (TRUE);
+		}
+	}
+	return (FALSE);
+}
+
+t_bool	syntax_err(void)
+{
 	t_lexer	*lexer;
 
 	lexer = g_data->dvd_str->lexer;
-	head = lexer;
-	while (lexer && lexer->str)
+	while (lexer)
 	{
-		if (macrocomp(lexer->str, "<") || macrocomp(lexer->str, ">"))
+		if(pipe_syntax(lexer))
+			return (TRUE);
+		if(is_redir_symbol_string(lexer->str))
 		{
 			if (!(lexer->next) || is_redir_symbol(lexer->next) \
-				|| macrocomp(lexer->str, "|"))
+				|| macrocomp(lexer->next->str, "|"))
 			{
 				lexer->next = NULL;
-				lexer = head;
 				return (TRUE);
 			}
 		}
 		lexer = lexer->next;
 	}
-	lexer = head;
 	return (FALSE);
 }
