@@ -30,7 +30,7 @@ t_bool	is_redir_symbol_string(char *lexer)
 	return (FALSE);
 }
 
-t_bool	syntax_err(void)
+t_bool	syntax_err(void) // neden lexer üzerinden kontrol ettin ki ? // g_data->line üzerinden baksana ?
 {
 	t_lexer	*head;
 	t_lexer	*lexer;
