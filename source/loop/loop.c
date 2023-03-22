@@ -16,16 +16,8 @@ t_data	*g_data;
 
 char	*remove_spaces(char	*str)
 {
-	//int	len;
-
-	while (*str == ' ')
+	while (str && *str != '\0' && *str == ' ')
 		str++;
-	//len = ft_strlen(str);
-	//while (len > 0 && str[len - 1] == ' ')
-	//{
-	//	str[len - 1] = '\0';
-	//	len--;
-	//}
 	return (str);
 }
 
@@ -45,7 +37,6 @@ void	minishell_loop(void)
 		count_pipe_rec();
 		flag = syntax_err();
 		init_heredoc();
-		//delete_qoute();
 		g_data->in_fd = -1;
 		g_data->out_fd = -1;
 		g_data->i = 0;

@@ -6,10 +6,10 @@ SRCS = ./source/main.c ./source/utils/utils.c ./source/utils/env_add.c ./source/
 		./source/utils/export_utils.c ./source/builtin/env.c ./source/edit_data/edit_data.c ./source/variables/variables.c \
 		./source/utils/syntax_err.c ./source/utils/quote_utils.c ./source/redirection/redirection.c ./source/redirection/heredoc.c \
 		./source/utils/builtins_select_utils.c ./source/builtin/exit.c source/signal/signal.c source/redirection/redirection2.c \
-		source/builtin/unset.c
+		source/builtin/unset.c source/utils/multiple_command_utils.c
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I./lib/readline/include -g #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -I./lib/readline/include -fsanitize=address -g
 RM = rm -rf
 LIBC = ar -rcs
 LIBFT = ./libft/libft.a

@@ -17,6 +17,7 @@ t_data	*g_data;
 void	exec_one_command_1(char *true_path, int builtins, char **command)
 {
 	t_bool	redir;
+
 	redir = is_redir_symbol_string(command[0]);
 	if (true_path || builtins == TRUE || redir == TRUE)
 	{

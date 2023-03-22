@@ -14,11 +14,12 @@
 
 t_data	*g_data;
 
-void reload_old_path()
+void	reload_old_path(void)
 {
-	char *path;
-	char    buff[4096 + 1];
-	path = ft_strjoin("OLDPWD=",getcwd(buff, 4096));
+	char	*path;
+	char	buff[4096 + 1];
+
+	path = ft_strjoin("OLDPWD=", getcwd(buff, 4096));
 	add_export(path);
 	add_env(path);
 	free(path);
@@ -34,10 +35,10 @@ void	cd_command(char **command)
 	else
 	{
 		reload_old_path();
-	if (command[i] == 0)
-		chdir(getenv("HOME"));
-	else
-		chdir(command[i]);
+		if (command[i] == 0)
+			chdir(getenv("HOME"));
+		else
+			chdir(command[i]);
 	}
 }
 

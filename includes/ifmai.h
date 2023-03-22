@@ -145,6 +145,9 @@ void	add_env(char *command);
 char	*free_new_strdup(char *_free, char *command, int flag);
 char	*new_strdup(char *command);
 char	**double_strjoin(char **s1, char *add);
+t_bool	is_it_builtinz_2(char **command);
+int		is_it_builtinz(char **command);
+void	execute_builtinz(char *select, char **command, int flag);
 
 //Execute function
 void	exec_one_command(void);

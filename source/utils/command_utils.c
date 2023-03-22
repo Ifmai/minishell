@@ -32,7 +32,7 @@ void	delete_qoute(void)
 	}
 }
 
-char **edit_command(char **command)
+char	**edit_command(char **command)
 {
 	int		i;
 	int		len;
@@ -58,8 +58,8 @@ char	*true_command(char **command)
 
 	i = 0;
 	if (command[0][0] == '/' && access(command[0], F_OK) != -1)
-	 	return (ft_strdup(command[0]));
-	else if(command[0][0] == '/')
+		return (ft_strdup(command[0]));
+	else if (command[0][0] == '/')
 		return (0);
 	while (g_data->path[i] != 0)
 	{
