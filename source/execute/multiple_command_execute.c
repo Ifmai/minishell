@@ -50,18 +50,17 @@ void	close_pipe(int i)
 
 void	execute_command(char *true_path, int builtins, char **command, int i)
 {
-	char	**exec_command;
-
 	if (true_path || builtins == TRUE)
 	{
 		g_data->pid[0] = fork();
 		if (g_data->pid[0] == 0)
 		{
 			select_dup2(i);
-			exec_command = redirection(command);
-			if (builtins == FALSE)
-				execve(true_path, exec_command, g_data->env);
-			execute_builtins(exec_command[0], exec_command, 0);
+			if (set_std_file(g_data->in_fd, g_data->out_fd) == -1)
+				exit(1);
+			if (builtins == TRUE)
+				execute_builtins(command[0], command, 0);
+			execve(true_path, command, g_data->env);
 			exit(1);
 		}
 		else
@@ -83,6 +82,7 @@ void	exec_multiple_command(void)
 	int		builtins;
 	char	**command;
 	char	*true_path;
+	char	**new_command;
 
 	i = 0;
 	true_path = NULL;
@@ -91,11 +91,13 @@ void	exec_multiple_command(void)
 	{
 		g_data->i = i;
 		command = command_create();
-		builtins = is_it_builtins(command);
+		command = redirection(command);
+		new_command = edit_command(command);
+		builtins = is_it_builtins(new_command);
 		if (builtins == FALSE)
-			true_path = true_command(command);
-		execute_command(true_path, builtins, command, i);
-		free_command_db(command);
+			true_path = true_command(new_command);
+		execute_command(true_path, builtins, new_command, i);
+		free_command_db(new_command);
 		i++;
 	}
 	while (waitpid(-1, &g_data->_var, 0) != -1)

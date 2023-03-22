@@ -32,13 +32,32 @@ void	delete_qoute(void)
 	}
 }
 
+char **edit_command(char **command)
+{
+	int		i;
+	int		len;
+	char	**new_command;
+
+	i = 0;
+	len = chardb_len(command);
+	new_command = ft_calloc(len + 1, sizeof(char *));
+	while (command[i] != 0)
+	{
+		new_command[i] = edit_data(command[i], TRUE, TRUE);
+		free(command[i]);
+		i++;
+	}
+	free(command);
+	return (new_command);
+}
+
 char	*true_command(char **command)
 {
 	int		i;
 	char	*true_path;
 
 	i = 0;
-	if (access(command[0], F_OK) != -1)
+	if (command[0][0] == '/' && access(command[0], F_OK) != -1)
 	 	return (ft_strdup(command[0]));
 	else if(command[0][0] == '/')
 		return (0);
@@ -52,7 +71,7 @@ char	*true_command(char **command)
 		free(true_path);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 char	**command_create(void)

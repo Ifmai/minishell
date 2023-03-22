@@ -24,10 +24,6 @@ void	file_operations(char *redir_param, char *symbol, t_redirection *redir)
 	else
 		edited_param = ft_strjoin(add_symbol(), redir_param);
 	assign_in_out(edited_param, symbol, redir_param);
-	if (set_std_file(g_data->in_fd, g_data->out_fd) == -1)
-	{
-		exit(1);
-	}
 	free(edited_param);
 }
 
@@ -56,17 +52,20 @@ char	**change_command(char **command, int i)
 
 char	**redirection(char **command)
 {
-	int	index;
-	int	i;
+	int		i;
+	char	*temp;
 
 	i = 0;
-	index = 0;
+	g_data->_redirection->torf = FALSE;
 	while (command[i] != 0 && command[i + 1])
 	{
 		if (is_redir_symbol_string(command[i]))
 		{
-			file_operations(command[i + 1], command[i], g_data->_redirection);
+			temp = edit_data(command[i + 1], TRUE, TRUE);
+			file_operations(temp, command[i], g_data->_redirection);
 			command = change_command(command, i);
+			free(temp);
+			g_data->_redirection->torf = TRUE;
 		}
 		else
 			i++;

@@ -39,6 +39,7 @@ typedef struct s_lexer
 
 typedef struct s_red
 {
+	int		torf;
 	int		fd_appened;
 	int		fd_input;
 	int		fd_output;
@@ -153,6 +154,7 @@ void	execute_builtins(char *select, char **command, int flag);
 
 //Execute : Command utils
 char	**command_create(void);
+char	**edit_command(char **command);
 void	counter_redirection(char *str, t_redirection *redirection, int i);
 void	delete_qoute(void);
 int		len_list(t_lexer *lst);
