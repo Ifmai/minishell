@@ -6,13 +6,31 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:13:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/23 00:22:18 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 04:28:12 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
 t_data	*g_data;
+
+void	delete_qoute(void)
+{
+	t_lexer	*iter;
+	char	*temp;
+	int		i;
+
+	i = 0;
+	iter = g_data->dvd_str->lexer;
+	while (iter != NULL)
+	{
+		temp = edit_data(iter->str, TRUE, TRUE);
+		free(iter->str);
+		iter->str = ft_strdup(temp);
+		free(temp);
+		iter = iter->next;
+	}
+}
 
 t_bool	is_contains_quote(char *input)
 {

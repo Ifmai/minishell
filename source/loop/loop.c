@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:52:20 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/23 04:22:05 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 04:30:47 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	minishell_loop(void)
 		else if (g_data->signals == 1)
 			printf("bash: syntax error near unexpected token");
 		reset_command_struct(flag);
+		system("leaks minishell");
 	}
 }

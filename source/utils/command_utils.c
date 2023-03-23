@@ -6,31 +6,13 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:58:54 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/23 04:21:56 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 04:28:21 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ifmai.h"
 
 t_data	*g_data;
-
-void	delete_qoute(void)
-{
-	t_lexer	*iter;
-	char	*temp;
-	int		i;
-
-	i = 0;
-	iter = g_data->dvd_str->lexer;
-	while (iter != NULL)
-	{
-		temp = edit_data(iter->str, TRUE, TRUE);
-		free(iter->str);
-		iter->str = ft_strdup(temp);
-		free(temp);
-		iter = iter->next;
-	}
-}
 
 char	**edit_command(char **command)
 {
@@ -51,6 +33,24 @@ char	**edit_command(char **command)
 	return (new_command);
 }
 
+static char	*try_accses(char **command)
+{
+	int		i;
+	char	*true_path;
+
+	i = -1;
+	while (g_data->path[++i] != 0)
+	{
+		true_path = ft_strdup(g_data->path[i]);
+		true_path = new_str_join(true_path, "/");
+		true_path = new_str_join(true_path, command[0]);
+		if (access(true_path, F_OK) != -1)
+			return (true_path);
+		free(true_path);
+	}
+	return (NULL);
+}
+
 char	*true_command(char **command)
 {
 	int		i;
@@ -68,15 +68,9 @@ char	*true_command(char **command)
 		return (NULL);
 	if (!g_data->path)
 		return (NULL);
-	while (g_data->path[++i] != 0)
-	{
-		true_path = ft_strdup(g_data->path[i]);
-		true_path = new_str_join(true_path, "/");
-		true_path = new_str_join(true_path, command[0]);
-		if (access(true_path, F_OK) != -1)
-			return (true_path);
-		free(true_path);
-	}
+	true_path = try_accses(command);
+	if (true_path)
+		return (true_path);
 	free_command_db(g_data->path);
 	return (NULL);
 }
