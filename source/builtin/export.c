@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:33:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/13 21:40:54 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 03:32:30 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,29 @@ t_data	*g_data;
 
 void	add_export(char *command)
 {
-	int	i;
-	int	j;
-	int	flag;
+	int		i;
+	int		j;
+	int		flag;
+	char	*join_array;
 
 	j = 0;
 	flag = 0;
-	i = 0;
+	i = -1;
 	while (command[j] && command[j] != '=')
 		j++;
-	while (g_data->export[i])
+	while (g_data->export[++i])
 	{
 		flag = ft_strncmp(g_data->export[i], command, j);
 		if (flag == 0)
 			break ;
-		i++;
 	}
 	if (flag == 0)
 		g_data->export[i] = free_new_strdup(g_data->export[i], command, 1);
 	else
-		g_data->export = double_strjoin(g_data->export, new_strdup(command));
+	{
+		join_array = new_strdup(command);
+		g_data->export = double_strjoin(g_data->export, join_array);
+	}
 }
 
 static	void	write_export(void)
@@ -59,7 +62,7 @@ void	export_command(char **command, int flag)
 		while (command[i])
 		{
 			if (command[i][0] == '=' || ft_isdigit(command[i][0]) \
-				|| ft_strchr(command[i], 32))
+				|| int_strchr(command[i], 32))
 			{
 				printf("bash: export: '%s': not a \
 					valid identifier\n", command[i]);
@@ -68,7 +71,7 @@ void	export_command(char **command, int flag)
 			}
 			else
 				add_export(command[i]);
-			if (ft_strchr(command[i], '='))
+			if (int_strchr(command[i], '='))
 				add_env(command[i]);
 			i++;
 		}

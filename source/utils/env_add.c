@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 04:15:05 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/23 00:21:41 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 04:20:48 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	create_path(void)
 
 	i = 0;
 	temporary = NULL;
-	if (g_data->path)
-		free_g_path();
 	while (g_data->env[i] && g_data->env[i][0] != 'P')
 		i++;
 	if (i != chardb_len(g_data->env))
@@ -66,8 +64,6 @@ void	create_path(void)
 		g_data->path = ft_split((temporary + i), ':');
 		free(temporary);
 	}
-	else
-		g_data->path = NULL;
 }
 
 static void	ft_swap(char **a, char **b)

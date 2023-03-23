@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:30:06 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 17:58:02 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 03:31:10 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	execute_builtins(char *select, char **command, int flag)
 		echo_command(command);
 	else if (macrocomp(select, "pwd"))
 		pwd_command(command);
-	else if (macrocomp(select, "export"))
-		export_command(command, flag);
+/* 	else if (macrocomp(select, "export"))
+		export_command(command, flag); */
 	else if (macrocomp(select, "env"))
 		env_command(command, flag);
 	else if (macrocomp(select, "exit"))

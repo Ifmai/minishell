@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:58:28 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/22 22:41:54 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 03:11:21 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,20 @@ char	*add_char(char	*str, char add_char)
 {
 	int		str_len;
 	char	*new_str;
+	int		i;
+	int		j;
 
+	i = 1;
+	j = 0;
 	str_len = ft_strlen(str);
 	new_str = ft_calloc(str_len + 3, 1);
 	new_str[0] = add_char;
-	ft_memcpy(new_str + 1, str, str_len);
+	while (str[j])
+	{
+		new_str[i] = str[j];
+		i++;
+		j++;
+	}
 	new_str[str_len + 1] = add_char;
 	free(str);
 	return (new_str);

@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 07:55:33 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/21 19:14:47 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 04:00:58 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 t_data	*g_data;
 
-static char	*in_array(char *command, char *ret, int i)
+static char	*in_array(char *command, int i)
 {
 	char	*first;
 	char	*two;
+	char	*ret;
 
-	if (ft_strchr(command, '='))
+	if (int_strchr(command, '='))
 	{
 		while (command[i] != '=')
 			i++;
@@ -37,15 +38,9 @@ static char	*in_array(char *command, char *ret, int i)
 
 char	*new_strdup(char *command)
 {
-	int		len;
 	char	*new;
 
-	if (ft_strchr(command, '='))
-		len = ft_strlen(command) + 3;
-	else
-		len = ft_strlen(command) + 1;
-	new = ft_calloc(sizeof(char), len);
-	new = in_array(command, new, 0);
+	new = in_array(command, 0);
 	return (new);
 }
 
@@ -54,13 +49,13 @@ char	*free_new_strdup(char *_free, char *command, int flag)
 	int		len;
 	char	*new;
 
-	if (ft_strchr(command, '='))
+	if (int_strchr(command, '='))
 		len = ft_strlen(command) + 3;
 	else
 		len = ft_strlen(command) + 1;
 	new = ft_calloc(sizeof(char), len);
 	if (flag == 1)
-		new = in_array(command, new, 0);
+		new = in_array(command, 0);
 	else if (flag == 0)
 		new = ft_strdup(command);
 	free(_free);

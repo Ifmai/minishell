@@ -6,7 +6,7 @@
 /*   By: hozdemir <hozdemir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:42:36 by hozdemir          #+#    #+#             */
-/*   Updated: 2023/03/23 00:18:27 by hozdemir         ###   ########.fr       */
+/*   Updated: 2023/03/23 03:27:05 by hozdemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char	*add_symbol(void);
 t_bool	syntax_err(void);
 char	*get_env(char *find);
 void	ctrl_d(char *input);
+int	int_strchr(const char *s, int c);
 
 // Divide_string utils
 char	*add_str(t_divide_str *dvd, char *str, int *i);
